@@ -22,7 +22,8 @@ py -3 tools\kit\make_diorama.py noto
 - 地図は地理院地図 (航空写真・OSM にも切り替え可)。Google マップは API キーと課金が要り、地図から形を写し取る使い方も規約で禁止されているため、「Google マップで開く」で見比べるだけにしています
 - 入れる先のプロジェクト名は何でもよく、C++ モジュールは `FukuokaDrive` の名前のまま追加されます (`/Script/FukuokaDrive.*` を `setup_project.py` が使うため)。Content は入れません (`setup_project.py` がすべて作ります)
 - UE 付属の MCP サーバーも有効にし、エディタを開くと自動で起動します (`.mcp.json` も作る)。要らなければ `--no-mcp`
-- 新しいコースの設定には `"features": {"landmarks": false, "utility_poles": false, "guardrails": false, "city_glow": false}` を書きます (糸島の名所・電柱と街灯・ガードレール・福岡市の方向の街明かりを入れない。道路と区画線・側溝・標識は入れる)
+- 新しいコースの設定には `"features": {"landmarks": false, "utility_poles": false, "guardrails": false, "city_glow": false, "shrines": true}` を書きます (糸島の名所・電柱と街灯・ガードレール・福岡市の方向の街明かりを入れない。道路と区画線・側溝・標識と神社は入れる)
+- 神社 (`"shrines": true`、`terrain/shrines.py`): OSM の神社の点・拝殿と本殿の輪郭・境内の範囲から、規模に応じて祠・村の神社 (石の鳥居・参道・灯籠・狛犬・手水舎・拝殿・本殿・玉垣)・大きな神社 (朱の大鳥居・二の鳥居・神門・社務所も) を建て、鎮守の森で囲む。書いていなければ作らない
 - 前提: Windows、UE 5.8 (`C:\Program Files\Epic Games\UE_5.8`、違う場所なら環境変数 `UE_ROOT`)、Visual Studio の C++、Python 3.10 以上 (`py -3`)、インターネット (国土地理院・Overpass・Nominatim)。データは日本国内だけ
 - タイル (4km 四方) は 20 枚まで (`--max-tiles` で変更)。ストリーミングを切ってすべて読み込むので、多いとメモリが足りなくなります
 - UE の組み立ては必ず GUI のエディタで行います (`rebuild.bat` → `editor.py run`)。コマンドラインで `setup_project.py` を動かすと海岸の海が崩れます
