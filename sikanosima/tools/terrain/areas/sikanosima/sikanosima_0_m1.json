@@ -1,0 +1,13 @@
+{
+  "name": "sikanosima_0_m1",
+  "description": "sikanosima (地図で範囲を指定) のタイル (0, -1)。i が東、j が北へ 1 枚 (4032m) ずつ。原点は 原点 の中心",
+  "origin_lat": 33.6686,
+  "origin_lon": 130.3481,
+  "tile": [
+    0,
+    -1
+  ],
+  "rotation_deg": 27.0,
+  "size_px": 4033,
+  "meters_per_px": 1.0
+}

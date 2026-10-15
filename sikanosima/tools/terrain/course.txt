@@ -1,0 +1,2 @@
+# 作るコースの名前 (tools/terrain/areas/<名前>.json)。setup_project.py と rebuild.bat がこれを読む
+sikanosima
