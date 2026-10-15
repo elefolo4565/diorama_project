@@ -18,6 +18,7 @@ apply_roads.py の後に実行する。UE への配置は tools/ue/setup_project
 - 道路の付属物 (区画線・側溝・電柱と電線・防犯灯・標識): road_furniture.py
 - 季節の花と桜並木: flowers.py
 - 建物 (地理院と OSM の輪郭、夜は窓が灯る): buildings.py。建物の上と周りの木や花は除く
+- 神社 (鳥居・参道・灯籠・狛犬・拝殿・本殿・鎮守の森): shrines.py。コースの "features" の "shrines" が true のとき
 """
 
 import json
@@ -33,6 +34,7 @@ import building_textures
 import buildings
 import flowers
 import road_furniture
+import shrines
 import foliage as fo
 import scenery_meshes as sm
 from course import course_features, course_overrides
@@ -471,7 +473,7 @@ def write_preview(grid, doc, path, scale=2, building_mask=None):
                      "Suisen": (255, 255, 255), "Sakura": (255, 190, 220)}
     for k, items in doc["instances"].items():
         if (k.startswith("SM_FD_Guardrail") or k.startswith("SM_FD_Road") or k.startswith("SM_FD_Flower") or "Sakura" in k
-                or k.split("_")[2] in ("Momiji", "Haze", "Yamazakura", "Keyaki")):
+                or k.startswith("SM_FD_Shrine") or k.split("_")[2] in ("Momiji", "Haze", "Yamazakura", "Keyaki")):
             continue
         plot(items, (40, 200, 60) if "Pine" not in k else (20, 120, 40))
     autumn_colors = {"Momiji": (230, 30, 30), "Haze": (255, 90, 20), "Yamazakura": (255, 170, 40), "Keyaki": (190, 170, 60)}
@@ -490,6 +492,7 @@ def write_preview(grid, doc, path, scale=2, building_mask=None):
     plot((inst.get("SM_FD_RoadPole") or []) + (inst.get("SM_FD_RoadPoleT") or []), (60, 60, 255), r=1)
     plot([i for k, v in inst.items() if k.startswith("SM_FD_RoadSign") for i in v], (255, 0, 255), r=2)
     plot([i for v in doc.get("lights", {}).values() for i in v], (255, 220, 0), r=1)
+    plot([i for k, v in inst.items() if k.startswith("SM_FD_Shrine") for i in v], (230, 30, 30), r=2)
     if doc.get("meoto"):
         m = doc["meoto"]
         plot([r["location_cm"] for r in m["rocks"]] + [m["torii"]["location_cm"]], (255, 40, 40), r=3)
@@ -523,7 +526,13 @@ def main():
         meshes.update(m)
         torii_cm = meoto["torii"]["location_cm"]
         keep_clear.append((torii_cm[0], torii_cm[1], TREE_CLEAR_TORII_M * 100))
+    shrine_plans = []
+    if features["shrines"]:  # 神社の参道と建物の所は、木・花・家をよける
+        shrine_plans, shrine_clear = shrines.plan(area, grid, roads, stamp_roads)
+        keep_clear += shrine_clear
     instances = place_trees(grid, roads, keep_clear)
+    for name, items in shrines.forest(grid, roads, shrine_plans, keep_clear, stamp_roads).items():  # 鎮守の森
+        instances.setdefault(name, []).extend(items)
     if features["landmarks"]:
         instances.update(place_palms(grid, roads, torii_cm))
     flower_items, seasons, cull, occupied = flowers.place_flowers(grid, roads, densify, stamp_roads, dilate, keep_clear)
@@ -535,11 +544,18 @@ def main():
     footprints = buildings.load_footprints(area)
     building_meshes, building_mask, building_stats = buildings.place_buildings(grid, roads, stamp_roads, footprints, keep_clear)
     removed_by_buildings = buildings.remove_in_mask(instances, building_mask, grid.mpp, grid.half_cm / 100, list(instances))
+    world, rail_m, stretch_extra, shrine_stats = {}, 0.0, [], {}
+    if shrine_plans:  # 神社の部品は家の周りの除外より後に足す (近くの家に消されないように)
+        shrine_items, sando, shrine_stats = shrines.place(shrine_plans, grid, roads)
+        instances.update(shrine_items)
+        meshes.update({k: v for k, v in shrines.meshes().items() if k in shrine_items})
+        stretch_extra = [k for k in shrines.STRETCH if k in shrine_items]
+        if sando.parts:
+            world[sando.name] = sando
     meshes.update(flowers.flower_meshes())
     deciduous_meshes, deciduous_seasons = flowers.deciduous_meshes()
     meshes.update(deciduous_meshes)
     seasons.update(deciduous_seasons)
-    world, rail_m = {}, 0.0
     if features["guardrails"]:
         posts, beams, rail_m = place_guardrails(grid, roads, torii_cm)
         instances["SM_FD_GuardrailPost"] = posts
@@ -555,6 +571,7 @@ def main():
         road_items, road_meshes, stretch, road_world, lights = {}, {}, [], {}, {}
     instances.update(road_items)
     meshes.update(road_meshes)
+    stretch = stretch + stretch_extra
     world.update(road_world)
     world.update(building_meshes)
     meshes.update(world)
@@ -619,6 +636,8 @@ def main():
     with open(os.path.join(area.out_dir, "building_looks.json"), "w", encoding="utf-8") as f:
         json.dump(buildings.placed_looks, f, ensure_ascii=False, indent=1)
     print(f"ガードレール 計 {rail_m / 1000:.2f} km")
+    if features["shrines"]:
+        print("神社: " + (", ".join(f"{k} {v}" for k, v in shrine_stats.items()) or "なし"))
     print("夜の光源: " + ", ".join(f"{k} {len(v)}" for k, v in lights.items()))
 
 

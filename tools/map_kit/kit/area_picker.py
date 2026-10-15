@@ -141,11 +141,12 @@ def course_json(req):
         "tile_size_px": 4033,
         "meters_per_px": 1.0,
         "loop": False,
-        # 道路・区画線・側溝・標識は入れる。電柱と街灯・ガードレールは画面のチェックで選ぶ
+        # 道路・区画線・側溝・標識と神社は入れる。電柱と街灯・ガードレールは画面のチェックで選ぶ
         "features": {"landmarks": bool(feats.get("landmarks", False)), "road_markings": True,
                      "utility_poles": bool(feats.get("utility_poles", False)),
                      "guardrails": bool(feats.get("guardrails", False)),
-                     "city_glow": bool(feats.get("city_glow", False))},
+                     "city_glow": bool(feats.get("city_glow", False)),
+                     "shrines": bool(feats.get("shrines", True))},
         "polygon": poly,
     }
     rot = int(req.get("rotation_deg") or 0)

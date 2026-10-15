@@ -146,6 +146,9 @@ FEATURES = {
     "utility_poles": True,    # 電柱と電線・防犯灯 (街灯)
     "guardrails": True,       # ガードレール
     "city_glow": True,        # 夜空の福岡市・前原の方向の街明かり
+    # 神社 (鳥居・参道・拝殿・本殿・鎮守の森、tools/terrain/shrines.py)。前からあるコースの見た目を変えないよう、
+    # 書いていなければ作らない (地図で範囲を選ぶ画面は true を書く)
+    "shrines": False,
 }
 # 前の書き方: "road_furniture" は区画線・側溝・標識・電柱・防犯灯・ガードレールをまとめて切り替える
 # (個別のキーが書いてあればそちらが勝つ)

@@ -1842,7 +1842,7 @@ def place_scenery(eas, doc, meshes):
         if meshes.get(name):
             a = place_mesh(eas, meshes[name], at((0, 0, 0)), 0.0, name.replace("SM_FD_", ""),
                            "Auto/Guardrail" if "Guardrail" in name else "Auto/Buildings" if "Buildings" in name
-                           else "Auto/Road")
+                           else "Auto/Shrines" if name.startswith("SM_FD_Shrine") else "Auto/Road")
             if not opt.get("shadow", True):
                 a.static_mesh_component.set_editor_property("cast_shadow", False)
 
@@ -1853,6 +1853,7 @@ def place_scenery(eas, doc, meshes):
         if not items or not meshes.get(name):
             continue
         sub = ("Auto/Guardrail" if "Guardrail" in name else "Auto/Road" if name.startswith("SM_FD_Road")
+               else "Auto/Shrines" if name.startswith("SM_FD_Shrine")
                else "Auto/Flowers" if name in seasons else "Auto/Trees")
         a = place_instances(eas, cls, meshes[name], items, name.replace("SM_FD_", ""), sub, name in stretch,
                             name in doc.get("no_shadow", []))

@@ -77,6 +77,19 @@ MATERIALS = {
     "FD_SignRed": dict(color=(0.55, 0.02, 0.02), roughness=0.4),
     "FD_SignYellow": dict(color=(0.85, 0.55, 0.0), roughness=0.4),
     "FD_SignBlack": dict(color=(0.015, 0.015, 0.015), roughness=0.5),
+    # 神社 (tools/terrain/shrines.py)
+    "FD_ShrineVermilion": dict(color=(0.58, 0.05, 0.022), roughness=0.55),   # 朱塗り
+    "FD_ShrineBlack": dict(color=(0.02, 0.02, 0.02), roughness=0.5),         # 朱の鳥居の笠木
+    "FD_ShrineStone": dict(color=(0.13, 0.125, 0.115), roughness=0.9),       # 石の鳥居・灯籠・狛犬・基礎・参道
+    "FD_ShrineGravel": dict(color=(0.24, 0.235, 0.22), roughness=0.95),      # 拝殿の前の玉砂利
+    "FD_ShrineWood": dict(color=(0.20, 0.12, 0.06), roughness=0.8),          # 白木が古びた色
+    "FD_ShrineWoodDark": dict(color=(0.07, 0.045, 0.025), roughness=0.8),
+    "FD_ShrineWhite": dict(color=(0.62, 0.60, 0.55), roughness=0.85),        # 白壁
+    "FD_ShrineCopper": dict(color=(0.035, 0.12, 0.08), roughness=0.7),       # 緑青の銅板葺き
+    "FD_ShrineKawara": dict(color=(0.045, 0.05, 0.055), roughness=0.6),      # 社務所の瓦
+    "FD_ShrineGold": dict(color=(0.65, 0.45, 0.12), metallic=0.8, roughness=0.35),  # 鰹木と千木の金具
+    "FD_ShrineLight": dict(color=(0.80, 0.76, 0.62), roughness=0.6),         # 灯籠の火袋
+    "FD_ShrineWater": dict(color=(0.03, 0.06, 0.07), roughness=0.05),        # 手水の水
 }
 
 
@@ -309,24 +322,26 @@ def shimenawa(p0, p1, sag=3.0, radius=0.28, n=10, segments=24):
     return Mesh("SM_FD_Shimenawa").add("FD_Shimenawa", *sweep(rings)), origin
 
 
-def torii(pillar_span=4.6, pillar_height=5.4, pillar_r=0.27):
-    """白い明神鳥居。原点は2本の柱の間の地面。通り抜ける向きが +X、柱が並ぶ向きが Y。"""
-    m = Mesh("SM_FD_Torii")
+def torii(pillar_span=4.6, pillar_height=5.4, pillar_r=0.27, name="SM_FD_Torii", material="FD_ToriiWhite",
+          top_material=None):
+    """明神鳥居 (既定は白)。原点は2本の柱の間の地面。通り抜ける向きが +X、柱が並ぶ向きが Y。
+    top_material があれば笠木だけその色にする (朱の鳥居の黒い笠木)。"""
+    m = Mesh(name)
     hy = pillar_span / 2
     for y in (-hy, hy):
-        m.add("FD_ToriiWhite", *cylinder((0, y, -0.5), (0, y, pillar_height), pillar_r * 1.06, pillar_r, n=24))
-        m.add("FD_ToriiWhite", *cylinder((0, y, -0.05), (0, y, 0.45), pillar_r * 1.35, pillar_r * 1.3, n=24))  # 亀腹
+        m.add(material, *cylinder((0, y, -0.5), (0, y, pillar_height), pillar_r * 1.06, pillar_r, n=24))
+        m.add(material, *cylinder((0, y, -0.05), (0, y, 0.45), pillar_r * 1.35, pillar_r * 1.3, n=24))  # 亀腹
     # 貫 (柱を貫いて少し外へ出る横木)
-    m.add("FD_ToriiWhite", *box((0, 0, pillar_height - 1.25), (0.26, pillar_span + 1.3, 0.36)))
+    m.add(material, *box((0, 0, pillar_height - 1.25), (0.26, pillar_span + 1.3, 0.36)))
     # 額束
-    m.add("FD_ToriiWhite", *box((0, 0, pillar_height - 0.55), (0.22, 0.42, 1.05)))
+    m.add(material, *box((0, 0, pillar_height - 0.55), (0.22, 0.42, 1.05)))
     # 島木と笠木 (両端が反り上がる)
     span = pillar_span + 2.4
     ys = np.linspace(-span / 2, span / 2, 25)
     lift = 0.38 * (np.abs(ys) / (span / 2)) ** 2.4
     path = np.stack([np.zeros_like(ys), ys, pillar_height + 0.2 + lift], 1)
-    m.add("FD_ToriiWhite", *swept_rect(path[2:-2], 0.42, 0.34))
-    m.add("FD_ToriiWhite", *swept_rect(path + [0, 0, 0.32], 0.56, 0.3))
+    m.add(material, *swept_rect(path[2:-2], 0.42, 0.34))
+    m.add(top_material or material, *swept_rect(path + [0, 0, 0.32], 0.56, 0.3))
     return m
 
 
