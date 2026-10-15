@@ -16,8 +16,8 @@ UE 5.8 のレベルに組み立てる仕組みです。もとは fukuoka_drive (
 リポジトリの直下 (`C:\_projects\game\diorama_project`) で:
 
 ```
-py -3 tools\map_kit\kit\install_kit.py <地域のフォルダ> --create <英字のプロジェクト名>
-cd <地域のフォルダ>
+py -3 tools\map_kit\kit\install_kit.py maps\<地域> --create <英字のプロジェクト名>
+cd maps\<地域>
 py -3 -m pip install -r tools\terrain\requirements.txt
 py -3 tools\kit\area_picker.py            (地図で範囲を描いて tools\terrain\areas\<コース名>.json を書き出す)
 py -3 tools\kit\make_diorama.py <コース名>
@@ -30,7 +30,7 @@ py -3 tools\kit\make_diorama.py <コース名>
 ## 仕組みを直すとき
 
 1. ここ (`tools\map_kit`) を直す
-2. 地域ごとに入れ直す: `py -3 tools\map_kit\kit\install_kit.py <地域のフォルダ>` (`--create` なし。何度実行しても同じ結果)
+2. 地域ごとに入れ直す: `py -3 tools\map_kit\kit\install_kit.py maps\<地域>` (`--create` なし。何度実行しても同じ結果)
 3. 地域のフォルダで作り直す (`make_diorama.py <コース名>`、景色だけなら `tools\terrain\build_tiles.py areas\<コース名>.json --scenery`)
 
 地域のフォルダの `tools\` は入れ直しで上書きされるので、地域のフォルダの側では直さないでください

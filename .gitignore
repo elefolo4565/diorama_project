@@ -6,5 +6,5 @@ Saved/
 *.sln
 __pycache__/
 *.pyc
-*/tools/terrain/out/
-*/tools/vehicle/out/
+maps/*/tools/terrain/out/
+maps/*/tools/vehicle/out/
