@@ -1,0 +1,10 @@
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+*.sln
+__pycache__/
+*.pyc
+*/tools/terrain/out/
+*/tools/vehicle/out/

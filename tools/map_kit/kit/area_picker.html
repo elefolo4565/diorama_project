@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ジオラマの範囲を選ぶ</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root { --bg:#fff; --fg:#1d1d1f; --muted:#666; --line:#d8d8d8; --accent:#d9480f; --ok:#2b8a3e; --bad:#c92a2a; --panel:#f6f6f4; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; font-family: "Yu Gothic UI", "Meiryo", system-ui, sans-serif; color:var(--fg); background:var(--bg); font-size:14px; }
+  #app { display:grid; grid-template-columns: 1fr 340px; height:100%; }
+  #map { height:100%; }
+  #side { border-left:1px solid var(--line); background:var(--panel); overflow:auto; padding:14px; display:flex; flex-direction:column; gap:14px; }
+  h1 { font-size:16px; margin:0; }
+  h2 { font-size:13px; margin:0 0 6px; color:var(--muted); font-weight:600; }
+  .row { display:flex; gap:6px; }
+  input[type=text] { flex:1; min-width:0; padding:7px 8px; border:1px solid var(--line); border-radius:6px; font:inherit; background:#fff; }
+  button { padding:7px 10px; border:1px solid var(--line); border-radius:6px; background:#fff; font:inherit; cursor:pointer; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; }
+  button.on { background:#1d1d1f; color:#fff; border-color:#1d1d1f; }
+  button:disabled { opacity:.45; cursor:default; }
+  #results { list-style:none; margin:6px 0 0; padding:0; max-height:180px; overflow:auto; }
+  #results li { padding:6px 4px; border-bottom:1px solid var(--line); cursor:pointer; font-size:12.5px; }
+  #results li:hover { background:#fff; }
+  .stat { font-size:13px; line-height:1.6; }
+  .stat b { font-variant-numeric: tabular-nums; }
+  .bad { color:var(--bad); font-weight:600; }
+  .good { color:var(--ok); }
+  label.chk { display:flex; gap:6px; align-items:center; font-size:13px; margin:3px 0; }
+  .hint { font-size:12px; color:var(--muted); line-height:1.5; }
+  .field { display:flex; flex-direction:column; gap:3px; margin-bottom:8px; font-size:12.5px; }
+  #msg { font-size:13px; line-height:1.5; white-space:pre-wrap; }
+  code { background:#fff; border:1px solid var(--line); border-radius:4px; padding:1px 4px; font-size:12px; }
+  #wps { list-style:none; padding:0; margin:4px 0 0; font-size:12.5px; }
+  #wps li { display:flex; justify-content:space-between; padding:2px 0; }
+  #wps button { padding:0 6px; font-size:11px; }
+  #lmlist { list-style:none; padding:0; margin:2px 0 0 22px; max-height:220px; overflow:auto; font-size:12.5px; }
+  #lmlist label { display:flex; gap:6px; align-items:center; padding:1px 0; }
+  #lmlist .kind { color:var(--muted); font-size:11px; }
+  .vtx { width:12px !important; height:12px !important; margin:-6px 0 0 -6px !important; border-radius:50%; background:#fff; border:2px solid var(--accent); }
+  .leaflet-container.drawing { cursor: crosshair; }
+  @media (max-width: 760px) { #app { grid-template-columns:1fr; grid-template-rows: 55% 45%; } #side { border-left:0; border-top:1px solid var(--line); } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="map"></div>
+  <div id="side">
+    <h1>ジオラマの範囲を選ぶ</h1>
+
+    <section>
+      <h2>1. 場所を探す</h2>
+      <div class="row">
+        <input id="q" type="text" placeholder="例: 能登半島 輪島、阿蘇 草千里">
+        <button id="go">検索</button>
+      </div>
+      <ul id="results"></ul>
+      <div class="row" style="margin-top:6px">
+        <button id="gmaps" title="今見ている場所を Google マップで開く (見比べる用)">Google マップで開く</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. 範囲を描く</h2>
+      <div class="row" style="flex-wrap:wrap">
+        <button id="draw" class="primary">範囲を描く</button>
+        <button id="finish" disabled>描き終わる</button>
+        <button id="undo" disabled>1 つ戻す</button>
+        <button id="clear" disabled>消す</button>
+      </div>
+      <p class="hint">地図をクリックして頂点を置きます。ダブルクリックでも描き終わります。<br>
+        頂点はドラッグで動かせ、右クリックで消せます。線の上をクリックすると、そこに頂点が増えます。<br>
+        実際に作るのは、範囲にかかる 4km 四方のタイル (地図の白い枠) です。</p>
+      <div class="stat" id="stat">まだ範囲がありません</div>
+      <label class="chk" style="margin-top:6px"><input type="checkbox" id="rot" checked> タイルを範囲の向きに回して枚数を減らす</label>
+    </section>
+
+    <section>
+      <h2>3. ファストトラベルの行き先 (任意)</h2>
+      <button id="wp">行き先を置く</button>
+      <ul id="wps"></ul>
+      <p class="hint">置かなければ、範囲の真ん中に近い道路が 1 か所の行き先になります。最初の行き先がスタート地点です。</p>
+    </section>
+
+    <section>
+      <h2>4. 書き出す</h2>
+      <div class="field">コース名 (英小文字・数字・_)
+        <input id="name" type="text" placeholder="例: noto_coast"></div>
+      <div class="field">説明
+        <input id="desc" type="text" placeholder="例: 能登半島 外浦の海岸"></div>
+      <label class="chk"><input type="checkbox" id="f_road"> 電柱・街灯・ガードレール (道路・区画線・標識はいつも入る)</label>
+      <label class="chk"><input type="checkbox" id="lm"> エリア内の名所 (ファストトラベルの行き先にする)</label>
+      <div id="lmbox" hidden>
+        <p class="hint" id="lmmsg"></p>
+        <ul id="lmlist"></ul>
+      </div>
+      <label class="chk"><input type="checkbox" id="nosea"> 海を置かない (内陸)</label>
+      <div class="row" style="margin-top:8px"><button id="save" class="primary" disabled>書き出す</button></div>
+      <div id="msg"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+const TILE_M = 4032, MAX_TILES = 20, K = Math.PI / 180 * 6378137;
+
+const map = L.map('map', { doubleClickZoom: false }).setView([33.59, 130.2], 11);
+const base = {
+  '地理院地図': L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',
+    { maxZoom: 18, attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>' }),
+  '航空写真 (地理院)': L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg',
+    { maxZoom: 18, attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>' }),
+  'OpenStreetMap': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }),
+};
+base['地理院地図'].addTo(map);
+L.control.layers(base).addTo(map);
+L.control.scale({ imperial: false }).addTo(map);
+
+// ---- 状態
+let pts = [];            // [[lat, lon], ...]
+let mode = null;         // 'draw' | 'wp' | null
+let closed = false;
+let waypoints = [];      // [{name, lat, lon}] 手で置いた行き先
+let landmarks = [];      // [{name, kind, lat, lon, famous, on}] エリア内の名所 (OSM)
+const LM_DEFAULT_ON = 8; // はじめから行き先にする名所の数
+let tilesInfo = { tiles: [], center: null, rotation: 0 };
+let rotation = 0;        // 升目の回転 (度)。範囲を描き変えるたびに選び直す
+const vtxLayer = L.layerGroup().addTo(map);
+const tileLayer = L.layerGroup().addTo(map);
+const wpLayer = L.layerGroup().addTo(map);
+const lmLayer = L.layerGroup().addTo(map);
+let polyLine = null;
+
+const $ = id => document.getElementById(id);
+
+// ---- 地名検索
+async function doSearch() {
+  const q = $('q').value.trim();
+  if (!q) return;
+  $('results').innerHTML = '<li>検索中…</li>';
+  try {
+    const r = await fetch('/api/search?q=' + encodeURIComponent(q));
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || r.status);
+    $('results').innerHTML = '';
+    if (!j.results.length) { $('results').innerHTML = '<li>見つかりませんでした。市町村名を足してみてください</li>'; return; }
+    j.results.forEach((res, i) => {
+      const li = document.createElement('li');
+      li.textContent = res.name;
+      li.onclick = () => goTo(res);
+      $('results').appendChild(li);
+      if (i === 0) goTo(res);
+    });
+  } catch (e) { $('results').innerHTML = `<li class="bad">${e.message}</li>`; }
+}
+function goTo(res) {
+  const b = res.bbox;
+  if (b && b.length === 4 && Math.abs(b[1] - b[0]) > 0.005) map.fitBounds([[b[0], b[2]], [b[1], b[3]]], { maxZoom: 14 });
+  else map.setView([res.lat, res.lon], 13);
+}
+$('go').onclick = doSearch;
+$('q').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+$('gmaps').onclick = () => {
+  const c = map.getCenter();
+  window.open(`https://www.google.com/maps/@${c.lat.toFixed(5)},${c.lng.toFixed(5)},${map.getZoom()}z`, '_blank');
+};
+
+// ---- 投影 (tools/terrain/geo.py の Area と同じ正距円筒)
+// r は升目の回転 (度、反時計回り)。+x は東から r 度北へ回った向き
+function toLocal(o, lat, lon, r = 0) {
+  const e = (lon - o[1]) * K * Math.cos(o[0] * Math.PI / 180), n = (lat - o[0]) * K;
+  const c = Math.cos(r * Math.PI / 180), s = Math.sin(r * Math.PI / 180);
+  return [e * c + n * s, -e * s + n * c];
+}
+function toLatLon(o, x, y, r = 0) {
+  const c = Math.cos(r * Math.PI / 180), s = Math.sin(r * Math.PI / 180);
+  const e = x * c - y * s, n = x * s + y * c;
+  return [o[0] + n / K, o[1] + e / (K * Math.cos(o[0] * Math.PI / 180))];
+}
+function inside(poly, x, y) {
+  let hit = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const [x0, y0] = poly[j], [x1, y1] = poly[i];
+    if ((y0 > y) !== (y1 > y) && x < x0 + (y - y0) * (x1 - x0) / (y1 - y0)) hit = !hit;
+  }
+  return hit;
+}
+// build_loop.py の tiles_in_polygon と同じ判定
+function computeTiles(rot = rotation) {
+  if (pts.length < 3) return { tiles: [], center: null, rotation: rot };
+  const lats = pts.map(p => p[0]), lons = pts.map(p => p[1]);
+  const r4 = v => Math.round(v * 1e4) / 1e4;
+  const o = [r4((Math.min(...lats) + Math.max(...lats)) / 2), r4((Math.min(...lons) + Math.max(...lons)) / 2)];
+  const poly = pts.map(p => toLocal(o, p[0], p[1], rot));
+  const half = TILE_M / 2, xs = poly.map(p => p[0]), ys = poly.map(p => p[1]);
+  const n = Math.floor(TILE_M / 250) + 1, tiles = [];
+  for (let i = Math.floor((Math.min(...xs) + half) / TILE_M); i <= Math.floor((Math.max(...xs) + half) / TILE_M); i++)
+    for (let j = Math.floor((Math.min(...ys) + half) / TILE_M); j <= Math.floor((Math.max(...ys) + half) / TILE_M); j++) {
+      const cx = i * TILE_M, cy = j * TILE_M;
+      let hit = poly.some(([x, y]) => Math.abs(x - cx) <= half && Math.abs(y - cy) <= half);
+      for (let a = 0; !hit && a < n; a++)
+        for (let b = 0; !hit && b < n; b++)
+          hit = inside(poly, cx - half + a * TILE_M / (n - 1), cy - half + b * TILE_M / (n - 1));
+      if (hit) tiles.push([i, j]);
+    }
+  return { tiles, center: o, rotation: rot };
+}
+// タイルの枚数がいちばん少なくなる升目の回転 (0〜89 度、1 度おき)。同じ枚数なら回さない方 (0 に近い方) を選ぶ
+function bestRotation() {
+  if (pts.length < 3 || !$('rot').checked) return 0;
+  let best = 0, bestN = computeTiles(0).tiles.length;
+  for (let r = 1; r < 90; r++) {
+    const n = computeTiles(r).tiles.length;
+    if (n < bestN) { best = r; bestN = n; }
+  }
+  return best;
+}
+
+// ---- 描画
+function redraw() {
+  vtxLayer.clearLayers();
+  if (polyLine) { map.removeLayer(polyLine); polyLine = null; }
+  if (pts.length) {
+    polyLine = closed || pts.length >= 3
+      ? L.polygon(pts, { color: '#d9480f', weight: 3, fillOpacity: 0.12, dashArray: closed ? null : '6 6' })
+      : L.polyline(pts, { color: '#d9480f', weight: 3 });
+    polyLine.addTo(map);
+  }
+  rotation = bestRotation();
+  pts.forEach((p, idx) => {
+    const m = L.marker(p, { draggable: true, icon: L.divIcon({ className: 'vtx' }) });
+    m.on('drag', e => { const ll = e.target.getLatLng(); pts[idx] = [ll.lat, ll.lng]; polyLine && polyLine.setLatLngs(pts); updateTiles(); });
+    m.on('dragend', redraw);
+    m.on('contextmenu', () => {   // 右クリックで頂点を消す
+      pts.splice(idx, 1);
+      if (pts.length < 3) closed = false;
+      redraw();
+    });
+    m.addTo(vtxLayer);
+  });
+  updateTiles();
+  $('undo').disabled = !pts.length;
+  $('clear').disabled = !pts.length;
+  $('finish').disabled = !(mode === 'draw' && pts.length >= 3);
+  if ($('lm').checked) findLandmarks();
+}
+function updateTiles() {
+  tilesInfo = computeTiles();
+  tileLayer.clearLayers();
+  const t = tilesInfo.tiles, o = tilesInfo.center, half = TILE_M / 2;
+  t.forEach(([i, j]) => {
+    const cx = i * TILE_M, cy = j * TILE_M;
+    const corners = [[-half, -half], [half, -half], [half, half], [-half, half]].map(([dx, dy]) => toLatLon(o, cx + dx, cy + dy, rotation));
+    L.polygon(corners, { color: t.length > MAX_TILES ? '#c92a2a' : '#ffffff', weight: 1.5, fill: false, opacity: 0.95,
+      interactive: false }).addTo(tileLayer);
+  });
+  const km2 = (t.length * TILE_M * TILE_M / 1e6).toFixed(0);
+  if (!t.length) $('stat').innerHTML = pts.length ? `頂点 ${pts.length} 個 (3 個以上で範囲になります)` : 'まだ範囲がありません';
+  else $('stat').innerHTML = `タイル <b>${t.length}</b> 枚 (約 ${km2} km²)` +
+    (rotation ? `、升目を ${rotation}° 回しています (北向きなら ${computeTiles(0).tiles.length} 枚)` : '') +
+    (t.length > MAX_TILES ? `<br><span class="bad">${MAX_TILES} 枚を超えています。範囲を狭めてください</span>`
+                          : `<br><span class="good">作れる大きさです (上限 ${MAX_TILES} 枚)</span>`) +
+    `<br><span class="hint">初回の生成はタイル 1 枚あたりデータ 2 分 + UE の組み立て</span>`;
+  $('save').disabled = !(t.length && t.length <= MAX_TILES && closed);
+}
+function setMode(m) {
+  mode = m;
+  $('draw').classList.toggle('on', m === 'draw');
+  $('wp').classList.toggle('on', m === 'wp');
+  map.getContainer().classList.toggle('drawing', !!m);
+  redraw();
+}
+$('draw').onclick = () => {
+  if (mode === 'draw') return setMode(null);
+  if (closed) { closed = false; }
+  setMode('draw');
+};
+$('finish').onclick = () => { if (pts.length >= 3) { closed = true; setMode(null); } };
+$('undo').onclick = () => { pts.pop(); if (pts.length < 3) closed = false; redraw(); };
+$('clear').onclick = () => { pts = []; closed = false; redraw(); };
+$('rot').onchange = redraw;
+$('wp').onclick = () => setMode(mode === 'wp' ? null : 'wp');
+
+let clickTimer = null;
+// 線の上 (EDGE_PX 以内) をクリックしたら、その辺の上に頂点を足す。足す場所を返す (無ければ -1)
+const EDGE_PX = 10;
+function edgeAt(latlng) {
+  const n = pts.length;
+  if (n < 2) return { idx: -1 };
+  const c = map.latLngToContainerPoint(latlng);
+  const edges = closed || n >= 3 ? n : n - 1;   // 描いている途中も、3 点以上なら閉じる辺を含める
+  let best = { idx: -1, d: EDGE_PX, at: null };
+  for (let i = 0; i < edges; i++) {
+    const a = map.latLngToContainerPoint(pts[i]), b = map.latLngToContainerPoint(pts[(i + 1) % n]);
+    const dx = b.x - a.x, dy = b.y - a.y, len2 = dx * dx + dy * dy;
+    if (!len2) continue;
+    const t = ((c.x - a.x) * dx + (c.y - a.y) * dy) / len2;
+    if (t <= 0.02 || t >= 0.98) continue;      // 頂点のすぐ近くはドラッグに任せる
+    const px = a.x + t * dx, py = a.y + t * dy, d = Math.hypot(c.x - px, c.y - py);
+    if (d < best.d) best = { idx: i + 1, d, at: map.containerPointToLatLng([px, py]) };
+  }
+  return best;
+}
+map.on('click', e => {
+  const edge = mode === 'wp' ? { idx: -1 } : edgeAt(e.latlng);
+  if (edge.idx >= 0) {
+    clearTimeout(clickTimer);
+    pts.splice(edge.idx, 0, [edge.at.lat, edge.at.lng]);
+    redraw();
+    return;
+  }
+  if (mode === 'draw') {
+    clearTimeout(clickTimer);   // ダブルクリックの 2 回目のクリックで点が増えないように少し待つ
+    clickTimer = setTimeout(() => { pts.push([e.latlng.lat, e.latlng.lng]); redraw(); }, 220);
+  } else if (mode === 'wp') {
+    const name = prompt('行き先の名前 (ファストトラベルの一覧に出ます)', waypoints.length ? '' : 'スタート');
+    if (name && name.trim()) { waypoints.push({ name: name.trim(), lat: e.latlng.lat, lon: e.latlng.lng }); drawWps(); }
+  }
+});
+map.on('dblclick', () => {
+  if (mode !== 'draw') return;
+  clearTimeout(clickTimer);
+  if (pts.length >= 3) { closed = true; setMode(null); }
+});
+function drawWps() {
+  wpLayer.clearLayers();
+  $('wps').innerHTML = '';
+  waypoints.forEach((w, i) => {
+    L.marker([w.lat, w.lon], { title: w.name }).bindTooltip(`${i + 1}. ${w.name}`, { permanent: true, direction: 'right' }).addTo(wpLayer);
+    const li = document.createElement('li');
+    const label = document.createElement('span');
+    label.textContent = `${i + 1}. ${w.name}`;
+    li.appendChild(label);
+    const del = document.createElement('button');
+    del.textContent = '消す';
+    del.onclick = () => { waypoints.splice(i, 1); drawWps(); };
+    li.appendChild(del);
+    $('wps').appendChild(li);
+  });
+}
+
+// ---- エリア内の名所
+let lmKey = '';
+async function findLandmarks() {
+  if (!$('lm').checked) { lmLayer.clearLayers(); $('lmbox').hidden = true; return; }
+  $('lmbox').hidden = false;
+  if (!closed) { $('lmmsg').textContent = '範囲を描き終わると、その中の名所を探します'; $('lmlist').innerHTML = ''; return; }
+  const key = JSON.stringify(pts);
+  if (key === lmKey) return drawLandmarks();
+  lmKey = key;
+  $('lmmsg').textContent = '名所を探しています (OpenStreetMap)…';
+  $('lmlist').innerHTML = '';
+  try {
+    const r = await fetch('/api/landmarks', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ polygon: pts }) });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || r.status);
+    if (key !== lmKey) return;   // 探している間に範囲が変わった
+    const was = new Set(landmarks.filter(l => l.on).map(l => l.name));
+    landmarks = j.landmarks.map((l, i) => ({ ...l, on: was.size ? was.has(l.name) : i < LM_DEFAULT_ON }));
+    drawLandmarks();
+  } catch (e) { lmKey = ''; $('lmmsg').innerHTML = `<span class="bad">${e.message}</span>`; }
+}
+function drawLandmarks() {
+  lmLayer.clearLayers();
+  $('lmlist').innerHTML = '';
+  $('lmmsg').textContent = landmarks.length
+    ? `${landmarks.length} 件見つかりました。印を付けたものが行き先になります (有名なものが上)`
+    : '範囲の中に名前の付いた名所が見つかりませんでした';
+  landmarks.forEach(l => {
+    const li = document.createElement('li'), lab = document.createElement('label'), cb = document.createElement('input');
+    cb.type = 'checkbox'; cb.checked = l.on;
+    cb.onchange = () => { l.on = cb.checked; drawLandmarks(); };
+    const name = document.createElement('span'); name.textContent = l.name + (l.famous ? ' ★' : '');
+    const kind = document.createElement('span'); kind.className = 'kind'; kind.textContent = l.kind;
+    lab.append(cb, name, kind); li.appendChild(lab); $('lmlist').appendChild(li);
+    if (l.on) L.circleMarker([l.lat, l.lon], { radius: 6, color: '#7048e8', weight: 2, fillOpacity: 0.7 })
+      .bindTooltip(l.name, { direction: 'top' }).addTo(lmLayer);
+  });
+}
+$('lm').onchange = findLandmarks;
+
+// ---- 書き出し
+$('name').addEventListener('input', () => { $('name').value = $('name').value.toLowerCase().replace(/[^a-z0-9_]/g, '_'); });
+async function save(overwrite) {
+  const body = {
+    name: $('name').value.trim(), description: $('desc').value.trim(),
+    polygon: pts, center: tilesInfo.center, tiles: tilesInfo.tiles.length, rotation_deg: tilesInfo.rotation,
+    waypoints: waypoints.concat($('lm').checked ? landmarks.filter(l => l.on && !waypoints.some(w => w.name === l.name))
+      .map(l => ({ name: l.name, lat: l.lat, lon: l.lon })) : []),
+    features: { utility_poles: $('f_road').checked, guardrails: $('f_road').checked, landmarks: false, city_glow: false },
+    sea: $('nosea').checked ? 'none' : 'auto', overwrite: !!overwrite,
+  };
+  $('msg').textContent = '書き出し中…';
+  const r = await fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const j = await r.json();
+  if (j.exists) { if (confirm(j.error + '\n(前の範囲で作ったデータは消えます)')) return save(true); $('msg').textContent = ''; return; }
+  if (!j.ok) { $('msg').innerHTML = `<span class="bad">${j.error}</span>`; return; }
+  $('msg').innerHTML = `<span class="good">書き出しました: <code>${j.path}</code></span>\n次に PC で次を実行すると世界ができます:\n<code>${j.command}</code>\n(Claude に「${j.name} を作って」と頼んでも同じです)`;
+}
+$('save').onclick = () => save(false);
+
+// ---- 前に書き出した範囲を開く (?course=<名前>)
+(async () => {
+  const want = new URLSearchParams(location.search).get('course');
+  if (!want) return;
+  const j = await (await fetch('/api/courses')).json();
+  const c = j.courses.find(c => c.name === want);
+  if (!c) return;
+  pts = c.polygon; closed = true; waypoints = c.waypoints || [];
+  $('name').value = c.name; $('desc').value = c.description || '';
+  const f = c.features || {};
+  $('f_road').checked = !!(f.utility_poles ?? f.road_furniture);
+  $('nosea').checked = c.sea === 'none';
+  drawWps(); redraw();
+  map.fitBounds(L.polygon(pts).getBounds(), { padding: [30, 30] });
+})();
+</script>
+</body>
+</html>
