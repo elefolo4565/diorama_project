@@ -72,6 +72,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Walker")
 	void TravelTo(const AFDTravelPoint* Point);
 
+	/** Where の地面へ移る (拡大マップのファストトラベル用)。バイクも一緒に移り、その横に立つ */
+	void TravelToTransform(const FTransform& Where);
+
+	/** 右下のミニマップを出す / 消す (Tab のメニューの「ミニマップ」) */
+	void ShowMinimap();
+	void HideMinimap();
+
 	/** 歩く速さ (cm/s)。150 で 5.4 km/h */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Walker")
 	float WalkSpeedCms = 150.f;
@@ -178,8 +185,6 @@ private:
 	void ApplyFigureMeshes();
 	void ApplyColors();
 	void CreateInputAssets();
-	void ShowMinimap();
-	void HideMinimap();
 	void UpdateLimbs(float DeltaSeconds);
 	void KeepOutOfSea();
 	float DistanceToBikeCm() const;

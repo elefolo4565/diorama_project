@@ -84,6 +84,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "TimeOfDay")
 	void GoToHour(float TargetHour);
 
+	/** 1-4 キーの時刻 (0 = 朝、1 = 昼、2 = 夕方、3 = 夜)。日の出と日の入りから決める */
+	float PresetHour(int32 Index) const;
+
+	/** 次の季節の日付へ (Y キー) */
+	void NextSeason();
+
 	UFUNCTION(BlueprintPure, Category = "TimeOfDay")
 	float GetSunElevationDeg() const { return SunElevationDeg; }
 
@@ -240,8 +246,6 @@ private:
 	void ComputeSun(float InHour, float& OutAzimuthDeg, float& OutElevationDeg) const;
 	/** その日の日の出と日の入りの時刻 (時)。太陽の上端が地平線に重なるとき (高度 -0.83°) */
 	void ComputeSunriseSunset(float& OutSunrise, float& OutSunset) const;
-	float PresetHour(int32 Index) const;
-	void NextSeason();
 	/** 季節の花と桜 (AFDInstances) を、いまの日付の季節のものだけ見せる */
 	void ApplySeason();
 	FFDLookKey EvaluateLook(float Elevation) const;

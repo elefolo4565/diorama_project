@@ -39,6 +39,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Fly")
 	void ReturnToGround();
 
+	/** 地図で選んだ XY (UE 座標 cm) の上空へ移る。地面からの高さは今のまま (低ければ MinTravelHeightCm) */
+	void FlyTo(const FVector2D& XY);
+
+	/** 地図で移ったときの、地面からの最低の高さ (cm) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fly")
+	float MinTravelHeightCm = 3000.f;
+
 	/** ふつうの速さ (cm/s)。2500 で 90 km/h */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fly")
 	float SpeedCms = 2500.f;

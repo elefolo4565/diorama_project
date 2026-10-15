@@ -9,6 +9,7 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "FDInstances.h"
+#include "FDMenu.h"
 #include "FDNightLights.h"
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
@@ -333,11 +334,11 @@ void AFDTimeOfDay::Tick(float DeltaSeconds)
 		SetHour(Hour + Advance);
 	}
 
-	if (bShowDebugText && GEngine)
+	if (bShowDebugText && FFDSettings::ShowHelpText() && GEngine)
 	{
 		GEngine->AddOnScreenDebugMessage(
 			DebugMessageKey, 0.f, FColor::White,
-			FString::Printf(TEXT("%d/%d %s   sun %+5.1f deg   [T/G = time, 1-4 = morning/noon/sunset/night, Y = season]"),
+			FString::Printf(TEXT("%d/%d %s   sun %+5.1f deg   [T/G = time, 1-4 = morning/noon/sunset/night, Y = season, Tab = menu]"),
 			                Month, Day, *FormatHour(Hour), SunElevationDeg));
 	}
 }

@@ -465,7 +465,8 @@ void AFDWalkerCharacter::OnMove(const FInputActionValue& Value)
 void AFDWalkerCharacter::Look(const FVector2D& DeltaDeg)
 {
 	APlayerController* PC = Cast<APlayerController>(GetController());
-	if (!PC)
+	// メニューや地図を開いている間はマウスをメニューに使う
+	if (!PC || FFDMenu::IsAnyOpen())
 	{
 		return;
 	}
@@ -551,10 +552,27 @@ void AFDWalkerCharacter::TravelTo(const AFDTravelPoint* Point)
 		ReturnToBike();
 		return;
 	}
-	SetActorLocationAndRotation(Point->GetActorLocation() + FVector(0.f, 0.f, StandHeightCm), FRotator(0.f, Point->GetActorRotation().Yaw, 0.f),
+	TravelToTransform(FTransform(FRotator(0.f, Point->GetActorRotation().Yaw, 0.f), Point->GetActorLocation()));
+}
+
+void AFDWalkerCharacter::TravelToTransform(const FTransform& Where)
+{
+	if (Bike)
+	{
+		// バイクを行き先に下ろし、その横に立つ
+		Bike->TravelToTransform(Where);
+		ReturnToBike();
+		return;
+	}
+	const double Yaw = Where.Rotator().Yaw;
+	SetActorLocationAndRotation(Where.GetLocation() + FVector(0.f, 0.f, StandHeightCm), FRotator(0.f, Yaw, 0.f),
 	                            false, nullptr, ETeleportType::TeleportPhysics);
 	GetCharacterMovement()->StopMovementImmediately();
 	LastSafeLocation = GetActorLocation();
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		PC->SetControlRotation(FRotator(-12.f, Yaw, 0.f));
+	}
 }
 
 // ---------------------------------------------------------------- ミニマップ
@@ -563,7 +581,7 @@ void AFDWalkerCharacter::ShowMinimap()
 {
 	UGameViewportClient* Viewport = GetWorld() ? GetWorld()->GetGameViewport() : nullptr;
 	// 地図の画像と大きさはバイクの設定を使う
-	if (Minimap.IsValid() || !Bike || !Bike->bShowMinimap || !Viewport || !IsLocallyControlled())
+	if (Minimap.IsValid() || !Bike || !Bike->bShowMinimap || !FFDSettings::ShowMinimap() || !Viewport || !IsLocallyControlled())
 	{
 		return;
 	}
@@ -671,7 +689,7 @@ void AFDWalkerCharacter::Tick(float DeltaSeconds)
 	KeepOutOfSea();
 	UpdateLimbs(DeltaSeconds);
 
-	if (bShowDebugText && IsLocallyControlled() && GEngine)
+	if (bShowDebugText && FFDSettings::ShowHelpText() && IsLocallyControlled() && GEngine)
 	{
 		const float Dist = DistanceToBikeCm();
 		const FString Ride = !Bike ? FString()
@@ -679,7 +697,7 @@ void AFDWalkerCharacter::Tick(float DeltaSeconds)
 		                   : FString::Printf(TEXT("bike %.0f m"), Dist / 100.f);
 		GEngine->AddOnScreenDebugMessage(
 			DebugMessageKey, 0.f, FColor::White,
-			FString::Printf(TEXT("%3.1f km/h  %s   [W/S/A/D, mouse = look, Shift = run, Space = jump, R = back to bike, F = travel, B = fly]"),
+			FString::Printf(TEXT("%3.1f km/h  %s   [W/S/A/D, mouse = look, Shift = run, Space = jump, R = back to bike, F = travel, B = fly, M = map, Tab = menu]"),
 			                GetVelocity().Size2D() * 0.036f, *Ride));
 	}
 }

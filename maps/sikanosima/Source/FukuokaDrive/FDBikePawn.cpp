@@ -379,7 +379,7 @@ void AFDBikePawn::ToggleColorMenu()
 	}
 	OpenMenuKind = EMenu::Color;
 	Menu.Open(Cast<APlayerController>(GetController()), TEXT("\u8eca\u4f53\u306e\u8272"),  // 車体の色
-	          MoveTemp(Items), TEXT("M \u30ad\u30fc\u3067\u9589\u3058\u308b"));  // M キーで閉じる
+	          MoveTemp(Items), TEXT("Tab \u30ad\u30fc\u3067\u9589\u3058\u308b"));  // Tab キーで閉じる
 }
 
 void AFDBikePawn::ToggleSoundMenu()
@@ -443,7 +443,13 @@ void AFDBikePawn::TravelTo(const AFDTravelPoint* Point)
 	{
 		return;
 	}
-	SafeTransform = FTransform(FRotator(0.f, Point->GetActorRotation().Yaw, 0.f), Point->GetActorLocation());
+	TravelToTransform(FTransform(FRotator(0.f, Point->GetActorRotation().Yaw, 0.f), Point->GetActorLocation()));
+}
+
+void AFDBikePawn::TravelToTransform(const FTransform& Where)
+{
+	// 戻り先を行き先にして、そこへ戻す (高さは上から地面を探し直す)
+	SafeTransform = FTransform(FRotator(0.f, Where.Rotator().Yaw, 0.f), Where.GetLocation());
 	SafePointTimer = 0.f;
 	ResetToSafePoint();
 }
@@ -453,7 +459,7 @@ void AFDBikePawn::TravelTo(const AFDTravelPoint* Point)
 void AFDBikePawn::ShowMinimap()
 {
 	UGameViewportClient* Viewport = GetWorld() ? GetWorld()->GetGameViewport() : nullptr;
-	if (Minimap.IsValid() || !bShowMinimap || !Viewport || !IsLocallyControlled())
+	if (Minimap.IsValid() || !bShowMinimap || !FFDSettings::ShowMinimap() || !Viewport || !IsLocallyControlled())
 	{
 		return;
 	}
@@ -560,8 +566,6 @@ void AFDBikePawn::CreateInputAssets()
 	SteerAction->ValueType = EInputActionValueType::Axis1D;
 	ResetAction = NewObject<UInputAction>(this, TEXT("IA_Reset"));
 	ResetAction->ValueType = EInputActionValueType::Boolean;
-	ColorMenuAction = NewObject<UInputAction>(this, TEXT("IA_ColorMenu"));
-	ColorMenuAction->ValueType = EInputActionValueType::Boolean;
 	TravelMenuAction = NewObject<UInputAction>(this, TEXT("IA_TravelMenu"));
 	TravelMenuAction->ValueType = EInputActionValueType::Boolean;
 	GetOffAction = NewObject<UInputAction>(this, TEXT("IA_GetOff"));
@@ -599,8 +603,7 @@ void AFDBikePawn::CreateInputAssets()
 	MappingContext->MapKey(ResetAction, EKeys::R);
 	MappingContext->MapKey(ResetAction, EKeys::Gamepad_FaceButton_Top);
 
-	MappingContext->MapKey(ColorMenuAction, EKeys::M);
-	MappingContext->MapKey(ColorMenuAction, EKeys::Gamepad_Special_Right);
+	// 車体の色は Tab のメニューから (M は拡大マップ、ゲームパッドのメニューボタンは Tab のメニュー。AFDGameMenu)
 
 	MappingContext->MapKey(TravelMenuAction, EKeys::F);
 	MappingContext->MapKey(TravelMenuAction, EKeys::Gamepad_Special_Left);
@@ -744,7 +747,6 @@ void AFDBikePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	Input->BindAction(SteerAction, ETriggerEvent::Triggered, this, &AFDBikePawn::OnSteer);
 	Input->BindActionValueLambda(SteerAction, ETriggerEvent::Completed, [this](const FInputActionValue&) { SteerInput = 0.f; });
 	Input->BindAction(ResetAction, ETriggerEvent::Started, this, &AFDBikePawn::OnReset);
-	Input->BindActionValueLambda(ColorMenuAction, ETriggerEvent::Started, [this](const FInputActionValue&) { ToggleColorMenu(); });
 	Input->BindActionValueLambda(TravelMenuAction, ETriggerEvent::Started, [this](const FInputActionValue&) { ToggleTravelMenu(); });
 	Input->BindActionValueLambda(GetOffAction, ETriggerEvent::Started, [this](const FInputActionValue&) { GetOff(); });
 	Input->BindActionValueLambda(CameraAction, ETriggerEvent::Started, [this](const FInputActionValue&) { CycleCameraMode(); });
@@ -1018,12 +1020,12 @@ void AFDBikePawn::Tick(float DeltaSeconds)
 		SafeTransform = FTransform(FRotator(0.f, YawDeg, 0.f), GetActorLocation());
 	}
 
-	if (bShowDebugText && bRidden && IsLocallyControlled() && GEngine)
+	if (bShowDebugText && FFDSettings::ShowHelpText() && bRidden && IsLocallyControlled() && GEngine)
 	{
 		GEngine->AddOnScreenDebugMessage(
 			DebugMessageKey, 0.f, FColor::White,
 			// デバッグ表示のフォントは日本語を表示できないので英数字だけにする
-			FString::Printf(TEXT("%3.0f km/h   gear %d  %4.0f rpm   lean %+3.0f deg   grade %+4.1f%%   [W/S/A/D, R = reset, E = get off, V = camera, N = sound, M = color, F = travel, B = fly]"),
+			FString::Printf(TEXT("%3.0f km/h   gear %d  %4.0f rpm   lean %+3.0f deg   grade %+4.1f%%   [W/S/A/D, R = reset, E = get off, V = camera, N = sound, F = travel, B = fly, M = map, Tab = menu]"),
 			                GetSpeedKmh(), GetGear(), EngineRpm, LeanDeg, FMath::Tan(FMath::DegreesToRadians(GradeDeg)) * 100.f));
 	}
 }

@@ -2,6 +2,7 @@
 
 #include "EngineUtils.h"
 #include "FDBikePawn.h"
+#include "FDGameMenu.h"
 #include "FDTimeOfDay.h"
 #include "GameFramework/PlayerStart.h"
 #include "Engine/PlayerStartPIE.h"
@@ -17,6 +18,11 @@ void AFDGameMode::StartPlay()
 	if (UWorld* World = GetWorld(); World && !TActorIterator<AFDTimeOfDay>(World))
 	{
 		World->SpawnActor<AFDTimeOfDay>();
+	}
+	// Tab のメニューと M の拡大マップ
+	if (UWorld* World = GetWorld(); World && !TActorIterator<AFDGameMenu>(World))
+	{
+		World->SpawnActor<AFDGameMenu>();
 	}
 	Super::StartPlay();
 }
