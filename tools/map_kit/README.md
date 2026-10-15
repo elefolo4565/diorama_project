@@ -25,6 +25,10 @@ py -3 tools\kit\make_diorama.py <コース名>
 
 - UE の組み立ては必ず GUI のエディタで行います (`make_diorama.py` か `tools\ue\editor.py run tools\ue\setup_project.py`)。
   コマンドライン (ヘッドレス) で `setup_project.py` を動かすと海岸の海が崩れます
+- エディタは `tools\ue\open_editor.bat` で開きます。.uproject のダブルクリックは、Epic Games Launcher に
+  関連付けられていると「Missing Modules」になってプロジェクトの選択画面に戻ります (エディタがプロジェクト無しで起動するため)。
+  ダブルクリックで開きたいときは、.uproject を右クリック →「プログラムから開く」→
+  `C:\Program Files\Epic Games\Launcher\Engine\Binaries\Win64\UnrealVersionSelector.exe` を「常に使う」にします
 - 神社は、コースの設定の `"features"` に `"shrines": true` を書くと作ります (地図で範囲を選ぶ画面は true を書きます)
 
 ## 仕組みを直すとき
