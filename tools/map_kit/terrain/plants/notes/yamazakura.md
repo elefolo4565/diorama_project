@@ -1,0 +1,12 @@
+# ヤマザクラ (Cerasus jamasakura)
+- 樹形: 落葉高木。樹高 15〜25m。幹は 1〜2 本、上の方で枝が斜め上に広がる。樹冠は丸い〜不規則で、山の林の中では細長い
+- 幹: 赤褐色〜暗い紫褐色でなめらか、横に長い皮目の筋
+- 葉: 8〜12cm の楕円、細かい鋸歯
+- 花・実: 4 月、赤茶色の新芽と同時に白〜淡いピンクの花 (直径 3cm)。山の斜面に点々と白っぽく見える
+- 季節の形: 4 つ。春 = 白〜淡いピンクの花と赤茶の新芽 (`_Hana`)、夏 = 緑 (基本の形)、秋 = 赤〜橙 (`_Aki`)、冬 = 枝だけ (`_Fuyu`)
+- 生える所: 山の林・尾根・里山 (forest, ridge)。一面ではなく、ほかの木の中に 1 本ずつ混じる
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Prunus_jamasakura,_at_Chofuku-ji,_Akasaka-cho,_Toyokawa_(2011.05).jpg (CC BY-SA 3.0, Lombroso)
+  - https://commons.wikimedia.org/wiki/File:Yamazakura,_Cerasus_jamasakura.JPG (CC BY-SA 3.0, Arashiyama)
+  - https://commons.wikimedia.org/wiki/File:Cerasus_jamasakura_-_Flickr_-_odako1_(6).jpg (CC BY-SA 2.0, Koichi Oda)
+  - https://www.inaturalist.org/observations/206420216 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市連光寺桜ヶ丘公園)

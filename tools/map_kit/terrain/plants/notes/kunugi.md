@@ -1,0 +1,12 @@
+# クヌギ (Quercus acutissima)
+- 樹形: 落葉高木。樹高 15m 前後。単幹で太く、樹冠は横に広い丸い形。若い木は卵形で枝が上向き
+- 幹: 灰褐色で厚いコルク質の樹皮に、縦に深く不規則な割れ目 (ごつごつ)。太さ 30〜60cm
+- 葉: 8〜15cm の細長い楕円 (クリの葉に似る)、縁に針のような細い鋸歯。つやのある緑
+- 花・実: 4 月に黄褐色の垂れた花の房。秋に丸い大きなどんぐり (2cm) とトゲのような鱗片の殻斗
+- 季節の形: 4 つ。春 = 黄緑の若葉と花の房 (`_Haru`)、夏 = 緑 (基本の形)、秋 = 黄〜黄褐色 (`_Aki`)、冬 = 茶色く枯れた葉が枝にかなり残る (`_Fuyu`)
+- 生える所: 田畑のまわり・里山の林・農家の近く (farm, forest)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Quercus_acutissima.jpg (Public domain)
+  - https://commons.wikimedia.org/wiki/File:Lasdon_Arboretum_-_Quercus_acutissima_-_IMG_1515.jpg (Public domain, Daderot)
+  - https://commons.wikimedia.org/wiki/File:2019-11-26_11_50_09_View_up_into_the_canopy_of_a_Sawtooth_Oak_during_late_autumn_along_a_walking_path_in_the_Franklin_Farm_section_of_Oak_Hill,_Fairfax_County,_Virginia.jpg (CC BY-SA 4.0, Famartin)
+  - https://commons.wikimedia.org/wiki/File:2019-11-12_16_17_48_View_up_into_the_canopy_of_a_Sawtooth_Oak_during_late_autumn_along_a_walking_path_in_the_Franklin_Farm_section_of_Oak_Hill,_Fairfax_County,_Virginia.jpg (CC BY-SA 4.0, Famartin)

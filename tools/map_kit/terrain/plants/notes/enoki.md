@@ -1,0 +1,11 @@
+# エノキ (Celtis sinensis)
+- 樹形: 落葉高木。樹高 15〜20m。幹は太く、低い所で太い枝に分かれ、枝は横に長く伸びて、横に広い丸い樹冠
+- 幹: 灰褐色でなめらか、小さな皮目がざらつく
+- 葉: 4〜9cm の卵形、上半分に鋸歯、葉の付け根が左右で少しずれる
+- 花・実: 春に小さな花、秋に橙〜赤茶の小さな実 (鳥が好む)
+- 季節の形: 4 つ。春 = 黄緑の新緑 (`_Haru`)、夏 = 緑 (基本の形)、秋 = 黄色 (`_Aki`)、冬 = 枝だけ (`_Fuyu`)
+- 生える所: 集落・川べり・海に近い林・神社 (farm, coast)。一里塚や村の目印の大木
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Shimizugaoka_park_-_Yokohama.jpg (CC BY-SA 4.0, Quercus acuta)
+  - https://commons.wikimedia.org/wiki/File:Celtis_sinensis_and_Aphananthe_aspera_trees_of_Saiunbashi_Bridge.JPG (CC BY-SA 4.0, そらみみ)
+  - https://commons.wikimedia.org/wiki/File:Celtics_sinensis_spring_foliage.jpg (CC BY-SA 4.0, Geographer)

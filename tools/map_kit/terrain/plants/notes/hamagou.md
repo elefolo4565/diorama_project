@@ -1,0 +1,11 @@
+# ハマゴウ (Vitex rotundifolia)
+- 形: 砂の上をはって広がる落葉低木。高さ 0.3〜0.7m。地面を覆うマット状の群れで、枝先が立ち上がる
+- 葉: 2〜5cm の丸い楕円、灰緑色で白い毛があり銀色がかって見える。枝に向かい合って付く
+- 花・実: 7〜9 月、枝先に青紫色の小さな花の房 (群れの上に点々と紫)。秋に灰色の丸い実
+- 季節の形: 3 つ。春 = 緑の葉だけ (基本の形)、夏 = 青紫の花の房 (`_Hana`)、秋〜冬 = 葉を落とした茶色い枝と実 (`_Fuyu`)
+- 生える所: 砂浜・海岸の砂地 (coast)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Euphorbia_jolkinii_and_Vitex_rotundifolia_s5.jpg (CC BY-SA 4.0, Alpsdake)
+  - https://commons.wikimedia.org/wiki/File:Euphorbia_jolkinii_and_Vitex_rotundifolia_s2.jpg (CC BY-SA 4.0, Alpsdake)
+  - https://commons.wikimedia.org/wiki/File:Starr_031127-0021_Vitex_rotundifolia.jpg (CC BY 3.0, Forest & Kim Starr)
+  - https://commons.wikimedia.org/wiki/File:Starr_040405-0227_Vitex_rotundifolia.jpg (CC BY 3.0, Forest & Kim Starr)

@@ -1,0 +1,11 @@
+# スギ (Cryptomeria japonica)
+- 樹形: まっすぐな単幹の常緑針葉樹。樹高 25〜40m。植林では幹がそろって密に立ち、下の方は枝が落ちて幹だけが見える。樹冠は細長くとがった円すい形で、山の斜面に先のとがった樹冠がぎっしり並ぶ
+- 幹: 赤褐色の樹皮が縦に細長く裂けてはがれる。植林では太さ 30〜50cm、社寺の古木は 1m 以上で根元が太く広がる
+- 葉: 1cm ほどの硬い針のような葉が枝にらせん状に付き、枝先は房のようにまとまる。濃い緑。冬は日の当たる所が赤茶色になる
+- 花・実: 春先に枝先に黄褐色の小さな雄花がびっしり (遠目に樹冠が茶色っぽい)。丸い球果 (2cm)
+- 季節の形: 2 つ。春〜秋 = 濃い緑 (基本の形)、冬 = 樹冠の表面が赤茶がかる (`_Fuyu`)
+- 生える所: 山の斜面の植林・谷沿い、社寺の杉並木 (forest, ridge)。谷や湿った斜面ほどスギ、尾根はヒノキ
+- 見た写真:
+  - https://www.inaturalist.org/observations/147698421 (CC BY 4.0, Yoshihiro Tokue, 船生, 塩谷郡塩谷町, 栃木県, JP)
+  - https://commons.wikimedia.org/wiki/File:Cryptomeria_japonica_Kasasugi_s3.jpg (CC0, Alpsdake)
+  - https://commons.wikimedia.org/wiki/File:Cryptomeria_japonica_with_trekking_poles_s2.jpg (CC0, Alpsdake)

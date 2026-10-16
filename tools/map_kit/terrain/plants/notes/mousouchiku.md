@@ -1,0 +1,11 @@
+# モウソウチク (Phyllostachys edulis)
+- 形: 大きな竹。高さ 10〜20m、稈の太さ 10〜20cm。まっすぐな稈が密に並んで竹林になり、上の方 (高さの 1/3) だけに細かい枝と葉が広がって、先が少し垂れる
+- 稈: 若い稈は白い粉をかぶった緑、古い稈は黄緑〜灰緑。節は 1 重の輪
+- 葉: 5〜10cm の細く小さな葉が枝先にたくさん付き、遠目にふわっとした明るい緑の面
+- 季節の形: 2 つ。夏〜冬 = 明るい緑 (基本の形)、春 (竹の秋) = 古い葉が黄色くなる (`_Haru`)
+- 生える所: 里山の斜面・集落のまわり・田畑のふち (forest, farm)。竹林は周りの林へ広がる
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Xitou_Nature_Education_Area-11.2023-10-18.jpg (CC BY-SA 4.0, 阿道)
+  - https://commons.wikimedia.org/wiki/File:Phyllostachys_heterocycla.jpg (CC BY-SA 2.5, Laurentius)
+  - https://www.inaturalist.org/observations/247600606 (CC BY-SA 4.0, Júlio Reis, 219 Nagahara, Yamato, Ka)
+  - https://www.inaturalist.org/observations/251829887 (CC BY 4.0, Marc Riera, 526-2 Shimokawarachō, Hi)

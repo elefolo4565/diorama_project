@@ -1,0 +1,12 @@
+# タブノキ (Machilus thunbergii)
+- 樹形: 常緑高木。樹高 15〜20m。太い幹が低い所から数本の太い枝に分かれ、こんもりした丸い樹冠。海岸の林では樹冠どうしが重なって濃い緑の森になる
+- 幹: 灰褐色〜褐色でなめらか、皮目が点々
+- 葉: 8〜15cm の倒卵形、厚く濃い緑でつや。枝先に集まって付く
+- 花・実: 春、枝先の大きな芽がほどけて赤い新芽と黄緑の花。夏に黒い実
+- 季節の形: 2 つ。夏〜冬 = 濃い緑 (基本の形)、春 = 枝先に赤い新芽 (`_Haru`)
+- 生える所: 海に近い林・社寺林・島 (coast, forest)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Machilus_thunbergii_in_Hiroshima_Castle.jpg (CC BY-SA 4.0, そらみみ)
+  - https://commons.wikimedia.org/wiki/File:Tamonoki_of_Joguji_100917.jpg (Public domain, Umako)
+  - https://commons.wikimedia.org/wiki/File:Machilus_thunbergii_near_Hana_Station_of_Hikosan_Garden_Slope_Car.jpg (CC BY-SA 4.0, そらみみ)
+  - https://commons.wikimedia.org/wiki/File:Persea_thunbergii_kz03.jpg (CC BY-SA 4.0, Krzysztof Ziarnek, Kenraiz)

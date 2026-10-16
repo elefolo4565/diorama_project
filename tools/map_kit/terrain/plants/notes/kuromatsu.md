@@ -1,0 +1,11 @@
+# クロマツ (Pinus thunbergii)
+- 樹形: 常緑針葉樹。樹高 10〜25m。海岸では幹が海風で傾き、くねりながら伸び、上の方で枝が水平〜斜めに広がって、段になった平たい樹冠の房を作る。松林では幹が何本も斜めに並ぶ
+- 幹: 黒っぽい灰色で、亀の甲のように深く割れた厚い樹皮
+- 葉: 2 本ずつの硬く太い針の葉 (10〜15cm)、濃い緑。枝先に房になって上向きに付く。新芽 (みどり) は春に白っぽいろうそくのように立つ
+- 花・実: 春に枝先に新芽と小さな花、卵形の松かさ (5cm)
+- 季節の形: 1 つ (一年中ほぼ同じ)
+- 生える所: 海岸の松林・防風林・岩の多い岬 (coast)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Pinus_thunbergii_Izu_Oshima.jpg (CC BY 2.0, Nikita from Russian Federation)
+  - https://commons.wikimedia.org/wiki/File:2005-08-17_%E3%82%AF%E3%83%AD%E3%83%9E%E3%83%84%E3%80%81%E6%B5%A6%E5%AF%8C%E6%B5%B7%E5%B2%B8%E3%80%81%E9%B4%A8%E3%82%AC%E7%A3%AF.jpg (CC BY-SA 3.0, Original: Yuniko, this edit: MPF)
+  - https://commons.wikimedia.org/wiki/File:Ozaki_Kumano-jinja_Pinus_thunbergii_2024-10-24.jpg (CC0, Asanagi)

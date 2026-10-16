@@ -1,0 +1,12 @@
+# クスノキ (Cinnamomum camphora)
+- 樹形: 常緑高木。樹高 20〜30m。大木は太い幹が低い所から太い枝に分かれ、横に大きく広がるこんもりした丸い樹冠 (幅が高さより広い)
+- 幹: 灰褐色で、縦に細かく割れる。神社の大木は 2〜5m の太さ
+- 葉: 6〜10cm の卵形、縁が少し波打つ。明るい緑で強いつや (遠目に明るい黄緑の樹冠)
+- 花・実: 5 月に小さな黄白色の花。秋に黒い小さな実
+- 季節の形: 2 つ。夏〜冬 = 明るい緑 (基本の形)、春 = 赤い新芽と古い葉の落葉で樹冠が赤〜黄緑のまだら (`_Haru`)
+- 生える所: 神社の境内・公園・街路・集落 (farm, forest)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Cinnamomum_camphora_in_Golden_Valley_Tree_Park,_May_2022_02.jpg (CC BY-SA 4.0, Calistemon)
+  - https://commons.wikimedia.org/wiki/File:%C5%8Chori_Park_The_Cinnamomum_camphora_on_the_W_side_of_Boathouse_%C5%8Chori_Park_%C5%8Chorik%C5%8Den_Ch%C5%AB%C5%8D-ku_Fukuoka_20260609_151221.jpg (CC BY 4.0, Hirho)
+  - https://commons.wikimedia.org/wiki/File:Fujisakidai_Camphor_Tree_(Chuo-ku,_Kumamoto)_VLux5_hdsr_11.jpg (CC BY 4.0, Hyppolyte de Saint-Rambert)
+  - https://commons.wikimedia.org/wiki/File:Kengun-jinja_(Higashi-ku,_Kumamoto)_VLux5_hdsr_ok03.jpg (CC BY 4.0, Hyppolyte de Saint-Rambert)

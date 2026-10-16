@@ -1,0 +1,12 @@
+# ウツギ (Deutzia crenata)
+- 形: 落葉低木。高さ 1.5〜3m。根元から細い茎が何本も立ち、先が弓なりに垂れる株立ち。株はこんもりした丸い形
+- 幹: 灰褐色、樹皮が縦にはがれる。茎の中は空洞 (空木)
+- 葉: 4〜8cm の細長い卵形、細かい鋸歯、ざらつく
+- 花・実: 5〜6 月、枝先に白い小さな花 (釣鐘形) の房がたくさん垂れ、株全体が白くなる (卯の花)
+- 季節の形: 3 つ。春・秋 = 葉だけ (基本の形)、初夏 (夏) = 白い花の房 (`_Hana`)、冬 = 枝だけ (`_Fuyu`)
+- 生える所: 道ばた・林のふち・畑の境・土手 (farm, grassland)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Deutzia_crenata_02.jpg (CC BY 3.0, Σ64)
+  - https://commons.wikimedia.org/wiki/File:Ruhland,_Grenzstr._3,_Maigl%C3%B6ckchenstrauch_(Deutzia_crenata)_hinter_dem_Garten,_Bl%C3%BCten_am_Zweig,_Fr%C3%BChsommer,_01.jpg (CC BY-SA 4.0, Wilhelm Zimmerling PAR)
+  - https://www.inaturalist.org/observations/50841541 (CC BY 4.0, Marco Mussita, Mitate, Sado, Niigata 95)
+  - http://www.inaturalist.org/observations/4406299 (CC BY-SA 4.0, harum.koh, 日本, 〒411-0936 静岡県駿東郡長泉町元)

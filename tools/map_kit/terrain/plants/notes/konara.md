@@ -1,0 +1,12 @@
+# コナラ (Quercus serrata)
+- 樹形: 落葉高木。樹高 10〜20m。里山の雑木林では、切り株から何本も出た株立ちが多い (幹 2〜5 本が斜めに開く)。樹冠は不規則な丸い形で、すき間が多く明るい
+- 幹: 灰色〜灰褐色で、縦に浅い割れ目。株立ちの幹は太さ 15〜30cm
+- 葉: 5〜15cm の倒卵形、縁に大きめの鋸歯。枝先に集まる。春の新芽は銀白色の毛で白っぽく、夏は明るい緑
+- 花・実: 4〜5 月に黄褐色の垂れた花の房。秋に細長いどんぐり (2cm)
+- 季節の形: 4 つ。春 = 白っぽい新芽と黄緑の若葉 (`_Haru`)、夏 = 緑 (基本の形)、秋 = 黄〜橙〜赤茶 (`_Aki`)、冬 = 枝だけ (枯れ葉が少し残ってよい) (`_Fuyu`)
+- 生える所: 里山の雑木林・林のふち・田畑の近くの丘 (forest, farm)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:%E5%8D%97%E5%85%AC%E5%9C%92.JPG (CC BY-SA 4.0, 奈良泉)
+  - https://commons.wikimedia.org/wiki/File:Quercus_serrata-2-botanical_garden-ooty-India.jpg (CC BY-SA 4.0, Yercaud-elango)
+  - https://commons.wikimedia.org/wiki/File:Quercus_serrata(2)_(23520113703).jpg (CC BY-SA 2.0, harum.koh from Kobe city, Japan)
+  - https://commons.wikimedia.org/wiki/File:Quercus_serrata(1)_(23779097779).jpg (CC BY-SA 2.0, harum.koh from Kobe city, Japan)

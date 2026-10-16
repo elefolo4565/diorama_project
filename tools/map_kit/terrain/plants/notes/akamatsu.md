@@ -1,0 +1,11 @@
+# アカマツ (Pinus densiflora)
+- 樹形: 常緑針葉樹。樹高 15〜30m。幹は細く長く、くねって伸び、上の方だけに枝が広がって、平たく横に広がる樹冠 (傘形) をのせる。下の方は枝が無い
+- 幹: 上の方の樹皮が赤〜橙色で薄くはがれる (名前の由来)。根元は灰褐色の亀甲状
+- 葉: 2 本ずつの細く柔らかい針の葉 (7〜12cm)、明るい緑 (クロマツより明るく細い)
+- 花・実: 春に新芽と小さな花、小さめの松かさ (4cm)
+- 季節の形: 1 つ (一年中ほぼ同じ)
+- 生える所: 尾根・やせた乾いた斜面・里山の上の方 (ridge, forest)。下にコバノミツバツツジやコシダが多い
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:SV100408.JPG (CC BY 1.0)
+  - https://commons.wikimedia.org/wiki/File:Pinus_densiflora_on_Mount_Kengyo.jpg (CC0, Alpsdake)
+  - https://commons.wikimedia.org/wiki/File:Pinus_densiflora,_Mount_Auburn_Cemetery_-_2.JPG (Public domain, Daderot)

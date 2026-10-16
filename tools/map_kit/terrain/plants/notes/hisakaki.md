@@ -1,0 +1,12 @@
+# ヒサカキ (Eurya japonica)
+- 形: 常緑の低木〜小高木。高さ 2〜6m。根元から細い幹が数本立ち、枝は水平に広がって葉が平らな層に並ぶ。株全体は縦長でまばら
+- 幹: 灰褐色でなめらか、細い (3〜10cm)
+- 葉: 3〜7cm の小さな楕円、縁に細かい鋸歯。厚く濃い緑でつや。枝の左右に 2 列に並び、小枝は少し垂れる
+- 花・実: 3 月に葉の付け根に小さな黄白色の鐘形の花 (独特のにおい)。秋〜冬に黒紫色の小さな実
+- 季節の形: 1 つ (一年中ほぼ同じ)
+- 生える所: 林の中の低木層・林のふち・植林の下 (understory)。四国の山の林のどこにでも
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Bark_of_Eurya_japonica_02.jpg (CC BY-SA 4.0, 小石川人晃)
+  - https://commons.wikimedia.org/wiki/File:Eurya_japonica2.jpg (CC BY-SA 3.0, KENPEI)
+  - https://commons.wikimedia.org/wiki/File:Eurya_japonica_var._japonica_at_Itako,_Ibaraki,_Japan_(2024-02).jpg (CC BY-SA 4.0, 小石川人晃)
+  - https://www.inaturalist.org/observations/144471561 (CC BY 4.0, Yoshihiro Tokue, 若栗, つくば市, 茨城県, JP)

@@ -1,0 +1,11 @@
+# クズ (Pueraria montana var. lobata)
+- 形: つるで広がる多年草。林のふちの木・土手・電柱をすっぽりおおい、緑のかたまりの山 (高さ 1〜10m) をつくる
+- 葉: 3 枚の大きな小葉 (それぞれ 10〜15cm) が組になる。裏は白っぽい毛。葉が重なって、ごわごわした緑の面になる
+- 花: 8〜9 月、赤紫の花の房 (15〜20cm) が葉の間から立つ (遠目にはあまり見えない)
+- 季節の形: 2 つ。春〜秋 = 緑の葉でおおわれる (基本の形)、冬 = 葉が枯れ落ちて茶色いつるが絡んだかたまり (`_Fuyu`)
+- 生える所: 林のふち・土手・道ばた・空き地 (farm, grassland)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Kudzu_Natchez.jpg (Public domain, No machine-readable author provided. Pixeltoo assumed (based)
+  - https://commons.wikimedia.org/wiki/File:Kudzu_bloom_pollen.png (Public domain, Alarob)
+  - https://www.inaturalist.org/observations/256618079 (CC BY 4.0, りなべる, 沖縄戦跡国定公園, 八重瀬町, 沖縄県, JP)
+  - https://commons.wikimedia.org/wiki/File:Pink_flower_of_Pueraria_montana.jpg (CC BY 4.0, M108t)

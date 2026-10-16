@@ -1,0 +1,11 @@
+# ヒノキ (Chamaecyparis obtusa)
+- 樹形: まっすぐな単幹の常緑針葉樹。樹高 20〜30m。植林では幹がそろって立ち、下の方は枝が枯れ落ちて幹だけが見える。樹冠は細長い円すい形〜卵形で、先はスギより丸い。山の斜面一面が濃い緑の細かいもこもこした面になる
+- 幹: 赤褐色の樹皮が縦に細長くはがれる (繊維状)。植林では太さ 20〜40cm
+- 葉: 小さなうろこ状の葉が平たい枝 (扇形の小枝) にびっしり付く。濃い緑でつや、裏に白い Y 字の筋。枝先は少し垂れる
+- 花・実: 春に小さな茶色の雄花、丸い球果 (1cm) は目立たない
+- 季節の形: 1 つ (一年中ほぼ同じ。冬は少し赤茶がかってもよい)
+- 生える所: 山の斜面の植林・尾根 (forest, ridge)。スギ林と混じり、尾根や乾いた斜面ほどヒノキが多い
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Chamaecyparis_obtusa5.jpg (CC BY-SA 3.0, KENPEI)
+  - https://commons.wikimedia.org/wiki/File:Mount_Binshi.JPG (CC BY-SA 4.0, Alpsdake)
+  - https://commons.wikimedia.org/wiki/File:%E6%9C%9D%E6%97%A5%E5%B0%84%E3%81%99%E3%83%92%E3%83%8E%E3%82%AD%E6%9E%97P2209909.jpg (CC BY 2.5, Akiyoshi's Room)

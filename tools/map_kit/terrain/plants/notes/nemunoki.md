@@ -1,0 +1,11 @@
+# ネムノキ (Albizia julibrissin)
+- 樹形: 落葉高木。樹高 6〜10m。幹は 1〜3 本で低い所から斜めに分かれ、枝は横に長く伸びて、平たく横に広い傘形の樹冠
+- 幹: 灰褐色でなめらか、皮目が点々
+- 葉: 細かい小葉がびっしり並ぶ 2 回羽状の葉 (長さ 20〜30cm)、明るい緑で柔らかく、羽毛のように見える
+- 花・実: 6〜7 月、枝先にピンクの刷毛のような花 (長い雄しべ) が樹冠の上に点々と。秋に平たい豆のさや
+- 季節の形: 4 つ。春 = 葉だけ (基本の形と同じでもよい)、夏 = ピンクの花 (`_Hana`)、秋 = 黄色 (`_Aki`)、冬 = 枝と豆のさや (`_Fuyu`)
+- 生える所: 川べり・林のふち・土手・海に近い荒れ地 (farm, coast)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Albizzia_julibrissin_in_Sevastopol_1.jpg (Public domain, Cmapm)
+  - https://commons.wikimedia.org/wiki/File:Albizia_julibrissin_399607729.jpg (CC BY 4.0, eml23)
+  - https://commons.wikimedia.org/wiki/File:Albizia_julibrissin_flower.jpg (CC BY-SA 4.0, Taylo33p)

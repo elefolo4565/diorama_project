@@ -1,0 +1,11 @@
+# ヤマツツジ (Rhododendron kaempferi)
+- 形: 半常緑の低木。高さ 1〜3m。細い枝がたくさん分かれて、株全体はこんもり丸い〜横に広い
+- 葉: 2〜5cm の小さな楕円で毛がある。春の葉は緑、夏の葉は小さく、冬は一部の葉が赤茶になって残る
+- 花: 4〜6 月、枝先に朱色〜赤橙色の花 (直径 4〜5cm) が 2〜3 個ずつ。満開のときは株全体が朱色になる
+- 季節の形: 2 つ。夏〜冬 = 葉だけ (基本の形)、春 = 朱色の花でおおわれる (`_Hana`)
+- 生える所: 明るい林のふち・尾根の道沿い・草原の中 (understory, ridge)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:%E7%9F%A2%E5%A4%A7%E8%87%A3%E5%B1%B1%E3%81%AE%E3%83%A4%E3%83%9E%E3%83%84%E3%83%84%E3%82%B8.jpg (CC BY-SA 4.0, Koda6029)
+  - https://commons.wikimedia.org/wiki/File:Rhododendron_Kaempferi_03.jpg (CC BY 3.0, Σ64)
+  - https://commons.wikimedia.org/wiki/File:Rhododendron-kaempferi-6.jpg (CC BY-SA 4.0, 些細な日常)
+  - https://commons.wikimedia.org/wiki/File:Rhododendron_kaempferi_02.jpg (CC BY-SA 4.0, Krzysztof Golik)

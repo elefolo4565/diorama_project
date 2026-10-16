@@ -1,0 +1,12 @@
+# ハゼノキ (Toxicodendron succedaneum)
+- 樹形: 落葉小高木。樹高 5〜10m。幹は 1〜2 本、枝はまばらに斜め上に広がり、樹冠は横に広い傘形〜不規則な形。葉は枝先に集まる
+- 幹: 灰褐色、縦に浅い割れ目
+- 葉: 羽状の複葉 (長さ 20〜30cm、小葉 9〜15 枚)。小葉は細長い披針形、つやのある緑
+- 花・実: 5〜6 月に黄緑の小さな花の房。秋に淡い黄褐色の実の房 (ろうの原料。冬も枝に残る)
+- 季節の形: 4 つ。春 = 赤みのある新芽 (`_Haru`)、夏 = 緑 (基本の形)、秋 = まっ赤 (`_Aki`)、冬 = 枝と実の房だけ (`_Fuyu`)
+- 生える所: 里山・田畑のあぜ・林のふち (farm, forest)。四国の内子では木ろうのために植えられた
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Wax_tree_in_Syukui.jpg (CC BY-SA 4.0, TT mk2)
+  - https://commons.wikimedia.org/wiki/File:Toxicodendron_succedaneum_(L.)_Kuntze_(AM_AK329830-2).jpg (CC BY 4.0, Ewen Cameron)
+  - https://commons.wikimedia.org/wiki/File:Toxicodendron_succedaneum_(L.)_Kuntze_(AM_AK299441-2).jpg (CC BY 4.0, Nom. rev.)
+  - https://www.inaturalist.org/observations/254397971 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 馬引沢緑地)

@@ -1,0 +1,12 @@
+# イロハモミジ (Acer palmatum)
+- 樹形: 落葉高木。樹高 10〜15m。幹は数本に分かれやすく、枝は細く水平〜斜めに広がって、葉が層になって重なる。樹冠は横に広く、すき間が多い
+- 幹: 灰褐色でなめらか、細め
+- 葉: 4〜7cm の手のひら形 (5〜7 つに深く裂ける)。薄く明るい緑
+- 花・実: 春に小さな赤い花、夏〜秋に赤いプロペラ形の実
+- 季節の形: 4 つ。春 = 黄緑〜赤みの新芽 (`_Haru`)、夏 = 緑 (基本の形)、秋 = 赤〜橙 (`_Aki`)、冬 = 細い枝だけ (`_Fuyu`)
+- 生える所: 谷沿い・林のふち・社寺の境内 (forest, understory)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Acer_palmatum_-_%D0%91%D0%BE%D1%82%D0%B0%D0%BD%D0%B8%D1%87%D0%BA%D0%B0_%D0%B3%D1%80%D0%B0%D0%B4%D0%B8%D0%BD%D0%B0_%D0%A1%D0%BA%D0%BE%D0%BF%D1%98%D0%B5_03.jpg (CC BY-SA 4.0, Dandarmkd)
+  - https://www.inaturalist.org/observations/145577042 (CC BY 4.0, Samuele Papeschi, Sedo, Tosa, Tosa Distric)
+  - https://www.inaturalist.org/observations/145577515 (CC BY 4.0, Samuele Papeschi, Higashiiyasugeoi, Miyosh)
+  - https://commons.wikimedia.org/wiki/File:Acer_palmatum_Klon_palmowy_2019-06-08_01.jpg (CC BY-SA 4.0, Agnieszka Kwiecień, Nova)
