@@ -42,6 +42,7 @@ import plants
 import railways
 import road_furniture
 import shrines
+import surface_textures
 import foliage as fo
 import scenery_meshes as sm
 from course import course_features, course_of_area, course_overrides
@@ -710,6 +711,9 @@ def main():
     for kind, (fname, draw) in extra_leaves.items():  # plants/ の葉と花の絵
         draw(os.path.join(out, fname))
         textures[kind] = fname
+    # 神社と名所の石・白木・銅板などの模様と凹凸 (scenery_meshes.MATERIALS の "surface")
+    surface_mats = surface_textures.materials_used(meshes.values(), sm.MATERIALS)
+    surface_tex = surface_textures.write(out, {s["kind"] for s in surface_mats.values()}) if surface_mats else {}
     # 建物の壁と屋根の模様と凹凸 ({名前: [色の絵, 凹凸の絵, 大きさ m]})
     building_tex = building_textures.write_all(out) if building_meshes else {}
     bark_textures = {}
@@ -733,6 +737,9 @@ def main():
         "meshes": files, "leaf_textures": textures, "bark_textures": bark_textures, "meoto": meoto, "instances": instances,
         # 建物の壁と屋根の絵 ({名前: [色, 凹凸, 1 枚が覆う大きさ m]})。マテリアルがワールド座標で貼る
         "building_textures": building_tex,
+        # 神社と名所の模様の絵 ({名前: [色, 凹凸, 1 枚が覆う大きさ m]}) と、それを貼るマテリアル
+        # ({マテリアル名: {kind, color, roughness, metallic}})。UE でマテリアルの色に掛けてワールド座標から貼る
+        "surface_textures": surface_tex, "surface_materials": surface_mats,
         # 夜に点く光源 (防犯灯)。[x, y, z, yaw, pitch] は光の出る所と光の向き (pitch -90 が真下)
         "lights": lights,
         # 咲く季節 (ビット: 1 春, 2 夏, 4 秋, 8 冬)。C++ の AFDInstances が Y キーの季節で出し入れする。ないものはいつも見える

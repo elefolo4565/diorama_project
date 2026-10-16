@@ -32,12 +32,12 @@ RAIL_H = 1.1                    # 手すりの高さ
 CLEAR = [(6.5, -1.0, 8.0), (12.0, STAIR_U, 3.0), (17.0, STAIR_U, 3.0), (22.0, STAIR_U, 3.0), (27.0, 0.0, 9.0)]
 
 MATERIALS = {
-    "FD_MeishoGranite": dict(color=(0.42, 0.41, 0.38), roughness=0.7),       # 碑と金印の石 (明るい灰色の花崗岩)
+    "FD_MeishoGranite": dict(color=(0.42, 0.41, 0.38), roughness=0.7, surface="StoneGranite"),       # 碑と金印の石 (明るい灰色の花崗岩)
     "FD_MeishoInscription": dict(color=(0.07, 0.07, 0.07), roughness=0.6),   # 彫った文字の帯 (遠目には暗い帯)
-    "FD_MeishoRock": dict(color=(0.15, 0.135, 0.115), roughness=0.9),        # 台の自然石・石積み
-    "FD_MeishoStep": dict(color=(0.32, 0.31, 0.29), roughness=0.85),         # 石段
-    "FD_MeishoPaving": dict(color=(0.27, 0.26, 0.24), roughness=0.85),       # 前庭と広場の石畳
-    "FD_MeishoPavingLight": dict(color=(0.46, 0.43, 0.38), roughness=0.85),  # 広場の内側の明るい円
+    "FD_MeishoRock": dict(color=(0.15, 0.135, 0.115), roughness=0.9, surface="StoneRough"),        # 台の自然石・石積み
+    "FD_MeishoStep": dict(color=(0.32, 0.31, 0.29), roughness=0.85, surface="StoneGranite"),         # 石段
+    "FD_MeishoPaving": dict(color=(0.27, 0.26, 0.24), roughness=0.85, surface="StoneGranite"),       # 前庭と広場の石畳
+    "FD_MeishoPavingLight": dict(color=(0.46, 0.43, 0.38), roughness=0.85, surface="StoneGranite"),  # 広場の内側の明るい円
     "FD_MeishoRail": dict(color=(0.58, 0.59, 0.59), roughness=0.35),         # 手すり (亜鉛めっきの鋼)
     "FD_MeishoPanel": dict(color=(0.78, 0.78, 0.76), roughness=0.5),         # 説明板
     "FD_MeishoPanelBand": dict(color=(0.06, 0.13, 0.32), roughness=0.5),     # 説明板の上の紺の帯

@@ -25,13 +25,13 @@ BEAM_Z = (2.6, 5.2)     # 脚をつなぐ梁の高さ
 MINT_TOP = 2.8          # 脚の水色の所の高さ
 
 MATERIALS = {
-    "FD_MeishoTowerWhite": dict(color=(0.68, 0.68, 0.66), roughness=0.8),    # 塔の白いコンクリート
-    "FD_MeishoTowerMint": dict(color=(0.42, 0.63, 0.52), roughness=0.75),    # 脚の下と階段の薄い水色
+    "FD_MeishoTowerWhite": dict(color=(0.68, 0.68, 0.66), roughness=0.8, surface="Concrete"),    # 塔の白いコンクリート
+    "FD_MeishoTowerMint": dict(color=(0.42, 0.63, 0.52), roughness=0.75, surface="Concrete"),    # 脚の下と階段の薄い水色
     "FD_MeishoGravel": dict(color=(0.42, 0.36, 0.27), roughness=0.95),       # 広場の砂利
-    "FD_MeishoWood": dict(color=(0.20, 0.13, 0.075), roughness=0.85),        # 木の柵
+    "FD_MeishoWood": dict(color=(0.20, 0.13, 0.075), roughness=0.85, surface="WoodGrain"),        # 木の柵
     "FD_MeishoLamp": dict(color=(0.20, 0.20, 0.20), roughness=0.4),          # 外灯の柱
     "FD_MeishoLampGlobe": dict(color=(0.85, 0.85, 0.82), roughness=0.3),     # 外灯の丸い笠
-    "FD_MeishoRock": dict(color=(0.15, 0.135, 0.115), roughness=0.9),        # 歌碑の石 (金印公園と同じ)
+    "FD_MeishoRock": dict(color=(0.15, 0.135, 0.115), roughness=0.9, surface="StoneRough"),        # 歌碑の石 (金印公園と同じ)
     "FD_MeishoRail": dict(color=(0.58, 0.59, 0.59), roughness=0.35),         # 手すり (金印公園と同じ)
 }
 
