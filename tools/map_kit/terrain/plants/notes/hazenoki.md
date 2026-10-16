@@ -1,0 +1,15 @@
+# ハゼノキ (Toxicodendron succedaneum)
+- 樹形: 落葉小高木。樹高 5〜10m。幹は 1〜2 本、枝は少なめで太く、斜め上〜横へまばらに広がる。葉は枝先に集まって付き、樹冠は横に広い傘形〜不規則な形で、羽状の葉が放射状に垂れて、すき間の多い軽い塊になる (枝先ごとにヤシの葉を小さくしたような房)
+- 幹: 灰褐色、縦に浅い割れ目。太さ 15〜30cm。切ると黄色い材
+- 葉: 長さ 20〜35cm の羽状の葉 (細長い 5〜8cm の小葉が 9〜15 枚、左右に並ぶ)。表は濃い緑でつやがあり、小葉は少し垂れる。葉柄は赤みがかる
+- 花・実: 5〜6 月、葉の付け根から黄緑色の小さな花の房。秋〜冬に黄褐色の平たい実 (1cm) の房が垂れ、冬の枝に残る (ろうの原料)
+- 季節: 4 月の新芽は赤茶色〜黄色。10 月下旬〜11 月に、まっ赤〜朱色に紅葉 (里山でいちばん早く、いちばん赤い)。冬は葉がなく、灰色の太い枝に実の房が残る
+- 季節の形: 4 つ。春 = 赤茶〜黄色の新芽 (`_Haru`)、夏 = 濃い緑 (基本の形)、秋 = まっ赤〜朱色の紅葉 (`_Aki`)、冬 = 葉を落とした枝と黒っぽい実の房 (`_Fuyu`)
+- 生える所: 里山の林のふち・あぜ・道ばた・畑の土手 (farm, forest)。愛媛県内子では昔ろうを取るために植えられた
+- 見た写真:
+  - https://www.inaturalist.org/observations/2344857 (CC BY-SA 4.0, harum.koh, 兵庫県神戸市) 10 月末、まっ赤に紅葉した樹冠
+  - https://www.inaturalist.org/observations/329542780 (CC BY 4.0, Joseph Aubert, 岡山県岡山市 後楽園) 紅葉しはじめの樹冠全体
+  - https://www.inaturalist.org/observations/194255654 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市) 12 月の赤い葉
+  - https://www.inaturalist.org/observations/2566825 (CC BY-SA 4.0, harum.koh, 兵庫県神戸市) 冬の枝に残る実の房
+  - https://www.inaturalist.org/observations/230631446 (CC BY 4.0, 岸本年郎, 静岡県沼津市) 夏の樹冠
+  - https://www.inaturalist.org/observations/1401710 (CC BY-SA 4.0, harum.koh, 兵庫県神戸市) 4 月の黄色い新芽

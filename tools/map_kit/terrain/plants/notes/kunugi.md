@@ -1,0 +1,15 @@
+# クヌギ (Quercus acutissima)
+- 樹形: 落葉高木。樹高 15〜20m。幹は 1 本 (薪炭林では株立ちも)、太い枝が斜め上へ大きく広がる。樹冠は丸い卵形〜不規則に広がる形で、葉が枝先に垂れ下がるように付き、すき間が多い。雑木林ではコナラと並ぶ
+- 幹: 灰褐色〜暗い灰色。樹皮は厚く、縦に深く不規則に割れてごつごつする (コナラより割れが深く粗い)。太さ 30〜60cm
+- 葉: 10〜15cm の細長い楕円 (クリの葉に似る)、ふちのぎざぎざの先が細い針のように伸びる。表は濃い緑でつやがあり、枝から垂れ下がる
+- 花・実: 4 月、新芽と一緒に黄色い細い花の穂が枝いっぱいに垂れる (樹冠が黄色っぽく見える)。秋に丸く大きなどんぐり (2cm) が、細い鱗片がもじゃもじゃのお椀に入る
+- 季節: 11〜12 月に黄色〜黄土色〜茶色に紅葉。冬は茶色の枯れ葉が多く枝に残る (春まで落ちきらない)
+- 季節の形: 4 つ。春 = 黄色い花の穂と明るい黄緑の新芽 (`_Hana`)、夏 = 濃い緑 (基本の形)、秋 = 黄〜黄土色 (`_Aki`)、冬 = 茶色の枯れ葉がまばらに残る枝 (`_Fuyu`)
+- 生える所: 里山の雑木林・畑のふち・川べり (farm, forest)
+- 見た写真:
+  - https://www.inaturalist.org/observations/250900905 (CC0, Max Y, 福岡県福岡市西区) 11 月、樹冠全体の形
+  - https://www.inaturalist.org/observations/225880549 (CC0, renshuchu, 埼玉県) 夏の樹冠
+  - https://www.inaturalist.org/observations/68805500 (CC BY 4.0, りなべる, 京都府舞鶴市) 深く割れた樹皮
+  - https://www.inaturalist.org/observations/194255031 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市) 12 月、枝に残る茶色の枯れ葉
+  - https://www.inaturalist.org/observations/193437084 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都) 12 月の黄色い葉
+  - https://www.inaturalist.org/observations/206420383 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市) 4 月、垂れる黄色い花の穂
