@@ -1,0 +1,13 @@
+# アコウ (Ficus superba var. japonica, iNaturalist では Ficus subpisocarpa)
+- 樹形: 半落葉の高木。樹高 10〜20m。太い幹から太い枝が横〜斜めに大きく張り出し、樹冠は横に広いドーム形 (幅は高さの 1.5〜2 倍)。ガジュマルに似て幹や枝から気根を出すが、気根は幹や岩に沿って絡み付き、垂れ下がるひげは少ない。岩や石垣の上に根を張り、根が岩を包むように這う
+- 幹: 灰白色〜明るい灰褐色でなめらか。気根が合わさって網目・ひだ状になり、太さ 0.5〜1.5m。古い木はこぶが多い
+- 葉: 10〜15cm の長い楕円、先がとがる。薄めの革質で明るい〜ふつうの緑、つやは中くらい。長めの葉柄で枝先に集まる
+- 季節: 年に 1〜2 回 (春と秋、木ごとにばらばら)、数日〜2 週間で一斉に葉を落とし、すぐにピンクがかった芽鱗から新しい葉が出る。新しい葉の時期は樹冠全体が明るい黄緑〜淡いクリーム色に見える。実 (1cm、白っぽい → 淡い紅色) は幹や太い枝に直接びっしり付く
+- 季節の形: 2 つ。基本 = 緑の葉 (基本の形)、春 = 新しい葉で樹冠が明るい黄緑 (`_Haru`、秋の芽吹きにも使ってよい)
+- 生える所: 集落の大木・海岸の岩場・石垣 (farm, coast)。紀伊半島・四国・九州の海沿い〜沖縄
+- 見た写真:
+  - https://www.inaturalist.org/observations/75142738 (CC BY 4.0, Marco Mussita, 鹿児島県指宿市) 大木の樹形
+  - https://www.inaturalist.org/observations/75142181 (CC BY 4.0, Marco Mussita, 鹿児島県南さつま市) 幹と気根
+  - https://www.inaturalist.org/observations/169906563 (CC BY 4.0, Takaaki Hattori, 沖縄県国頭村) 新しい葉の樹冠
+  - https://www.inaturalist.org/observations/113084389 (CC BY 4.0, Takaaki Hattori, 沖縄県国頭村) 新しい葉
+  - https://www.inaturalist.org/observations/239563087 (CC BY 4.0, Nicole Kearney, 沖縄県宜野湾市) 枝に付く実

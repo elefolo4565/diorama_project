@@ -3,6 +3,13 @@
 いま作るコースは tools/terrain/course.txt に 1 行で書く (無ければ itoshima_loop)。
 setup_project.py (UE の中の Python) もこのファイルを読み込んで使うので、標準ライブラリだけで書く。
 
+コースの設定の置き場所は 2 通り:
+    tools/terrain/areas/<名前>.json       プロジェクトの中のコース (糸島・阿蘇、地域ごとのプロジェクト)
+    <地域のフォルダ>/areas/<名前>.json     ツーリングシミュレータの地域 (コアに足すマップ)。地域のフォルダは
+                                          <名前>.uplugin を持つ UE のコンテンツプラグインで、コアの .uproject の
+                                          AdditionalPluginDirectories の下に置く (tools/kit/install_kit.py --add-region が作る)。
+                                          地域のレベルやタイルのアセットは /<プラグイン名>/ (地域のフォルダの Content) に入る
+
 コースの設定 (すべて任意。無ければ下の既定値):
     "map":         UE のレベル名 (/Game/FukuokaDrive/Maps/<map>)。既定はコース名
     "tile_prefix": タイルの名前の頭 (<tile_prefix>_<i>_<j>)。既定はコース名
@@ -31,6 +38,7 @@ TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 AREAS_DIR = os.path.join(TOOLS_DIR, "areas")
 OUT_DIR = os.path.join(TOOLS_DIR, "out")
 ACTIVE_FILE = os.path.join(TOOLS_DIR, "course.txt")
+PROJECT_DIR = os.path.dirname(os.path.dirname(TOOLS_DIR))
 DEFAULT_COURSE = "itoshima_loop"
 
 # 汎用化の前に作ったコース。設定ファイル (と、それを材料にした作り方のハッシュ) を変えずに、
@@ -51,13 +59,57 @@ def active_name():
     return DEFAULT_COURSE
 
 
+def region_dirs():
+    """コアの .uproject の AdditionalPluginDirectories (地域のフォルダを並べる所)。地域ごとのプロジェクトでは空。"""
+    out = []
+    for fn in sorted(os.listdir(PROJECT_DIR)) if os.path.isdir(PROJECT_DIR) else []:
+        if not fn.endswith(".uproject"):
+            continue
+        raw = open(os.path.join(PROJECT_DIR, fn), "rb").read()
+        text = raw.decode("utf-16") if raw[:2] in (b"\xff\xfe", b"\xfe\xff") else raw.decode("utf-8-sig")
+        for d in json.loads(text).get("AdditionalPluginDirectories", []):
+            out.append(os.path.normpath(os.path.join(PROJECT_DIR, d)))
+    return out
+
+
+def region_folders():
+    """{地域の名前 (フォルダ名): フォルダ}。<名前>.uplugin を持つフォルダだけ"""
+    out = {}
+    for d in region_dirs():
+        for sub in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+            folder = os.path.join(d, sub)
+            if os.path.isdir(folder) and any(f.endswith(".uplugin") for f in os.listdir(folder)):
+                out[sub] = folder
+    return out
+
+
+def region_of(path):
+    """コースの設定のパスが地域のフォルダ (<地域>/areas/<名前>.json) の中なら、その地域のフォルダ。違えば None"""
+    folder = os.path.dirname(os.path.dirname(os.path.abspath(path)))
+    if os.path.basename(os.path.dirname(os.path.abspath(path))) != "areas" or not os.path.isdir(folder):
+        return None
+    return folder if any(f.endswith(".uplugin") for f in os.listdir(folder)) else None
+
+
+def find_course(name):
+    """コースの名前から設定のパス。プロジェクトの areas/ になければ地域のフォルダを探す。どこにも無ければ areas/ のパス"""
+    path = os.path.join(AREAS_DIR, f"{name}.json")
+    if os.path.exists(path):
+        return path
+    for folder in region_folders().values():
+        p = os.path.join(folder, "areas", f"{name}.json")
+        if os.path.exists(p):
+            return p
+    return path
+
+
 class Course:
     def __init__(self, name_or_path=None):
         name_or_path = name_or_path or active_name()
         if name_or_path.endswith(".json"):
             self.path = os.path.abspath(name_or_path)
         else:
-            self.path = os.path.join(AREAS_DIR, f"{name_or_path}.json")
+            self.path = find_course(name_or_path)
         with open(self.path, encoding="utf-8") as f:
             self.cfg = json.load(f)
         self.name = self.cfg["name"]
@@ -65,7 +117,7 @@ class Course:
         get = lambda k, d: self.cfg.get(k, legacy.get(k, d))
         self.map = get("map", self.name)
         self.tile_prefix = get("tile_prefix", self.name)
-        self.tile_dir = os.path.join(AREAS_DIR, get("tile_dir", self.name))
+        self.tile_dir = os.path.join(os.path.dirname(self.path), get("tile_dir", self.name))
         self.origin_tile = get("origin_tile", None)
         self.route_file = self.cfg.get("route")
         self.rotation = float(self.cfg.get("rotation_deg", 0.0))   # タイルの升目の回転 (度、反時計回り)。geo.py を参照
@@ -75,6 +127,11 @@ class Course:
             sun = [self.cfg["center_lat"], self.cfg["center_lon"]]
         self.sun = tuple(sun) if sun else None
         self.out_dir = os.path.join(OUT_DIR, self.name)
+        # ツーリングシミュレータの地域なら、そのフォルダとプラグイン名 (= UE のパスの頭 /<plugin>/)。違えば None
+        self.region_dir = region_of(self.path)
+        self.plugin = None
+        if self.region_dir:
+            self.plugin = next(os.path.splitext(f)[0] for f in sorted(os.listdir(self.region_dir)) if f.endswith(".uplugin"))
 
     # --- タイル ---
     def tile_name(self, i, j):
@@ -134,7 +191,7 @@ def course_of_area(area_path):
     """タイルのエリア設定 (areas/<コース>/<タイル>.json) が属するコース。無ければ None。"""
     d = os.path.dirname(os.path.abspath(area_path))
     path = os.path.join(os.path.dirname(d), f"{os.path.basename(d)}.json")
-    if os.path.basename(os.path.dirname(d)) == "areas" and os.path.exists(path):
+    if os.path.basename(os.path.dirname(d)) == "areas" and os.path.exists(path):   # 地域のフォルダの areas/ も同じ形
         return Course(path)
     return None
 
@@ -241,7 +298,8 @@ def main():
         return
     print(json.dumps({"name": c.name, "path": c.path, "map": c.map, "tile_prefix": c.tile_prefix,
                       "tile_dir": c.tile_dir, "origin_tile": c.origin_tile, "sun": c.sun, "loop": c.loop,
-                      "route": c.route_file, "base_tile": c.base_tile()}, ensure_ascii=False, indent=1))
+                      "route": c.route_file, "base_tile": c.base_tile(),
+                      "region_dir": c.region_dir, "plugin": c.plugin}, ensure_ascii=False, indent=1))
 
 
 if __name__ == "__main__":

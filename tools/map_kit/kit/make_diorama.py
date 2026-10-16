@@ -1,6 +1,6 @@
 """コースの設定 1 つから、走れる UE のレベルまでを通しで作る (途中で止まっても、もう一度実行すれば続きから)。
 
-使い方 (PC で。tools/terrain/areas/<コース名>.json を先に書いておく。地図で範囲を描くなら tools/kit/area_picker.py):
+使い方 (PC で。tools/terrain/areas/<コース名>.json (ツーリングシミュレータでは <地域>/areas/<コース名>.json) を先に書いておく。地図で範囲を描くなら tools/kit/area_picker.py):
     py -3 tools/kit/make_diorama.py <コース名>             すべて
     py -3 tools/kit/make_diorama.py <コース名> --data      データ作り (国土地理院・OSM) だけ。UE には触らない
     py -3 tools/kit/make_diorama.py <コース名> --ue        UE の組み立てだけ (データはできている前提)
@@ -35,7 +35,7 @@ UE = os.path.join(ROOT, "tools", "ue")
 sys.path.insert(0, TERRAIN)
 sys.path.insert(0, HERE)
 
-from course import Course  # noqa: E402
+from course import Course, find_course  # noqa: E402
 
 
 def log(msg):
@@ -63,7 +63,7 @@ def py(script, *args, cwd=TERRAIN, capture=False):
 
 def set_course(name):
     path = os.path.join(TERRAIN, "course.txt")
-    want = f"# 作るコースの名前 (tools/terrain/areas/<名前>.json)。setup_project.py と rebuild.bat がこれを読む\n{name}\n"
+    want = f"# 作るコースの名前 (tools/terrain/areas/ か地域のフォルダの areas/ の <名前>.json)。setup_project.py と rebuild.bat がこれを読む\n{name}\n"
     old = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
     if old != want:
         with open(path, "w", encoding="utf-8", newline="\n") as f:
@@ -174,6 +174,9 @@ def stage_ue(course):
 
 def stage_startup(course):
     import install_kit
+    if course.plugin:
+        log(f"ツーリングシミュレータの地域なので、起動画面 (地域を選ぶ) はそのままです。一覧に {course.plugin} が出ます")
+        return
     m = f"/Game/FukuokaDrive/Maps/{course.map}.{course.map}"
     install_kit.merge_ini(os.path.join(ROOT, "Config", "DefaultEngine.ini"), "/Script/EngineSettings.GameMapsSettings",
                           [("EditorStartupMap", m), ("GameDefaultMap", m)])
@@ -185,7 +188,7 @@ def main():
     if not args or args[0].startswith("-"):
         sys.exit(__doc__)
     name = args[0]
-    area_path = os.path.join(TERRAIN, "areas", f"{name}.json")
+    area_path = find_course(name)
     if not os.path.exists(area_path):
         fail(f"{os.path.relpath(area_path, ROOT)} がありません")
     max_tiles = int(args[args.index("--max-tiles") + 1]) if "--max-tiles" in args else 20
@@ -208,7 +211,8 @@ def main():
         stage_ue(course)
         if "--no-startup" not in args:
             stage_startup(course)
-    what = f"レベル /Game/FukuokaDrive/Maps/{course.map}" if ue else f"データ (tools/terrain/out/{name}/preview.png で道筋を確かめられます)"
+    level = f"/{course.plugin}/Maps/{course.plugin}" if course.plugin else f"/Game/FukuokaDrive/Maps/{course.map}"
+    what = f"レベル {level}" if ue else f"データ (tools/terrain/out/{name}/preview.png で道筋を確かめられます)"
     log(f"できました: {what} ({(time.time() - started) / 60:.0f} 分)")
 
 
