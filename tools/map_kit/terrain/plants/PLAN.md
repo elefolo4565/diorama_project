@@ -15,7 +15,7 @@
 | 状態 | 和名 | 学名 | 置く所 (habitat) | メモ |
 | --- | --- | --- | --- | --- |
 | 済 | ヤマモモ | Morella rubra | forest, coast | `yamamomo.py` (コードの見本) |
-| 済 | ウバメガシ | Quercus phillyraeoides | coast, ridge | 海岸の崖の低い木。小さく硬い葉 |
+| 済 | ウバメガシ | Quercus phillyraeoides | coast, ridge | 海岸の崖の低い木。小さく硬い葉。`ubamegashiopus.py` (Claude) を置く。Codex 版は見比べて外し `_ubamegashi/` に残す |
 | | トベラ | Pittosporum tobira | coast | 海岸の低木 (1〜3m)、丸くこんもり |
 | | ハマヒサカキ | Eurya emarginata | coast | 海岸の低木、潮風で刈り込まれた形 |
 | | シャリンバイ | Rhaphiolepis indica var. umbellata | coast | 海岸の低木、春に白い花 (seasons で花の形を分けてもよい) |

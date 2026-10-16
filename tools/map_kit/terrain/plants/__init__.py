@@ -78,8 +78,9 @@ def module_names():
 
 
 def folder_names():
-    """ファイルの植物 (<種類>/plant.json)。"""
-    return sorted(d for d in os.listdir(HERE) if os.path.isfile(os.path.join(HERE, d, "plant.json")))
+    """ファイルの植物 (<種類>/plant.json)。_ で始まるフォルダは使わない (置かない)。"""
+    return sorted(d for d in os.listdir(HERE)
+                  if not d.startswith("_") and os.path.isfile(os.path.join(HERE, d, "plant.json")))
 
 
 def all_names():
