@@ -77,6 +77,20 @@ MATERIALS = {
     "FD_SignRed": dict(color=(0.55, 0.02, 0.02), roughness=0.4),
     "FD_SignYellow": dict(color=(0.85, 0.55, 0.0), roughness=0.4),
     "FD_SignBlack": dict(color=(0.015, 0.015, 0.015), roughness=0.5),
+    # 線路と駅 (tools/terrain/railways.py)
+    "FD_Rail": dict(color=(0.20, 0.17, 0.15), metallic=0.85, roughness=0.35),         # レール (側面のさびと頭の光り)
+    "FD_Ballast": dict(color=(0.16, 0.145, 0.13), roughness=0.95),                    # バラスト (砕石)
+    "FD_Sleeper": dict(color=(0.36, 0.35, 0.33), roughness=0.85),                     # コンクリートの枕木
+    "FD_CrossingPanel": dict(color=(0.05, 0.05, 0.05), roughness=0.8),                # 踏切の敷板
+    "FD_BridgeConcrete": dict(color=(0.40, 0.39, 0.36), roughness=0.85),              # 高架・橋脚・坑門
+    "FD_TunnelDark": dict(color=(0.004, 0.004, 0.004), roughness=1.0),                # トンネルの奥
+    "FD_PlatformWall": dict(color=(0.33, 0.32, 0.30), roughness=0.9),                 # ホームの側壁
+    "FD_PlatformTop": dict(color=(0.42, 0.41, 0.39), roughness=0.8),                  # ホームの床
+    "FD_PlatformEdge": dict(color=(0.62, 0.62, 0.60), roughness=0.7),                 # ホームの縁
+    "FD_TactileYellow": dict(color=(0.75, 0.52, 0.02), roughness=0.6),                # 点字ブロック
+    "FD_StationRoof": dict(color=(0.30, 0.31, 0.32), metallic=0.4, roughness=0.5),    # 上屋の屋根
+    "FD_StationPost": dict(color=(0.55, 0.56, 0.56), metallic=0.3, roughness=0.5),
+    "FD_StationBench": dict(color=(0.04, 0.14, 0.32), roughness=0.5),
     # 神社 (tools/terrain/shrines.py)
     "FD_ShrineVermilion": dict(color=(0.58, 0.05, 0.022), roughness=0.55),   # 朱塗り
     "FD_ShrineBlack": dict(color=(0.02, 0.02, 0.02), roughness=0.5),         # 朱の鳥居の笠木

@@ -1842,7 +1842,8 @@ def place_scenery(eas, doc, meshes):
         if meshes.get(name):
             a = place_mesh(eas, meshes[name], at((0, 0, 0)), 0.0, name.replace("SM_FD_", ""),
                            "Auto/Guardrail" if "Guardrail" in name else "Auto/Buildings" if "Buildings" in name
-                           else "Auto/Shrines" if name.startswith("SM_FD_Shrine") else "Auto/Road")
+                           else "Auto/Shrines" if name.startswith("SM_FD_Shrine")
+                           else "Auto/Railway" if name.startswith("SM_FD_Rail") else "Auto/Road")
             if not opt.get("shadow", True):
                 a.static_mesh_component.set_editor_property("cast_shadow", False)
 
@@ -1854,6 +1855,7 @@ def place_scenery(eas, doc, meshes):
             continue
         sub = ("Auto/Guardrail" if "Guardrail" in name else "Auto/Road" if name.startswith("SM_FD_Road")
                else "Auto/Shrines" if name.startswith("SM_FD_Shrine")
+               else "Auto/Railway" if name.startswith("SM_FD_Rail")
                else "Auto/Flowers" if name in seasons else "Auto/Trees")
         a = place_instances(eas, cls, meshes[name], items, name.replace("SM_FD_", ""), sub, name in stretch,
                             name in doc.get("no_shadow", []))
@@ -2572,6 +2574,45 @@ def loop_travel_points():
     return out
 
 
+STATION_ROAD_M = 400.0          # 駅から道路までこれより遠ければ、駅をファストトラベルの行き先にしない
+
+
+def station_travel_points(tiles, taken):
+    """線路と駅を作ったコース (features の railways): タイルの railways.json の駅を、いちばん近い道路の上の
+    (名前, 位置, 次の点) にする。UE の cm。taken (名前の集まり) と同じ名前は入れない。"""
+    if not course_config.features_of(COURSE)["railways"]:
+        return []
+    out = []
+    for t in tiles["tiles"]:
+        d = tile_data_dir(t)
+        rp, roads_path = os.path.join(d, "railways.json"), os.path.join(d, "roads.json")
+        if not os.path.exists(rp) or not os.path.exists(roads_path):
+            continue
+        with open(rp, encoding="utf-8") as f:
+            stations = json.load(f).get("stations", [])
+        with open(roads_path, encoding="utf-8") as f:
+            roads = [r for r in json.load(f)["roads"] if r["priority"] <= 3 and not r.get("tunnel")]
+        ox, oy = t["offset_cm"][:2]
+        for st in stations:
+            name = st["name"] or "駅"
+            label = name if name.endswith("駅") else name + "駅"
+            if label in taken:
+                continue
+            x, y = st["pos_m"][0] * 100, st["pos_m"][1] * 100
+            best = None
+            for r in roads:
+                pts = r["points_cm"]
+                for i in range(len(pts) - 1):
+                    dd = (pts[i][0] - x) ** 2 + (pts[i][1] - y) ** 2
+                    if best is None or dd < best[0]:
+                        best = (dd, pts[i], pts[i + 1])
+            if best is None or best[0] > (STATION_ROAD_M * 100) ** 2:
+                continue
+            out.append((label, (best[1][0] + ox, best[1][1] + oy), (best[2][0] + ox, best[2][1] + oy)))
+            taken.add(label)
+    return out
+
+
 def road_z_near(tiles, x, y):
     """(x, y) cm にいちばん近い道路の点の高さ (cm)。そのタイルの roads.json から。"""
     best = None
@@ -2598,7 +2639,9 @@ def place_loop_travel_points(eas, tiles):
     if cls is None:
         unreal.log_warning("[setup_project] FDTravelPoint がありません (C++ をビルドしてから実行)。ファストトラベルの行き先は置きません")
         return
-    for order, (name, (x, y), (nx, ny)) in enumerate(loop_travel_points()):
+    stops = loop_travel_points()
+    stops += station_travel_points(tiles, {name for name, _, _ in stops})   # 駅も行き先にする
+    for order, (name, (x, y), (nx, ny)) in enumerate(stops):
         z = road_z_near(tiles, x, y)
         yaw = math.degrees(math.atan2(ny - y, nx - x))
         a = spawn(eas, cls, (x, y, z + TRAVEL_LIFT_CM), (0, yaw, 0), label=f"行き先: {name}", folder="Auto/TravelPoints")
@@ -2677,6 +2720,7 @@ def loop_global_recipe(tiles, far_mesh):
     files = [os.path.join(DATA_DIR, n) for n in ("landmarks.json", "roads.json")]
     files += [TILES_JSON, os.path.join(LOOP_DIR, "loop_route.json"), LOOP_AREA_JSON,
               os.path.join(FAR_TERRAIN_FOLDER, "far_terrain.json"), os.path.join(LOOP_DIR, "minimap.json")]
+    files += [os.path.join(tile_data_dir(t), "railways.json") for t in tiles["tiles"]]   # 駅のファストトラベル
     return recipe(populate_loop_global, available, files=files)
 
 
