@@ -13,7 +13,9 @@
     "hokuriku"
   ],
   "leaves": {
-    "FD_Leaf_Arakashi": "T_FD_Leaf_Arakashi.png"
+    "FD_Leaf_Arakashi": "T_FD_Leaf_Arakashi.png",
+    "FD_Flower_ArakashiHaru": "T_FD_Flower_ArakashiHaru.png",
+    "FD_Leaf_ArakashiHaru": "T_FD_Leaf_ArakashiHaru.png"
   },
   "barks": {
     "FD_BarkArakashi": [
@@ -29,7 +31,17 @@
         "forest"
       ],
       "share": 0.035,
-      "seasons": 15
+      "seasons": 14
+    },
+    "SM_FD_Arakashi_A_Haru": {
+      "file": "SM_FD_Arakashi_A_Haru.glb",
+      "height_m": 10.5,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.035,
+      "seasons": 1,
+      "place_with": "SM_FD_Arakashi_A"
     },
     "SM_FD_Arakashi_B": {
       "file": "SM_FD_Arakashi_B.glb",
@@ -38,7 +50,17 @@
         "forest"
       ],
       "share": 0.03,
-      "seasons": 15
+      "seasons": 14
+    },
+    "SM_FD_Arakashi_B_Haru": {
+      "file": "SM_FD_Arakashi_B_Haru.glb",
+      "height_m": 8.2,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.03,
+      "seasons": 1,
+      "place_with": "SM_FD_Arakashi_B"
     },
     "SM_FD_Arakashi_C": {
       "file": "SM_FD_Arakashi_C.glb",
@@ -47,7 +69,17 @@
         "forest"
       ],
       "share": 0.025,
-      "seasons": 15
+      "seasons": 14
+    },
+    "SM_FD_Arakashi_C_Haru": {
+      "file": "SM_FD_Arakashi_C_Haru.glb",
+      "height_m": 6.3,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.025,
+      "seasons": 1,
+      "place_with": "SM_FD_Arakashi_C"
     }
   }
 }
