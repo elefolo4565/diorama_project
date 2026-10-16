@@ -1,0 +1,52 @@
+{
+  "name_ja": "イスノキ",
+  "latin": "Distylium racemosum",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "hokuriku"
+  ],
+  "leaves": {
+    "FD_Leaf_Isunoki": "T_FD_Leaf_Isunoki.png"
+  },
+  "barks": {
+    "FD_BarkIsunoki": [
+      "T_FD_BarkIsunoki_D.png",
+      "T_FD_BarkIsunoki_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Isunoki_A": {
+      "file": "SM_FD_Isunoki_A.glb",
+      "height_m": 14.5,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Isunoki_B": {
+      "file": "SM_FD_Isunoki_B.glb",
+      "height_m": 11.5,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    },
+    "SM_FD_Isunoki_C": {
+      "file": "SM_FD_Isunoki_C.glb",
+      "height_m": 10.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.015,
+      "seasons": 15
+    }
+  }
+}
