@@ -18,7 +18,7 @@
 | 済 | ウバメガシ | Quercus phillyraeoides | coast, ridge | 海岸の崖の低い木。小さく硬い葉。`ubamegashiopus.py` (Claude) を置く。Codex 版は見比べて外し `_ubamegashi/` に残す |
 | | トベラ | Pittosporum tobira | coast | 海岸の低木 (1〜3m)、丸くこんもり。Claude 版 `toberaopus.py` あり (Codex 版と見比べ中) |
 | | ハマヒサカキ | Eurya emarginata | coast | 海岸の低木、潮風で刈り込まれた形。Claude 版 `hamahisakakiopus.py` あり (Codex 版と見比べ中) |
-| 済 | シャリンバイ | Rhaphiolepis indica var. umbellata | coast | 海岸の低木、春に白い花 (seasons で花の形を分けてもよい)。Claude 版 `sharinbaiopus.py` あり (Codex 版と見比べ中) |
+| | シャリンバイ | Rhaphiolepis indica var. umbellata | coast | 海岸の低木、春に白い花 (seasons で花の形を分けてもよい)。Claude 版 `sharinbaiopus.py` あり (Codex 版と見比べ中) |
 | | ヤブツバキ | Camellia japonica | forest | 林の中の小高木、冬〜春に赤い花。Claude 版 `yabutsubakiopus.py` あり (Codex 版と見比べ中) |
 | | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑。Claude 版 `arakashiopus.py` あり (Codex 版と見比べ中) |
 | | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち。Claude 版 `matebashiiopus.py` あり (Codex 版と見比べ中) |
