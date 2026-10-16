@@ -1,0 +1,78 @@
+{
+  "name_ja": "グンバイヒルガオ",
+  "latin": "Ipomoea pes-caprae",
+  "regions": [
+    "shikoku",
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Gunbaihirugao": "T_FD_Leaf_Gunbaihirugao.png",
+    "FD_Flower_Gunbaihirugao": "T_FD_Flower_Gunbaihirugao.png"
+  },
+  "barks": {
+    "FD_BarkGunbaihirugao": [
+      "T_FD_BarkGunbaihirugao_D.png",
+      "T_FD_BarkGunbaihirugao_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Gunbaihirugao_A": {
+      "file": "SM_FD_Gunbaihirugao_A.glb",
+      "height_m": 0.18,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 13
+    },
+    "SM_FD_Gunbaihirugao_A_Hana": {
+      "file": "SM_FD_Gunbaihirugao_A_Hana.glb",
+      "height_m": 0.18,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 2,
+      "place_with": "SM_FD_Gunbaihirugao_A"
+    },
+    "SM_FD_Gunbaihirugao_B": {
+      "file": "SM_FD_Gunbaihirugao_B.glb",
+      "height_m": 0.16,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 13
+    },
+    "SM_FD_Gunbaihirugao_B_Hana": {
+      "file": "SM_FD_Gunbaihirugao_B_Hana.glb",
+      "height_m": 0.16,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 2,
+      "place_with": "SM_FD_Gunbaihirugao_B"
+    },
+    "SM_FD_Gunbaihirugao_C": {
+      "file": "SM_FD_Gunbaihirugao_C.glb",
+      "height_m": 0.12,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.015,
+      "seasons": 13
+    },
+    "SM_FD_Gunbaihirugao_C_Hana": {
+      "file": "SM_FD_Gunbaihirugao_C_Hana.glb",
+      "height_m": 0.12,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.015,
+      "seasons": 2,
+      "place_with": "SM_FD_Gunbaihirugao_C"
+    }
+  }
+}
