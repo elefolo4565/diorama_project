@@ -25,8 +25,8 @@ BEAM_Z = (2.6, 5.2)     # 脚をつなぐ梁の高さ
 MINT_TOP = 2.8          # 脚の水色の所の高さ
 
 MATERIALS = {
-    "FD_MeishoTowerWhite": dict(color=(0.60, 0.62, 0.62), roughness=0.8),    # 塔の白いコンクリート
-    "FD_MeishoTowerMint": dict(color=(0.30, 0.58, 0.50), roughness=0.75),    # 脚の下と階段の薄い水色
+    "FD_MeishoTowerWhite": dict(color=(0.68, 0.68, 0.66), roughness=0.8),    # 塔の白いコンクリート
+    "FD_MeishoTowerMint": dict(color=(0.42, 0.63, 0.52), roughness=0.75),    # 脚の下と階段の薄い水色
     "FD_MeishoGravel": dict(color=(0.42, 0.36, 0.27), roughness=0.95),       # 広場の砂利
     "FD_MeishoWood": dict(color=(0.20, 0.13, 0.075), roughness=0.85),        # 木の柵
     "FD_MeishoLamp": dict(color=(0.20, 0.20, 0.20), roughness=0.4),          # 外灯の柱

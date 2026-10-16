@@ -13,6 +13,7 @@ import math
 
 import numpy as np
 
+import buildings
 import scenery_meshes as sm
 import shrines
 from buildings import min_rect
@@ -37,6 +38,8 @@ STEPS_ROMON = [(33.667484, 130.313181), (33.667616, 130.313145)]    # 楼門の�
 ROMON = (33.66765, 130.313136)                                       # 楼門 (石段を上りきった所)
 COURT_PATH = [(33.667717, 130.313121), (33.66776, 130.313108), (33.667787, 130.313259), (33.667853, 130.313241)]
 STEPS_HAIDEN = [(33.667853, 130.313241), (33.667904, 130.313223)]   # 拝殿の前の石段
+COURT_CLEAR_M = 32.0    # 境内の真ん中 (拝殿) からこの距離の一般の建物と木はよける
+ROMON_CLEAR_M = 18.0    # 楼門のまわり
 
 MATERIALS = {}   # shrines.py / scenery_meshes.py の FD_Shrine* (白木・緑青・石) を使う
 
@@ -53,7 +56,27 @@ def clear(ctx):
             x, y = p[0] + (p[1] - p[0]) * t
             out.append((*ctx.to_frame(x, y), 4.0))
     cx, cy = _xy(ctx, HAIDEN).mean(0)
-    out.append((*ctx.to_frame(cx, cy), 26.0))
+    out.append((*ctx.to_frame(cx, cy), COURT_CLEAR_M))
+    rx, ry = _xy(ctx, [ROMON])[0]
+    out.append((*ctx.to_frame(rx, ry), ROMON_CLEAR_M))
+    return out
+
+
+def outbuildings(ctx):
+    """楼門と境内のまわりの建物の輪郭 (地理院・OSM)。一般の建物 (コンクリートの箱) の代わりに、
+    白壁と瓦の平屋 (社務所・回廊・授与所) にする。拝殿・本殿・鹿角堂・神楽殿は別に作るので除く。"""
+    mine = [_xy(ctx, p).mean(0) for p in (HAIDEN, HONDEN, IMAMIYA_HAIDEN, IMAMIYA_HONDEN, KAGURADEN, ROKKAKUDO)]
+    hc = _xy(ctx, HAIDEN).mean(0)
+    rc = _xy(ctx, [ROMON])[0]
+    out = []
+    for poly, _, _ in buildings.load_footprints(ctx.area):
+        poly = np.asarray(poly, float)
+        c = poly.mean(0)
+        if np.hypot(*(c - hc)) > COURT_CLEAR_M and np.hypot(*(c - rc)) > ROMON_CLEAR_M:
+            continue
+        if min(np.hypot(*(c - m)) for m in mine) < 6.0:
+            continue
+        out.append(poly)
     return out
 
 
@@ -250,4 +273,17 @@ def build(ctx):
     b.hall_on(P(KAGURADEN), kg, (7.0, 7.0), cp[0])
     # ---- 鹿角堂
     b.rokkakudo(P(ROKKAKUDO), cp[2])
+    # ---- 社務所・回廊など (地理院の輪郭に白壁と瓦の平屋)
+    for poly in outbuildings(ctx):
+        c, a, la, lb = min_rect(poly)
+        sub = sm.Mesh("office")
+        sub.add("FD_ShrineStone", *sm.box((0, 0, -0.6), (lb + 0.2, la + 0.2, 1.6)))
+        sub.add("FD_ShrineWhite", *sm.box((0, 0, 1.6), (lb, la, 2.8)))
+        for y in np.linspace(-la / 2 + 1.0, la / 2 - 1.0, max(int(la / 2.6), 1)):
+            sub.add("FD_ShrineWoodDark", *sm.box((-lb / 2 - 0.02, y, 1.7), (0.06, 1.2, 1.1)))
+        shrines.gable(sub, "FD_ShrineKawara", -lb / 2 - 0.8, lb / 2 + 0.8, 0.0, 3.0, 3.0 + lb * 0.3, -la / 2 - 0.6,
+                      la / 2 + 0.6, t=0.2, sori=0.08)
+        yaw = math.degrees(math.atan2(-a[0], a[1]))   # 部品の Y (棟の向き) を長い辺 a に合わせる
+        z = min(b.g(*p) for p in poly)
+        b.put(sub, c[0], c[1], z, yaw)
     return b.m
