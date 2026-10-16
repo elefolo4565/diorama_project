@@ -5,7 +5,7 @@
     NAME_JA    和名 (例 "金印公園")
     LATLON     (緯度, 経度)。OSM の点など。build(ctx) の ctx.x, ctx.y がこの点の UE 座標 (m) になる
     CLEAR      [(道路からの奥行き m, 道路に沿った位置 m, 半径 m), ...] (省略可)。木・花・家をよける円。
-               位置は ctx.frame の座標 (下の「道路の座標」)
+               位置は ctx.frame の座標 (下の「道路の座標」)。ctx で決めるときは関数 clear(ctx) で同じリストを返す
     TERRACES   地形を平らにする所 (省略可。ctx で決めるときは関数 terraces(ctx) で同じリストを返す)。
                apply_roads.py が道路を焼いた後に地形へ焼く (UE の地面も平らになる)
                dict(kind="rect", s=(s0, s1), u=(u0, u1), z="road", dz=0.1, feather=2.0)   道路の座標の四角
@@ -136,7 +136,8 @@ def keep_clear(spots):
     """木・花・家をよける円 [(x cm, y cm, 半径 cm)]。"""
     out = []
     for _, mod, ctx in spots:
-        for s, u, r in getattr(mod, "CLEAR", ()):
+        c = getattr(mod, "clear", None)
+        for s, u, r in (c(ctx) if callable(c) else getattr(mod, "CLEAR", ())):
             x, y = ctx.frame(s, u)
             out.append((x * 100.0, y * 100.0, r * 100.0))
     return out
