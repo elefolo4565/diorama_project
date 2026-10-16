@@ -2,21 +2,71 @@
 
 このリポジトリは、国土地理院と OpenStreetMap のデータから日本の地域を UE 5.8 のジオラマにします
 (使い方は [tools/map_kit/README.md](tools/map_kit/README.md))。
-ここに書くのは、**植物の形と葉の絵を作る Python コードを、UE を使わずに足すとき**の決まりです。
+ここに書くのは、**植物 (木・低木・草花・シダ) を UE を使わずに足すとき**の決まりです。
 UE への取り込み・配置・見た目の確認は、マージの後にオーナーの PC で行います。
+
+植物の足し方は 2 通りあり、どちらも同じ検査 (`plants/check.py`) を通して同じように置かれます。
+- **A. ファイル**: Blender などで作った `.glb` と葉・樹皮の PNG を、`plants/<種類>/` に `plant.json` と一緒に置く
+- **B. コード**: 形と絵を作る Python を `plants/<種類>.py` に書く (見本 [plants/yamamomo.py](tools/map_kit/terrain/plants/yamamomo.py))
 
 ## 守ること
 - 種類は **日本 (福岡・糸島・志賀島のあたり) に実際に生える植物だけ**。外来の園芸種や欧州の種類は入れない
-- **外部のアセット・画像・3D モデルを使わない / ダウンロードしない**。形も葉の絵もコードで生成する (無料・ライセンスの心配なし)
-- 依存ライブラリを足さない (numpy と Pillow だけ。`tools/map_kit/terrain/requirements.txt`)
-- 変えてよいのは `tools/map_kit/terrain/plants/` に **新しいファイルを足すこと** だけ
+- **外部のアセット・画像・3D モデルを使わない / ダウンロードしない**。形も葉の絵も自分で作る (無料・ライセンスの心配なし)
+- キット側に依存ライブラリを足さない (`plants/` のコードで使えるのは numpy と Pillow だけ。Blender は作る側で使うのは自由)
+- 変えてよいのは `tools/map_kit/terrain/plants/` に **新しい種類を足すこと** (と、自分が足した種類を直すこと) だけ
   - 変えない: `plants/__init__.py`・`plants/check.py` (受け口と検査)、`plants/` にある他の人の種類、
     `build_scenery.py`・`foliage.py`・`flowers.py`・`scenery_meshes.py`・`bark.py` (読んで部品を使うのは可)、
     `tools/map_kit/ue/`、`tools/map_kit/Source/`、`maps/` (各地域のフォルダはキットの入れ直しで上書きされる)、`Content/`
   - 受け口に足りない所があれば、コードを変えずに PR の説明に書く
 - コメントと文書は日本語で、既存のコードと同じ書き方にする
 
-## ファイルの置き方 (1 種類 = 1 ファイル)
+## A. ファイルで足す (.glb)
+`tools/map_kit/terrain/plants/<種類のローマ字>/` に置く (例 `plants/ubamegashi/`):
+
+```
+plants/ubamegashi/
+  plant.json                     種類の説明と置き方
+  SM_FD_Ubamegashi_A.glb         形 (1 つの形 = 1 ファイル。A/B/C で 2〜3 本の違う形があると森が単調にならない)
+  SM_FD_Ubamegashi_B.glb
+  T_FD_Leaf_Ubamegashi.png       葉の絵
+  T_FD_BarkUbamegashi_D.png      樹皮の色 (既存の樹皮を使うなら不要)
+  T_FD_BarkUbamegashi_N.png      樹皮の凹凸 (法線)
+```
+
+`plant.json`:
+```json
+{
+  "name_ja": "ウバメガシ",
+  "latin": "Quercus phillyraeoides",
+  "leaves": {"FD_Leaf_Ubamegashi": "T_FD_Leaf_Ubamegashi.png"},
+  "barks": {"FD_BarkUbamegashi": ["T_FD_BarkUbamegashi_D.png", "T_FD_BarkUbamegashi_N.png"]},
+  "meshes": {
+    "SM_FD_Ubamegashi_A": {"file": "SM_FD_Ubamegashi_A.glb", "height_m": 5.0, "habitat": ["coast"], "share": 0.10},
+    "SM_FD_Ubamegashi_B": {"file": "SM_FD_Ubamegashi_B.glb", "height_m": 3.5, "habitat": ["coast", "ridge"], "share": 0.05, "seasons": 15}
+  }
+}
+```
+
+### .glb の決まり
+| 項目 | 決まり |
+| --- | --- |
+| 形式 | glTF 2.0 の `.glb` 1 ファイル。**絵は入れない** (Blender の書き出しで Images を「None」)。PNG は別に置く |
+| 単位・向き | メートル。Blender の Z 上のまま作り、書き出しは既定の「+Y Up」。前後の向きは自由 (向きは置くときにランダム) |
+| 原点 | 根元の地面の中心 = (0, 0, 0)。移動・回転・拡大は Apply してから書き出す (ノードに残さない) |
+| メッシュ | 1 つにまとめ (Join)、メッシュ名とオブジェクト名を `SM_FD_<種類>_<A/B/C>` にする。マテリアルは何個でもよい (葉・樹皮など) |
+| 三角形の数 | 高さ 3m 以上: 2,000〜25,000。それより低いもの: 100〜4,000 (数万本並ぶため) |
+| 大きさ | `.glb` は 8 MB まで |
+| 必要な頂点の値 | 位置・法線・UV (葉と樹皮)。頂点の色 (COLOR_0) は任意で、R を「奥ほど暗く」の陰として使う (0..1) |
+| 法線 | 葉の板は、樹冠の中心から外向きにそろえると樹冠全体が丸く光る (既存の木の作り方。任意) |
+| LOD・当たり判定・骨・アニメーション | 入れない (UE で Nanite にし、当たり判定は無し) |
+| 葉の板の裏 | 裏面は要らない (UE の葉のマテリアルは両面)。入れてもよい |
+
+### マテリアル
+- 葉・花: `FD_Leaf_<種類>` / `FD_Flower_<種類>` → `plant.json` の `leaves` に絵を書く。UE で葉用のマテリアル (切り抜き・透過光・風) に差し替わる
+- 樹皮: `FD_Bark<種類>` → `barks` に絵を書く。既存の樹皮 `FD_Bark` (シイ・タブ)・`FD_PineBark`・`FD_BarkCedar` をそのまま使ってもよい (その名前にするだけ)
+- 絵の無い単色: `FD_<名前>` (色と粗さは .glb の値を使う)。`Material.001` などのままにしない
+
+## B. コードで足す (.py)
 `tools/map_kit/terrain/plants/<種類のローマ字>.py` (例 `yamamomo.py`)。**[plants/yamamomo.py](tools/map_kit/terrain/plants/yamamomo.py) が見本**です。
 ファイルは次を定義します (詳しくは `plants/__init__.py` の説明):
 
@@ -33,18 +83,24 @@ UE への取り込み・配置・見た目の確認は、マージの後にオ�
 | メッシュ | `SM_FD_<種類>_<A/B/C>` | `SM_FD_Yamamomo_A` |
 | 葉・花のマテリアル | `FD_Leaf_<種類>` / `FD_Flower_<種類>` (UE で葉用のマテリアルに差し替わる) | `FD_Leaf_Yamamomo` |
 | 樹皮のマテリアル | `FD_Bark<種類>` (`_` を入れない) | `FD_BarkSakura` |
-| 葉の絵 | `T_<マテリアル名>.png`、1024x1024、RGBA、葉の無い所はアルファ 0 | `T_FD_Leaf_Yamamomo.png` |
-| 樹皮の絵 | `T_<マテリアル名>_D.png` と `_N.png` (法線) | |
+| 葉の絵 | `T_<マテリアル名>.png` | `T_FD_Leaf_Yamamomo.png` |
+| 樹皮の絵 | `T_<マテリアル名>_D.png` と `_N.png` (法線) | `T_FD_BarkSakura_D.png` |
+| 種類のフォルダ・ファイル | ローマ字の小文字 | `ubamegashi/`、`yamamomo.py` |
+
+## 絵 (PNG) の決まり (A・B 共通)
+- 葉・花: 1024x1024、RGBA。葉の無い所はアルファ 0 (UE はアルファ 0.4 未満を切り抜く)。葉の所が全体の 10〜90%。
+  小枝ごと何枚かを 1 枚に並べ (既存は 2x2)、板ごとに違う所を貼ると単調にならない。透明な所の色は近くの葉の色で埋める (縮小で縁が黒くならない)
+- 樹皮: 色 `_D` と法線 `_N`、1024x1024 程度、上下左右につながる模様。法線の向きは `bark.py` の `normal_map` と同じ
+- 色は写真のような明るさの sRGB。光や影を絵に描き込みすぎない (UE の光で付く)
 
 既存の名前 (`scenery_meshes.MATERIALS`、`build_scenery.TREE_KINDS`) と同じ名前は使わない。
 
-## 形の決まり
+## 形の決まり (B. コード)
 - `scenery_meshes.Mesh` で作る。単位はメートル、Z が上、原点は根元の地面の中心
 - 乱数は `scenery_meshes.Rng(seed)` (同じ seed なら同じ形になること。`random` や `numpy.random` を直接使わない)
 - 葉は既存の木と同じ「葉の板」: `foliage.Foliage` と `foliage.clump`、幹と枝は `bark.bark_tube`。
   葉の板の法線は樹冠の中心から外向き、明るさ (頂点の色) は樹冠の奥ほど暗く
-- 三角形の数: 高さ 3m 以上は 2,000〜25,000、それより低いものは 100〜4,000 (数万本並ぶため)
-- 当たり判定は作らない (UE 側で無しにする)
+- 三角形の数と原点は .glb と同じ
 
 ## 置く所 (`habitat`) と割合 (`share`)
 - 木を入れ替える: `"coast"` 海岸、`"forest"` 森、`"ridge"` 標高 60m 以上の森、`"farm"` 田畑のあぜ、`"grassland"` 草原
@@ -56,12 +112,14 @@ UE への取り込み・配置・見た目の確認は、マージの後にオ�
 ## 確かめ方 (PR の前に必ず)
 ```
 cd tools/map_kit/terrain
-python plants/check.py <種類>      # 例: python plants/check.py yamamomo
+python plants/check.py <種類>      # 例: python plants/check.py ubamegashi (フォルダ) / yamamomo (コード)
 ```
-- 名前・マテリアルと絵・三角形の数・大きさと原点・葉の絵の透過・同じ形になるかを調べ、最後に `OK` と出れば合格
+- `plant.json` と `.glb` の中身・名前・マテリアルと絵・三角形の数・大きさと原点・葉の絵の透過・同じ形になるかを調べ、最後に `OK` と出れば合格
 - `out/plants/<種類>_preview.png` (正面・横・真上と葉の絵) ができる。**この画像を見て形を直し、PR の説明に貼る**
   (簡単な描画なので、葉の茂り方・幹の形・大きさの確認用。光や色の最終的な見え方は UE で確かめる)
-- `out/` はコミットしない
+  (Blender で描いた画像があれば、それも一緒に貼ってよい)
+- `out/` はコミットしない。`.blend` や制作スクリプトはコミットしない (作る側で保管する)
+- `.glb` と PNG は Git LFS で入る (`.gitattributes`)。push する所に `git lfs` を入れておく
 
 ## PR の出し方
 - ブランチ `codex/plant-<種類>` から `main` へ。1 PR = 1〜3 種類

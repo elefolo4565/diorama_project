@@ -2,12 +2,12 @@
 
 使い方 (tools/map_kit/terrain で):
     python plants/check.py              plants/ のすべての種類
-    python plants/check.py yamamomo     plants/yamamomo.py だけ
+    python plants/check.py yamamomo     plants/yamamomo.py (コード) か plants/yamamomo/plant.json (ファイル) だけ
 
 出力 (out/plants/):
     <メッシュ名>.gltf, 葉と樹皮の絵 (.png)   UE に取り込むものと同じ
     <種類>_preview.png                        各メッシュの正面・横・真上と、葉の絵 (PR の説明に貼る)
-調べること: 名前の決まり、マテリアルと絵がそろっているか、三角形の数、大きさと原点、葉の絵の透過、
+調べること: (ファイルの植物は) plant.json と .glb の中身、名前の決まり、マテリアルと絵がそろっているか、三角形の数、大きさと原点、葉の絵の透過、
             同じ乱数で同じ形になるか。だめな所があれば一覧を出して終わりの値 1 で終わる。
 """
 
@@ -126,20 +126,92 @@ def render(mesh, textures, view):
 
 
 # ---------------------------------------------------------------- 調べる
+GLB_MAX_MB = 8.0
+PLAIN_NAME = plants.re.compile(r"FD_[A-Z][A-Za-z0-9]*")
+
+
+def check_folder(name):
+    """ファイルの植物: plant.json と .glb の決まり。"""
+    errs = []
+    folder = os.path.join(plants.HERE, name)
+    try:
+        mats, leaves, barks, specs, spec = plants.load_folder(name)
+    except Exception as e:  # noqa: BLE001
+        return [f"{name}/plant.json: 読み込めません: {e}"]
+    for key in ("name_ja", "latin", "meshes"):
+        if key not in spec:
+            errs.append(f"{name}/plant.json: {key} がありません")
+    for mat, (png, _) in leaves.items():
+        if not plants.LEAF_NAME.fullmatch(mat):
+            errs.append(f"{mat}: 葉・花のマテリアル名は FD_Leaf_<種類> / FD_Flower_<種類> にする")
+        if not os.path.isfile(os.path.join(folder, png)):
+            errs.append(f"{name}/{png} がありません")
+    for mat, (c, n, _) in barks.items():
+        if not plants.BARK_NAME.fullmatch(mat):
+            errs.append(f"{mat}: 樹皮のマテリアル名は FD_Bark<種類> にする")
+        if (c, n) != (f"T_{mat}_D.png", f"T_{mat}_N.png"):
+            errs.append(f"{mat}: 樹皮の絵の名前は T_{mat}_D.png と T_{mat}_N.png にする")
+        for f in (c, n):
+            if not os.path.isfile(os.path.join(folder, f)):
+                errs.append(f"{name}/{f} がありません")
+    for mat in mats:
+        if mat in BUILTIN_MATERIALS and mat not in leaves and mat not in barks:
+            continue
+        if mat in BUILTIN_MATERIALS:
+            errs.append(f"{mat}: 既存のマテリアルと同じ名前です (既存のものを使うなら leaves / barks に書かない)")
+        elif mat not in leaves and mat not in barks and not PLAIN_NAME.fullmatch(mat):
+            errs.append(f"{mat}: マテリアル名は FD_<名前> にする (Blender の Material.001 などのままにしない)")
+    for mesh_name, m in spec.get("meshes", {}).items():
+        path = os.path.join(folder, m.get("file", ""))
+        if m.get("file") != f"{mesh_name}.glb":
+            errs.append(f"{mesh_name}: ファイル名は {mesh_name}.glb にする")
+        if not os.path.isfile(path):
+            continue
+        if os.path.getsize(path) > GLB_MAX_MB * 1e6:
+            errs.append(f"{m['file']}: {os.path.getsize(path) / 1e6:.1f} MB (上限 {GLB_MAX_MB:.0f} MB)")
+        doc, _ = plants.read_glb(path)
+        meshes = doc.get("meshes", [])
+        if len(meshes) != 1 or meshes[0].get("name") != mesh_name:
+            errs.append(f"{m['file']}: メッシュは 1 つにまとめ、名前を {mesh_name} にする ({[x.get('name') for x in meshes]})")
+        if doc.get("images"):
+            errs.append(f"{m['file']}: 絵を .glb に入れない (Blender の書き出しで画像を「なし」にし、PNG は別に置く)")
+        if doc.get("animations") or doc.get("skins"):
+            errs.append(f"{m['file']}: アニメーションと骨は入れない")
+        for gm in meshes:
+            for prim in gm.get("primitives", []):
+                if "material" not in prim:
+                    errs.append(f"{m['file']}: マテリアルの無い面があります")
+                if "NORMAL" not in prim.get("attributes", {}):
+                    errs.append(f"{m['file']}: 法線がありません")
+                if "TEXCOORD_0" not in prim.get("attributes", {}):
+                    mat = doc["materials"][prim["material"]]["name"] if "material" in prim else ""
+                    if mat in leaves or mat in barks:
+                        errs.append(f"{m['file']}: {mat} に UV がありません")
+        nodes = doc.get("nodes", [])
+        for nd in nodes:
+            if any(k in nd for k in ("rotation", "scale", "matrix")) or any(abs(t) > 1e-4 for t in nd.get("translation", [])):
+                errs.append(f"{m['file']}: ノード {nd.get('name')} に移動・回転・拡大が残っています (Blender で Apply してから書き出す)")
+                break
+    return errs
+
+
 def check_module(name):
     errors, rows = [], []
-    before = set(sm.MATERIALS)
+    is_folder = name in plants.folder_names()
+    if is_folder:
+        errors += check_folder(name)
+        if errors:
+            return errors, []
     try:
         specs, leaves, barks, _ = plants.load([name])
     except Exception as e:  # noqa: BLE001
         return [f"{name}: 読み込めません: {e}"], []
-    mod = sys.modules[f"plants.{name}"]
+    mod = None if is_folder else sys.modules[f"plants.{name}"]
     for mat in getattr(mod, "MATERIALS", {}):
         if mat in BUILTIN_MATERIALS:
             errors.append(f"{mat}: 既存のマテリアルと同じ名前です (新しい名前にする)")
         elif not (plants.LEAF_NAME.fullmatch(mat) or plants.BARK_NAME.fullmatch(mat)):
             errors.append(f"{mat}: マテリアル名は FD_Leaf_<種類> / FD_Flower_<種類> / FD_Bark<種類> にする")
-    del before
     os.makedirs(OUT, exist_ok=True)
     textures = {}
     for mat, (fname, draw) in leaves.items():
@@ -257,16 +329,19 @@ def write_preview(name, rows, leaf_pngs):
 
 
 def main():
-    names = sys.argv[1:] or plants.module_names()
-    unknown = [n for n in names if n not in plants.module_names()]
+    names = sys.argv[1:] or plants.all_names()
+    unknown = [n for n in names if n not in plants.all_names()]
     if unknown:
         sys.exit(f"plants/ に {unknown} がありません")
     all_errors = []
     for name in names:
         print(f"{name}:")
         errors, rows = check_module(name)
-        mod = sys.modules.get(f"plants.{name}")
-        leaf_pngs = [os.path.join(OUT, f) for f, _ in getattr(mod, "LEAVES", {}).values()] if mod else []
+        if name in plants.folder_names():
+            leaf_pngs = [os.path.join(OUT, f) for f in plants.load_folder(name)[4].get("leaves", {}).values()]
+        else:
+            mod = sys.modules.get(f"plants.{name}")
+            leaf_pngs = [os.path.join(OUT, f) for f, _ in getattr(mod, "LEAVES", {}).values()] if mod else []
         if rows:
             print(f"  確認用の画像: {write_preview(name, rows, leaf_pngs)}")
         all_errors += errors
