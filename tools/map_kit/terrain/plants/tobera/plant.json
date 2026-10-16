@@ -1,0 +1,53 @@
+{
+  "name_ja": "トベラ",
+  "latin": "Pittosporum tobira",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "tohoku",
+    "hokuriku"
+  ],
+  "leaves": {
+    "FD_Leaf_Tobera": "T_FD_Leaf_Tobera.png"
+  },
+  "barks": {
+    "FD_BarkTobera": [
+      "T_FD_BarkTobera_D.png",
+      "T_FD_BarkTobera_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Tobera_A": {
+      "file": "SM_FD_Tobera_A.glb",
+      "height_m": 2.4,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Tobera_B": {
+      "file": "SM_FD_Tobera_B.glb",
+      "height_m": 1.65,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Tobera_C": {
+      "file": "SM_FD_Tobera_C.glb",
+      "height_m": 1.1,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}
