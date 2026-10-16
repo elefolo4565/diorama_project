@@ -1,0 +1,45 @@
+{
+  "name_ja": "ソテツ",
+  "latin": "Cycas revoluta",
+  "regions": [
+    "kyushu"
+  ],
+  "leaves": {
+    "FD_Leaf_Sotetsu": "T_FD_Leaf_Sotetsu.png"
+  },
+  "barks": {
+    "FD_BarkSotetsu": [
+      "T_FD_BarkSotetsu_D.png",
+      "T_FD_BarkSotetsu_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Sotetsu_A": {
+      "file": "SM_FD_Sotetsu_A.glb",
+      "height_m": 2.7,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.015,
+      "seasons": 15
+    },
+    "SM_FD_Sotetsu_B": {
+      "file": "SM_FD_Sotetsu_B.glb",
+      "height_m": 2.4,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.012,
+      "seasons": 15
+    },
+    "SM_FD_Sotetsu_C": {
+      "file": "SM_FD_Sotetsu_C.glb",
+      "height_m": 1.2,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.01,
+      "seasons": 15
+    }
+  }
+}
