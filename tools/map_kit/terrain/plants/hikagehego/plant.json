@@ -1,0 +1,46 @@
+{
+  "name_ja": "ヒカゲヘゴ",
+  "latin": "Sphaeropteris lepifera",
+  "regions": [
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Hikagehego": "T_FD_Leaf_Hikagehego.png"
+  },
+  "barks": {
+    "FD_BarkHikagehego": [
+      "T_FD_BarkHikagehego_D.png",
+      "T_FD_BarkHikagehego_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Hikagehego_A": {
+      "file": "SM_FD_Hikagehego_A.glb",
+      "height_m": 9.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Hikagehego_B": {
+      "file": "SM_FD_Hikagehego_B.glb",
+      "height_m": 7.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    },
+    "SM_FD_Hikagehego_C": {
+      "file": "SM_FD_Hikagehego_C.glb",
+      "height_m": 5.8,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.015,
+      "seasons": 15
+    }
+  }
+}

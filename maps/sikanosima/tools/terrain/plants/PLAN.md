@@ -42,17 +42,17 @@
 | 済 | アダン | Pandanus odoratissimus | coast | 砂浜の奥の低木。タコ足の支柱根、らせん状の長い葉、パイナップルのような実 |
 | 済 | フクギ | Garcinia subelliptica | farm | 集落の防風林。まっすぐな幹に厚い葉が密な縦長の樹形 |
 | 済 | テリハボク | Calophyllum inophyllum | coast | 海岸の常緑高木。つやのある丸い葉、防潮林 |
-| 直し中 | オオハマボウ | Hibiscus tiliaceus | coast | 海岸・河口の低木〜小高木。ハート形の葉、黄色い花 (夏) |
+| 済 | オオハマボウ | Hibiscus tiliaceus | coast | 海岸・河口の低木〜小高木。ハート形の葉、黄色い花 (夏) |
 | 済 | クサトベラ | Scaevola taccada | coast | 砂浜の低木。明るい緑のへら形の葉がこんもり |
 | 済 | モンパノキ | Heliotropium foertherianum | coast | 砂浜の低木。銀白色の毛に覆われた葉 |
 | 済 | ビロウ | Livistona chinensis var. subglobosa | coast, forest | ヤシの仲間。扇形の大きな葉が垂れる |
 | 済 | スダジイ | Castanopsis sieboldii | forest | やんばるの森の主役 (イタジイ)。ブロッコリーのような樹冠、春に黄色い花 |
-| 直し中 | オキナワウラジロガシ | Quercus miyagii | forest | やんばるのカシの大木。板根、葉の裏が白い |
+| 済 | オキナワウラジロガシ | Quercus miyagii | forest | やんばるのカシの大木。板根、葉の裏が白い |
 | 済 | アカギ | Bischofia javanica | forest, farm | 大きく広がる常緑高木。赤みのある樹皮、3 枚の小葉 |
 | 済 | フカノキ | Schefflera heptaphylla | forest | 森の中の小高木。手のひら形の葉 |
-| | ヒカゲヘゴ | Sphaeropteris lepifera | forest | 大きな木生シダ (5〜10m)。幹の頂に長い葉が放射状、葉の付け根の跡が模様に |
-| | クワズイモ | Alocasia odora | understory | 森の足もとの大きなサトイモの仲間。1m ほどの巨大な葉 |
-| | ゲットウ | Alpinia zerumbet | understory, farm | 道ばた・林のふちのショウガの仲間 (2m)。初夏に白とピンクの花房 |
+| 済 | ヒカゲヘゴ | Sphaeropteris lepifera | forest | 大きな木生シダ (5〜10m)。幹の頂に長い葉が放射状、葉の付け根の跡が模様に |
+| 済 | クワズイモ | Alocasia odora | understory | 森の足もとの大きなサトイモの仲間。1m ほどの巨大な葉 |
+| 済 | ゲットウ | Alpinia zerumbet | understory, farm | 道ばた・林のふちのショウガの仲間 (2m)。初夏に白とピンクの花房 |
 | | リュウキュウチク | Pleioblastus linearis | grassland, ridge | 尾根・荒れ地の細いササのやぶ |
 | | アコウ | Ficus superba var. japonica | farm, coast | 集落・海岸の大木。春と秋に一斉に落葉して新芽 |
 | | グンバイヒルガオ | Ipomoea pes-caprae | coast | 砂浜をはうつる草。軍配形の葉、桃色の花 (夏) |
