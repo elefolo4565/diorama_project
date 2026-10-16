@@ -1,0 +1,49 @@
+{
+  "name_ja": "リュウキュウチク",
+  "latin": "Pleioblastus linearis",
+  "regions": [
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Ryukyuchiku": "T_FD_Leaf_Ryukyuchiku.png"
+  },
+  "barks": {
+    "FD_BarkRyukyuchiku": [
+      "T_FD_BarkRyukyuchiku_D.png",
+      "T_FD_BarkRyukyuchiku_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Ryukyuchiku_A": {
+      "file": "SM_FD_Ryukyuchiku_A.glb",
+      "height_m": 4.8,
+      "habitat": [
+        "grassland",
+        "ridge"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Ryukyuchiku_B": {
+      "file": "SM_FD_Ryukyuchiku_B.glb",
+      "height_m": 3.7,
+      "habitat": [
+        "grassland",
+        "ridge"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Ryukyuchiku_C": {
+      "file": "SM_FD_Ryukyuchiku_C.glb",
+      "height_m": 2.3,
+      "habitat": [
+        "grassland",
+        "ridge"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}
