@@ -1,0 +1,51 @@
+{
+  "name_ja": "ハマヒサカキ",
+  "latin": "Eurya emarginata",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto"
+  ],
+  "leaves": {
+    "FD_Leaf_Hamahisakaki": "T_FD_Leaf_Hamahisakaki.png"
+  },
+  "barks": {
+    "FD_BarkHamahisakaki": [
+      "T_FD_BarkHamahisakaki_D.png",
+      "T_FD_BarkHamahisakaki_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Hamahisakaki_A": {
+      "file": "SM_FD_Hamahisakaki_A.glb",
+      "height_m": 2.4,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Hamahisakaki_B": {
+      "file": "SM_FD_Hamahisakaki_B.glb",
+      "height_m": 1.6,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Hamahisakaki_C": {
+      "file": "SM_FD_Hamahisakaki_C.glb",
+      "height_m": 0.85,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}
