@@ -32,11 +32,11 @@
 | 形 | 樹高 | 三角形数 | habitat | share | seasons |
 | --- | --- | --- | --- | --- | --- |
 | A | 2.65 m | 3,396 | coast | 0.025 | 14 |
-| Spring | 2.65 m | 3,828 | coast | 0.025 | 1 |
+| A_Spring | 2.65 m | 3,828 | coast | 0.025 | 1 |
 | B | 1.85 m | 3,540 | coast | 0.025 | 14 |
-| Spring | 1.85 m | 3,972 | coast | 0.025 | 1 |
+| B_Spring | 1.85 m | 3,972 | coast | 0.025 | 1 |
 | C | 1.05 m | 2,718 | coast | 0.02 | 14 |
-| Spring | 1.05 m | 3,038 | coast | 0.02 | 1 |
+| C_Spring | 1.05 m | 3,038 | coast | 0.02 | 1 |
 
 全個体の habitat は coast。配置割合と根拠は上の「共通メモへの対応」を参照。
 `regions`: kyushu, okinawa, shikoku, chugoku, kansai, chubu, kanto。
