@@ -1,0 +1,48 @@
+{
+  "name_ja": "コシダ",
+  "latin": "Dicranopteris linearis",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "hokuriku",
+    "tohoku"
+  ],
+  "leaves": {
+    "FD_Leaf_Koshida": "T_FD_Leaf_Koshida.png"
+  },
+  "barks": {},
+  "meshes": {
+    "SM_FD_Koshida_A": {
+      "file": "SM_FD_Koshida_A.glb",
+      "height_m": 0.85,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.12,
+      "seasons": 15
+    },
+    "SM_FD_Koshida_B": {
+      "file": "SM_FD_Koshida_B.glb",
+      "height_m": 0.55,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.08,
+      "seasons": 15
+    },
+    "SM_FD_Koshida_C": {
+      "file": "SM_FD_Koshida_C.glb",
+      "height_m": 1.0,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.06,
+      "seasons": 15
+    }
+  }
+}
