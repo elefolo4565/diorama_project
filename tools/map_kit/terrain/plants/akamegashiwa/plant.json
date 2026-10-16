@@ -1,0 +1,148 @@
+{
+  "name_ja": "アカメガシワ",
+  "latin": "Mallotus japonicus",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "tohoku",
+    "hokuriku"
+  ],
+  "leaves": {
+    "FD_Leaf_Akamegashiwa": "T_FD_Leaf_Akamegashiwa.png",
+    "FD_Leaf_AkamegashiwaSpray": "T_FD_Leaf_AkamegashiwaSpray.png",
+    "FD_Leaf_AkamegashiwaHaru": "T_FD_Leaf_AkamegashiwaHaru.png",
+    "FD_Leaf_AkamegashiwaSprayHaru": "T_FD_Leaf_AkamegashiwaSprayHaru.png",
+    "FD_Leaf_AkamegashiwaAki": "T_FD_Leaf_AkamegashiwaAki.png",
+    "FD_Leaf_AkamegashiwaSprayAki": "T_FD_Leaf_AkamegashiwaSprayAki.png"
+  },
+  "barks": {
+    "FD_BarkAkamegashiwa": [
+      "T_FD_BarkAkamegashiwa_D.png",
+      "T_FD_BarkAkamegashiwa_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Akamegashiwa_A": {
+      "file": "SM_FD_Akamegashiwa_A.glb",
+      "height_m": 7.4,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.03,
+      "seasons": 2
+    },
+    "SM_FD_Akamegashiwa_A_Haru": {
+      "file": "SM_FD_Akamegashiwa_A_Haru.glb",
+      "height_m": 7.4,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.03,
+      "seasons": 1,
+      "place_with": "SM_FD_Akamegashiwa_A"
+    },
+    "SM_FD_Akamegashiwa_A_Aki": {
+      "file": "SM_FD_Akamegashiwa_A_Aki.glb",
+      "height_m": 7.4,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.03,
+      "seasons": 4,
+      "place_with": "SM_FD_Akamegashiwa_A"
+    },
+    "SM_FD_Akamegashiwa_A_Fuyu": {
+      "file": "SM_FD_Akamegashiwa_A_Fuyu.glb",
+      "height_m": 7.103,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.03,
+      "seasons": 8,
+      "place_with": "SM_FD_Akamegashiwa_A"
+    },
+    "SM_FD_Akamegashiwa_B": {
+      "file": "SM_FD_Akamegashiwa_B.glb",
+      "height_m": 5.8,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.025,
+      "seasons": 2
+    },
+    "SM_FD_Akamegashiwa_B_Haru": {
+      "file": "SM_FD_Akamegashiwa_B_Haru.glb",
+      "height_m": 5.8,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.025,
+      "seasons": 1,
+      "place_with": "SM_FD_Akamegashiwa_B"
+    },
+    "SM_FD_Akamegashiwa_B_Aki": {
+      "file": "SM_FD_Akamegashiwa_B_Aki.glb",
+      "height_m": 5.8,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.025,
+      "seasons": 4,
+      "place_with": "SM_FD_Akamegashiwa_B"
+    },
+    "SM_FD_Akamegashiwa_B_Fuyu": {
+      "file": "SM_FD_Akamegashiwa_B_Fuyu.glb",
+      "height_m": 5.514,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.025,
+      "seasons": 8,
+      "place_with": "SM_FD_Akamegashiwa_B"
+    },
+    "SM_FD_Akamegashiwa_C": {
+      "file": "SM_FD_Akamegashiwa_C.glb",
+      "height_m": 5.2,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.02,
+      "seasons": 2
+    },
+    "SM_FD_Akamegashiwa_C_Haru": {
+      "file": "SM_FD_Akamegashiwa_C_Haru.glb",
+      "height_m": 5.2,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.02,
+      "seasons": 1,
+      "place_with": "SM_FD_Akamegashiwa_C"
+    },
+    "SM_FD_Akamegashiwa_C_Aki": {
+      "file": "SM_FD_Akamegashiwa_C_Aki.glb",
+      "height_m": 5.2,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.02,
+      "seasons": 4,
+      "place_with": "SM_FD_Akamegashiwa_C"
+    },
+    "SM_FD_Akamegashiwa_C_Fuyu": {
+      "file": "SM_FD_Akamegashiwa_C_Fuyu.glb",
+      "height_m": 4.91,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.02,
+      "seasons": 8,
+      "place_with": "SM_FD_Akamegashiwa_C"
+    }
+  }
+}
