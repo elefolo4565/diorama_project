@@ -1,0 +1,48 @@
+{
+  "name_ja": "クサトベラ",
+  "latin": "Scaevola taccada",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "kanto"
+  ],
+  "leaves": {
+    "FD_Leaf_Kusatobera": "T_FD_Leaf_Kusatobera.png",
+    "FD_Flower_Kusatobera": "T_FD_Flower_Kusatobera.png"
+  },
+  "barks": {
+    "FD_BarkKusatobera": [
+      "T_FD_BarkKusatobera_D.png",
+      "T_FD_BarkKusatobera_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Kusatobera_A": {
+      "file": "SM_FD_Kusatobera_A.glb",
+      "height_m": 1.45,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Kusatobera_B": {
+      "file": "SM_FD_Kusatobera_B.glb",
+      "height_m": 1.2,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Kusatobera_C": {
+      "file": "SM_FD_Kusatobera_C.glb",
+      "height_m": 1.0,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}
