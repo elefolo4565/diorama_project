@@ -4,6 +4,7 @@
 - 葉: 10〜20cm の大きな倒披針形〜長楕円形、縁は全縁。厚く硬く、濃い緑で強いつや、裏は淡い。枝先に集まって付き、葉が上向きに束になる (遠目に粗い房の樹冠)
 - 花・実: 6 月に枝先から上向きのクリーム色の穂 (10cm) が多数出て、樹冠が黄白色に見える。翌年秋に細長いどんぐり (2〜3cm)
 - 生える所: 海岸近くの林・社寺林・公園 (forest, coast)。九州に多い
+- 季節の形: 一年中 1 つ (6 月の花の穂は夏の形に少し混ぜてもよいが、なくてよい)
 - 見た写真:
   - https://commons.wikimedia.org/wiki/File:Lithocarpus_edulis3.jpg (CC BY-SA 3.0, KENPEI)
   - https://commons.wikimedia.org/wiki/File:Lithocarpus_edulis7.jpg (CC BY-SA 3.0, KENPEI)

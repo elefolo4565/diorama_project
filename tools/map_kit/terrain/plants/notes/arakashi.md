@@ -4,6 +4,7 @@
 - 葉: 7〜12cm の長い楕円、先がとがり、上半分の縁に粗い鋸歯。表は濃い緑でつや、裏は白っぽい灰緑 (風で裏返ると白く見える)。新芽は赤茶色〜銅色 (4〜5 月)
 - 花・実: 4〜5 月に黄褐色の垂れた花の房 (遠目には樹冠が少し茶色がかる)。秋にどんぐり (1.5〜2cm、横縞の殻斗)
 - 生える所: 里山の林・社寺林・谷沿い (forest)。シイより乾いた所や石灰岩の上にも
+- 季節の形: 夏・秋・冬 (2+4+8) = 濃い緑 / 春 (1) = 樹冠の表面に赤茶色〜銅色の新芽と黄褐色の花の房が混じる
 - 見た写真:
   - https://commons.wikimedia.org/wiki/File:Quercus_glauca_-_Miyajima_Natural_Botanical_Garden_-_DSC02386.JPG (Public domain, Daderot)
   - https://commons.wikimedia.org/wiki/File:Quercus_glauca_kz05.jpg (CC BY-SA 4.0, Krzysztof Ziarnek, Kenraiz)

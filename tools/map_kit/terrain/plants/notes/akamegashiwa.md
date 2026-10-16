@@ -4,6 +4,7 @@
 - 葉: 10〜20cm の大きな卵形〜ひし形 (浅く 3 つに裂けることもある)。長い赤い葉柄 (10〜20cm) の先に付き、水平に広がって枝先に集まる。夏は明るい緑でつやは弱い
 - 季節: 4〜5 月の新芽は鮮やかな赤〜赤紫 (名前の由来)。6〜7 月に枝先にクリーム色の花の穂。11 月に黄葉。冬は葉がなく、灰白色の枝が見える
 - 生える所: 道ばた・畑のふち・林のふち・空き地 (farm)
+- 季節の形: 春 (1) = 赤〜赤紫の新芽 (葉は小さめでまばら) / 夏 (2) = 明るい緑 / 秋 (4) = 黄葉 (黄〜黄褐色) / 冬 (8) = 幹と枝だけ (灰白色の枝)
 - 見た写真:
   - https://commons.wikimedia.org/wiki/File:Mallotus_japonicus4.jpg (CC BY-SA 3.0, KENPEI)
   - https://commons.wikimedia.org/wiki/File:Mallotus_japonicus_-_Quarryhill_Botanical_Garden_-_DSC03627.JPG (CC0, Daderot)

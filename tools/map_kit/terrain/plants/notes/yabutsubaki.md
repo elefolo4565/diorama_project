@@ -4,6 +4,7 @@
 - 葉: 5〜10cm の楕円、先がとがる。厚く濃い緑で強いつや (光を反射して白っぽく光る)。枝に互い違いに密に付く
 - 花・実: 12〜4 月に赤い花 (直径 5〜7cm、筒形〜半開き、中心に黄色いおしべの束)。樹冠の表面と中に点々と付く。花は丸ごと落ち、根元に赤い花が散らばる
 - 生える所: 海に近い林・社寺林の中 (forest)。シイ・タブの林の下の層
+- 季節の形: 夏・秋 (2+4) = 葉だけ / 冬・春 (8+1) = 赤い花 (根元に落ちた花も)
 - 見た写真:
   - https://www.inaturalist.org/observations/39136176 (CC BY 4.0, Marco Mussita, 東京都大島町)
   - https://commons.wikimedia.org/wiki/File:Sanmentubaki,_Ofunato.jpg (CC BY-SA 4.0, Ty19080914)
