@@ -1,0 +1,46 @@
+{
+  "name_ja": "アダン",
+  "latin": "Pandanus odoratissimus",
+  "regions": [
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Adan": "T_FD_Leaf_Adan.png"
+  },
+  "barks": {
+    "FD_BarkAdan": [
+      "T_FD_BarkAdan_D.png",
+      "T_FD_BarkAdan_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Adan_A": {
+      "file": "SM_FD_Adan_A.glb",
+      "height_m": 4.4,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Adan_B": {
+      "file": "SM_FD_Adan_B.glb",
+      "height_m": 3.4,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Adan_C": {
+      "file": "SM_FD_Adan_C.glb",
+      "height_m": 2.2,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}

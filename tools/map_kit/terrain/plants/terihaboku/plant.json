@@ -1,0 +1,46 @@
+{
+  "name_ja": "テリハボク",
+  "latin": "Calophyllum inophyllum",
+  "regions": [
+    "okinawa",
+    "kanto"
+  ],
+  "leaves": {
+    "FD_Leaf_Terihaboku": "T_FD_Leaf_Terihaboku.png"
+  },
+  "barks": {
+    "FD_BarkTerihaboku": [
+      "T_FD_BarkTerihaboku_D.png",
+      "T_FD_BarkTerihaboku_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Terihaboku_A": {
+      "file": "SM_FD_Terihaboku_A.glb",
+      "height_m": 9.5,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Terihaboku_B": {
+      "file": "SM_FD_Terihaboku_B.glb",
+      "height_m": 4.7,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Terihaboku_C": {
+      "file": "SM_FD_Terihaboku_C.glb",
+      "height_m": 6.5,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}

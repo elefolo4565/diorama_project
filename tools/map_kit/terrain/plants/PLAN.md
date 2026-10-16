@@ -37,19 +37,19 @@
 
 | 状態 | 和名 | 学名 | 置く所 (habitat) | メモ |
 | --- | --- | --- | --- | --- |
-| | リュウキュウマツ | Pinus luchuensis | forest, ridge | 沖縄の山と海岸の代表のマツ。笠のように横に広がる樹冠 |
-| | ガジュマル | Ficus microcarpa | forest, farm | 気根が垂れ下がり幹のように太る大木。集落・道ばたにも |
-| | アダン | Pandanus odoratissimus | coast | 砂浜の奥の低木。タコ足の支柱根、らせん状の長い葉、パイナップルのような実 |
-| | フクギ | Garcinia subelliptica | farm | 集落の防風林。まっすぐな幹に厚い葉が密な縦長の樹形 |
-| | テリハボク | Calophyllum inophyllum | coast | 海岸の常緑高木。つやのある丸い葉、防潮林 |
-| | オオハマボウ | Hibiscus tiliaceus | coast | 海岸・河口の低木〜小高木。ハート形の葉、黄色い花 (夏) |
-| | クサトベラ | Scaevola taccada | coast | 砂浜の低木。明るい緑のへら形の葉がこんもり |
-| | モンパノキ | Heliotropium foertherianum | coast | 砂浜の低木。銀白色の毛に覆われた葉 |
-| | ビロウ | Livistona chinensis var. subglobosa | coast, forest | ヤシの仲間。扇形の大きな葉が垂れる |
-| | スダジイ | Castanopsis sieboldii | forest | やんばるの森の主役 (イタジイ)。ブロッコリーのような樹冠、春に黄色い花 |
-| | オキナワウラジロガシ | Quercus miyagii | forest | やんばるのカシの大木。板根、葉の裏が白い |
-| | アカギ | Bischofia javanica | forest, farm | 大きく広がる常緑高木。赤みのある樹皮、3 枚の小葉 |
-| | フカノキ | Schefflera heptaphylla | forest | 森の中の小高木。手のひら形の葉 |
+| 済 | リュウキュウマツ | Pinus luchuensis | forest, ridge | 沖縄の山と海岸の代表のマツ。笠のように横に広がる樹冠 |
+| 済 | ガジュマル | Ficus microcarpa | forest, farm | 気根が垂れ下がり幹のように太る大木。集落・道ばたにも |
+| 済 | アダン | Pandanus odoratissimus | coast | 砂浜の奥の低木。タコ足の支柱根、らせん状の長い葉、パイナップルのような実 |
+| 済 | フクギ | Garcinia subelliptica | farm | 集落の防風林。まっすぐな幹に厚い葉が密な縦長の樹形 |
+| 済 | テリハボク | Calophyllum inophyllum | coast | 海岸の常緑高木。つやのある丸い葉、防潮林 |
+| 直し中 | オオハマボウ | Hibiscus tiliaceus | coast | 海岸・河口の低木〜小高木。ハート形の葉、黄色い花 (夏) |
+| 済 | クサトベラ | Scaevola taccada | coast | 砂浜の低木。明るい緑のへら形の葉がこんもり |
+| 済 | モンパノキ | Heliotropium foertherianum | coast | 砂浜の低木。銀白色の毛に覆われた葉 |
+| 済 | ビロウ | Livistona chinensis var. subglobosa | coast, forest | ヤシの仲間。扇形の大きな葉が垂れる |
+| 済 | スダジイ | Castanopsis sieboldii | forest | やんばるの森の主役 (イタジイ)。ブロッコリーのような樹冠、春に黄色い花 |
+| 直し中 | オキナワウラジロガシ | Quercus miyagii | forest | やんばるのカシの大木。板根、葉の裏が白い |
+| 済 | アカギ | Bischofia javanica | forest, farm | 大きく広がる常緑高木。赤みのある樹皮、3 枚の小葉 |
+| 済 | フカノキ | Schefflera heptaphylla | forest | 森の中の小高木。手のひら形の葉 |
 | | ヒカゲヘゴ | Sphaeropteris lepifera | forest | 大きな木生シダ (5〜10m)。幹の頂に長い葉が放射状、葉の付け根の跡が模様に |
 | | クワズイモ | Alocasia odora | understory | 森の足もとの大きなサトイモの仲間。1m ほどの巨大な葉 |
 | | ゲットウ | Alpinia zerumbet | understory, farm | 道ばた・林のふちのショウガの仲間 (2m)。初夏に白とピンクの花房 |
