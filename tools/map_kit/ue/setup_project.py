@@ -1065,6 +1065,83 @@ def build_building_roof_graph(mat):
     mel.connect_material_property(normal, "", unreal.MaterialProperty.MP_NORMAL)
 
 
+# 神社と名所の石・白木・銅板・白壁 (tools/terrain/surface_textures.py)。scenery.json の surface_materials のマテリアルを、
+# その色 x 模様の絵 (明るさ) と凹凸の絵を、面に沿ったワールド座標の UV で貼るマテリアル M_<名前>_Surface に差し替える
+SURFACE_TEXTURE_DIR = f"{SCENERY_DIR}/SurfaceTextures"
+SURFACE_GAIN = 1.15                # 模様の絵の平均の明るさ (0.85 ほど) の分を戻す
+SURFACE_NORMAL_STRENGTH = 1.0
+SURFACE_UV_HLSL = """
+return float2(dot(WP, t), -dot(WP, b)) / 100.0;
+"""
+SURFACE_NORMAL_HLSL = """
+return normalize(n + (t * TN.x + b * TN.y) * STRENGTH);
+"""
+surface_assets = types.SimpleNamespace(current=None)   # build_surface_graph に渡す (色の絵, 凹凸の絵, 大きさ m, 色, 粗さ, 金属)
+
+
+def build_surface_graph(mat):
+    """surface_assets.current の絵と色で、面に沿ったワールド座標の模様と凹凸を貼る。凹凸はワールド空間の法線で渡す。"""
+    color_tex, normal_tex, size_m, rgb, rough, metal = surface_assets.current
+    mesh_usages(mat)
+    set_props(mat, tangent_space_normal=False)
+    out = unreal.CustomMaterialOutputType
+    wp = mel.create_material_expression(mat, unreal.MaterialExpressionWorldPosition, -1200, 0)
+    nrm = mel.create_material_expression(mat, unreal.MaterialExpressionVertexNormalWS, -1200, 150)
+    uv = custom_node(mat, SURFACE_AXES_HLSL + SURFACE_UV_HLSL, [("WP", wp), ("N", nrm)], out.CMOT_FLOAT2, -1000, 0,
+                     "Surface UV (m)")
+    tiled = multiply(mat, uv, scalar(mat, 1.0 / size_m, -1000, 150), -850, 50)
+    cd = texture_sample(mat, color_tex, tiled, unreal.MaterialSamplerType.SAMPLERTYPE_COLOR, -650, -100)
+    nd = texture_sample(mat, normal_tex, tiled, unreal.MaterialSamplerType.SAMPLERTYPE_NORMAL, -650, 150)
+    base = multiply(mat, multiply(mat, color(mat, tuple(rgb), -650, -300), cd, -400, -200),
+                    scalar(mat, SURFACE_GAIN, -400, -100), -250, -150)
+    code = (SURFACE_AXES_HLSL + SURFACE_NORMAL_HLSL).replace("STRENGTH", f"{SURFACE_NORMAL_STRENGTH:.3f}")
+    normal = custom_node(mat, code, [("N", nrm), ("TN", nd)], out.CMOT_FLOAT3, -400, 200, "Surface normal (world)")
+    mel.connect_material_property(base, "", unreal.MaterialProperty.MP_BASE_COLOR)
+    mel.connect_material_property(scalar(mat, rough, -250, 50), "", unreal.MaterialProperty.MP_ROUGHNESS)
+    mel.connect_material_property(scalar(mat, metal, -250, 100), "", unreal.MaterialProperty.MP_METALLIC)
+    mel.connect_material_property(normal, "", unreal.MaterialProperty.MP_NORMAL)
+
+
+def setup_surfaces(doc, meshes, folder):
+    """surface_materials のマテリアルのスロットを、模様と凹凸を貼るマテリアルに差し替える。"""
+    specs = (doc or {}).get("surface_materials") or {}
+    if not specs:
+        return
+    tex = {}
+    for kind, (color_png, normal_png, size_m) in (doc.get("surface_textures") or {}).items():
+        c = import_tree_texture(os.path.join(folder, color_png), directory=SURFACE_TEXTURE_DIR)
+        n = import_tree_texture(os.path.join(folder, normal_png), normal=True, directory=SURFACE_TEXTURE_DIR)
+        if c and n:
+            tex[kind] = (c, n, float(size_m))
+    swap = {}
+    for name, spec in specs.items():
+        if spec["kind"] not in tex:
+            continue
+        c, n, size_m = tex[spec["kind"]]
+        surface_assets.current = (c, n, size_m, spec["color"], spec["roughness"], spec.get("metallic", 0.0))
+        swap[name] = create_material(f"M_{name}_Surface", build_surface_graph,
+                                     extra=[c.get_path_name(), n.get_path_name(), size_m, spec["color"],
+                                            spec["roughness"], spec.get("metallic", 0.0)])
+    for mesh in meshes.values():
+        if mesh is None:
+            continue
+        changed = False
+        for i, slot in enumerate(mesh.get_editor_property("static_materials")):
+            slot_names = [str(slot.get_editor_property("material_slot_name"))]
+            current = slot.get_editor_property("material_interface")
+            if current:
+                slot_names.append(current.get_name())
+            for kind, mat in swap.items():
+                if any(re.fullmatch(rf"(?:\w*_)?{kind}(?:_\d+)?", nm) for nm in slot_names):
+                    if current != mat:
+                        mesh.set_material(i, mat)
+                        changed = True
+                    break
+        if changed:
+            eal.save_loaded_asset(mesh)
+            log(f"模様のマテリアル: {mesh.get_name()}")
+
+
 def setup_buildings(doc, meshes):
     """建物の壁と屋根の絵を取り込み、メッシュの FD_BuildingWall / FD_BuildingRoof のスロットを、
     窓を描く壁のマテリアルと屋根のマテリアルに差し替える。
@@ -1813,6 +1890,7 @@ def import_scenery():
     setup_foliage(doc, meshes)
     setup_lamp_glow(meshes)
     setup_buildings(doc, meshes)
+    setup_surfaces(doc, meshes, folder)
     return doc, meshes
 
 
@@ -2445,6 +2523,7 @@ def import_tile_scenery(tile, base_doc):
     setup_foliage(base_doc, meshes)
     setup_lamp_glow(meshes)
     setup_buildings(base_doc, meshes)
+    setup_surfaces(doc, meshes, folder)
     return doc, meshes
 
 
