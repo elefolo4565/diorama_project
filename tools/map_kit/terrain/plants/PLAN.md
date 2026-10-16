@@ -10,46 +10,46 @@
 `regions` には、その種類が自然に生える地方をすべて書きます (九州で作ったヤマモモは四国・中国…でも使う)。
 次の地方では、すでにある種類で足りるものは作り直さず、`regions` に地方を足すだけにします。
 
-## 九州 (Claude 版・Codex 版がそろい、オーナーが選ぶ)
+## 九州 (済: Claude 版を採用、2026-10-16 オーナーの決定)
 
 | 状態 | 和名 | 学名 | 置く所 (habitat) | メモ |
 | --- | --- | --- | --- | --- |
 | 済 | ヤマモモ | Morella rubra | forest, coast | `yamamomo.py` (コードの見本) |
 | 済 | ウバメガシ | Quercus phillyraeoides | coast, ridge | 海岸の崖の低い木。小さく硬い葉。`ubamegashiopus.py` (Claude) を置く。Codex 版は見比べて外し `_ubamegashi/` に残す |
-| | トベラ | Pittosporum tobira | coast | 海岸の低木 (1〜3m)、丸くこんもり。Claude 版 `toberaopus.py` あり (Codex 版と見比べ中) |
-| | ハマヒサカキ | Eurya emarginata | coast | 海岸の低木、潮風で刈り込まれた形。Claude 版 `hamahisakakiopus.py` あり (Codex 版と見比べ中) |
-| | シャリンバイ | Rhaphiolepis indica var. umbellata | coast | 海岸の低木、春に白い花 (seasons で花の形を分けてもよい)。Claude 版 `sharinbaiopus.py` あり (Codex 版と見比べ中) |
-| | ヤブツバキ | Camellia japonica | forest | 林の中の小高木、冬〜春に赤い花。Claude 版 `yabutsubakiopus.py` あり (Codex 版と見比べ中) |
-| | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑。Claude 版 `arakashiopus.py` あり (Codex 版と見比べ中) |
-| | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち。Claude 版 `matebashiiopus.py` あり (Codex 版と見比べ中) |
-| | イスノキ | Distylium racemosum | forest | 社寺林の常緑高木。Claude 版 `isunokiopus.py` あり (Codex 版と見比べ中) |
-| | アカメガシワ | Mallotus japonicus | farm | 道ばた・畑のふちの落葉樹、赤い新芽。Claude 版 `akamegashiwaopus.py` あり (4 季、Codex 版と見比べ中) |
-| | ウラジロ | Gleichenia japonica | understory | 森の足もとのシダ (大きな群れ)。Claude 版 `urajiroopus.py` あり (Codex 版と見比べ中) |
-| | コシダ | Dicranopteris linearis | understory | 森の足もとのシダ (日当たりのよい所)。Claude 版 `koshidaopus.py` あり (Codex 版と見比べ中) |
-| | アオキ | Aucuba japonica | understory | 森の中の低木 (1〜2m)。Claude 版 `aokiopus.py` あり (Codex 版と見比べ中) |
-| | ネザサ | Pleioblastus argenteostriatus f. glaber | understory, farm | 林のふち・あぜのササ。Claude 版 `nezasaopus.py` あり (2 季、Codex 版と見比べ中) |
-| | ススキ | Miscanthus sinensis | grassland, farm | 草原・あぜ。秋は穂 (seasons で穂の形を分ける)。Claude 版 `susukiopus.py` あり (3 季、Codex 版と見比べ中) |
-| | ソテツ | Cycas revoluta | coast | 南九州の海岸 (kyushu だけ)。Claude 版 `sotetsuopus.py` あり (Codex 版と見比べ中) |
+| 済 | トベラ | Pittosporum tobira | coast | 海岸の低木 (1〜3m)、丸くこんもり。Claude 版 `toberaopus.py` を採用 |
+| 済 | ハマヒサカキ | Eurya emarginata | coast | 海岸の低木、潮風で刈り込まれた形。Claude 版 `hamahisakakiopus.py` を採用 |
+| 済 | シャリンバイ | Rhaphiolepis indica var. umbellata | coast | 海岸の低木、春に白い花 (seasons で花の形を分けてもよい)。Claude 版 `sharinbaiopus.py` を採用 |
+| 済 | ヤブツバキ | Camellia japonica | forest | 林の中の小高木、冬〜春に赤い花。Claude 版 `yabutsubakiopus.py` を採用 |
+| 済 | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑。Claude 版 `arakashiopus.py` を採用 |
+| 済 | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち。Claude 版 `matebashiiopus.py` を採用 |
+| 済 | イスノキ | Distylium racemosum | forest | 社寺林の常緑高木。Claude 版 `isunokiopus.py` を採用 |
+| 済 | アカメガシワ | Mallotus japonicus | farm | 道ばた・畑のふちの落葉樹、赤い新芽。Claude 版 `akamegashiwaopus.py` を採用 (4 季) |
+| 済 | ウラジロ | Gleichenia japonica | understory | 森の足もとのシダ (大きな群れ)。Claude 版 `urajiroopus.py` を採用 |
+| 済 | コシダ | Dicranopteris linearis | understory | 森の足もとのシダ (日当たりのよい所)。Claude 版 `koshidaopus.py` を採用 |
+| 済 | アオキ | Aucuba japonica | understory | 森の中の低木 (1〜2m)。Claude 版 `aokiopus.py` を採用 |
+| 済 | ネザサ | Pleioblastus argenteostriatus f. glaber | understory, farm | 林のふち・あぜのササ。Claude 版 `nezasaopus.py` を採用 (2 季) |
+| 済 | ススキ | Miscanthus sinensis | grassland, farm | 草原・あぜ。秋は穂 (seasons で穂の形を分ける)。Claude 版 `susukiopus.py` を採用 (3 季) |
+| 済 | ソテツ | Cycas revoluta | coast | 南九州・沖縄の海岸。Claude 版 `sotetsuopus.py` を採用 |
 
 ## 沖縄 (いまの地方)
 
-九州で作った種類のうち、ウラジロ・コシダは `regions` に okinawa が入っているので作り直さない。ソテツ・ススキ・ハマヒサカキ・トベラは、採用した版の `regions` に Claude が okinawa を足す。
+九州で採用した Claude 版のうち、ウラジロ・コシダ・ソテツ・ススキ・ハマヒサカキ・トベラなどは `regions` に okinawa が入っているので、沖縄では作り直さない。
 
 | 状態 | 和名 | 学名 | 置く所 (habitat) | メモ |
 | --- | --- | --- | --- | --- |
-| | リュウキュウマツ | Pinus luchuensis | forest, ridge | 沖縄の山と海岸の代表のマツ。笠のように横に広がる樹冠 |
-| | ガジュマル | Ficus microcarpa | forest, farm | 気根が垂れ下がり幹のように太る大木。集落・道ばたにも |
-| | アダン | Pandanus odoratissimus | coast | 砂浜の奥の低木。タコ足の支柱根、らせん状の長い葉、パイナップルのような実 |
-| | フクギ | Garcinia subelliptica | farm | 集落の防風林。まっすぐな幹に厚い葉が密な縦長の樹形 |
-| | テリハボク | Calophyllum inophyllum | coast | 海岸の常緑高木。つやのある丸い葉、防潮林 |
-| | オオハマボウ | Hibiscus tiliaceus | coast | 海岸・河口の低木〜小高木。ハート形の葉、黄色い花 (夏) |
-| | クサトベラ | Scaevola taccada | coast | 砂浜の低木。明るい緑のへら形の葉がこんもり |
-| | モンパノキ | Heliotropium foertherianum | coast | 砂浜の低木。銀白色の毛に覆われた葉 |
-| | ビロウ | Livistona chinensis var. subglobosa | coast, forest | ヤシの仲間。扇形の大きな葉が垂れる |
-| | スダジイ | Castanopsis sieboldii | forest | やんばるの森の主役 (イタジイ)。ブロッコリーのような樹冠、春に黄色い花 |
-| 済 | オキナワウラジロガシ | Quercus miyagii | forest | やんばるのカシの大木。板根、葉の裏が白い |
-| | アカギ | Bischofia javanica | forest, farm | 大きく広がる常緑高木。赤みのある樹皮、3 枚の小葉 |
-| | フカノキ | Schefflera heptaphylla | forest | 森の中の小高木。手のひら形の葉 |
+| 済 | リュウキュウマツ | Pinus luchuensis | forest, ridge | 沖縄の山と海岸の代表のマツ。笠のように横に広がる樹冠 |
+| 済 | ガジュマル | Ficus microcarpa | forest, farm | 気根が垂れ下がり幹のように太る大木。集落・道ばたにも |
+| 済 | アダン | Pandanus odoratissimus | coast | 砂浜の奥の低木。タコ足の支柱根、らせん状の長い葉、パイナップルのような実 |
+| 済 | フクギ | Garcinia subelliptica | farm | 集落の防風林。まっすぐな幹に厚い葉が密な縦長の樹形 |
+| 済 | テリハボク | Calophyllum inophyllum | coast | 海岸の常緑高木。つやのある丸い葉、防潮林 |
+| 直し中 | オオハマボウ | Hibiscus tiliaceus | coast | 海岸・河口の低木〜小高木。ハート形の葉、黄色い花 (夏) |
+| 済 | クサトベラ | Scaevola taccada | coast | 砂浜の低木。明るい緑のへら形の葉がこんもり |
+| 済 | モンパノキ | Heliotropium foertherianum | coast | 砂浜の低木。銀白色の毛に覆われた葉 |
+| 済 | ビロウ | Livistona chinensis var. subglobosa | coast, forest | ヤシの仲間。扇形の大きな葉が垂れる |
+| 済 | スダジイ | Castanopsis sieboldii | forest | やんばるの森の主役 (イタジイ)。ブロッコリーのような樹冠、春に黄色い花 |
+| 直し中 | オキナワウラジロガシ | Quercus miyagii | forest | やんばるのカシの大木。板根、葉の裏が白い |
+| 済 | アカギ | Bischofia javanica | forest, farm | 大きく広がる常緑高木。赤みのある樹皮、3 枚の小葉 |
+| 済 | フカノキ | Schefflera heptaphylla | forest | 森の中の小高木。手のひら形の葉 |
 | | ヒカゲヘゴ | Sphaeropteris lepifera | forest | 大きな木生シダ (5〜10m)。幹の頂に長い葉が放射状、葉の付け根の跡が模様に |
 | | クワズイモ | Alocasia odora | understory | 森の足もとの大きなサトイモの仲間。1m ほどの巨大な葉 |
 | | ゲットウ | Alpinia zerumbet | understory, farm | 道ばた・林のふちのショウガの仲間 (2m)。初夏に白とピンクの花房 |

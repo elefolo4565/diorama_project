@@ -1,0 +1,46 @@
+{
+  "name_ja": "フカノキ",
+  "latin": "Schefflera heptaphylla",
+  "regions": [
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Fukanoki": "T_FD_Leaf_Fukanoki.png"
+  },
+  "barks": {
+    "FD_BarkFukanoki": [
+      "T_FD_BarkFukanoki_D.png",
+      "T_FD_BarkFukanoki_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Fukanoki_A": {
+      "file": "SM_FD_Fukanoki_A.glb",
+      "height_m": 7.8,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Fukanoki_B": {
+      "file": "SM_FD_Fukanoki_B.glb",
+      "height_m": 6.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    },
+    "SM_FD_Fukanoki_C": {
+      "file": "SM_FD_Fukanoki_C.glb",
+      "height_m": 5.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.015,
+      "seasons": 15
+    }
+  }
+}
