@@ -23,10 +23,10 @@
 | | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑。Claude 版 `arakashiopus.py` あり (Codex 版と見比べ中) |
 | | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち。Claude 版 `matebashiiopus.py` あり (Codex 版と見比べ中) |
 | | イスノキ | Distylium racemosum | forest | 社寺林の常緑高木 |
-| | アカメガシワ | Mallotus japonicus | farm | 道ばた・畑のふちの落葉樹、赤い新芽 |
+| | アカメガシワ | Mallotus japonicus | farm | 道ばた・畑のふちの落葉樹、赤い新芽。Claude 版 `akamegashiwaopus.py` あり (4 季、Codex 版と見比べ中) |
 | | ウラジロ | Gleichenia japonica | understory | 森の足もとのシダ (大きな群れ) |
 | | コシダ | Dicranopteris linearis | understory | 森の足もとのシダ (日当たりのよい所) |
 | | アオキ | Aucuba japonica | understory | 森の中の低木 (1〜2m) |
 | | ネザサ | Pleioblastus argenteostriatus f. glaber | understory, farm | 林のふち・あぜのササ |
-| | ススキ | Miscanthus sinensis | grassland, farm | 草原・あぜ。秋は穂 (seasons で穂の形を分ける) |
+| | ススキ | Miscanthus sinensis | grassland, farm | 草原・あぜ。秋は穂 (seasons で穂の形を分ける)。Claude 版 `susukiopus.py` あり (3 季、Codex 版と見比べ中) |
 | | ソテツ | Cycas revoluta | coast | 南九州の海岸 (kyushu だけ) |
