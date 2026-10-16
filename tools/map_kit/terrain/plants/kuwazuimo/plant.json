@@ -1,0 +1,47 @@
+{
+  "name_ja": "クワズイモ",
+  "latin": "Alocasia odora",
+  "regions": [
+    "shikoku",
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Kuwazuimo": "T_FD_Leaf_Kuwazuimo.png"
+  },
+  "barks": {
+    "FD_BarkKuwazuimo": [
+      "T_FD_BarkKuwazuimo_D.png",
+      "T_FD_BarkKuwazuimo_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Kuwazuimo_A": {
+      "file": "SM_FD_Kuwazuimo_A.glb",
+      "height_m": 1.8,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.1,
+      "seasons": 15
+    },
+    "SM_FD_Kuwazuimo_B": {
+      "file": "SM_FD_Kuwazuimo_B.glb",
+      "height_m": 1.4,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.08,
+      "seasons": 15
+    },
+    "SM_FD_Kuwazuimo_C": {
+      "file": "SM_FD_Kuwazuimo_C.glb",
+      "height_m": 1.1,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.06,
+      "seasons": 15
+    }
+  }
+}
