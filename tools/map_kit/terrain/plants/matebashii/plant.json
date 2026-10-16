@@ -1,0 +1,51 @@
+{
+  "name_ja": "マテバシイ",
+  "latin": "Lithocarpus edulis",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "kansai"
+  ],
+  "leaves": {
+    "FD_Leaf_Matebashii": "T_FD_Leaf_Matebashii.png"
+  },
+  "barks": {
+    "FD_BarkMatebashii": [
+      "T_FD_BarkMatebashii_D.png",
+      "T_FD_BarkMatebashii_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Matebashii_A": {
+      "file": "SM_FD_Matebashii_A.glb",
+      "height_m": 8.0,
+      "habitat": [
+        "forest",
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Matebashii_B": {
+      "file": "SM_FD_Matebashii_B.glb",
+      "height_m": 6.2,
+      "habitat": [
+        "forest",
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Matebashii_C": {
+      "file": "SM_FD_Matebashii_C.glb",
+      "height_m": 4.3,
+      "habitat": [
+        "forest",
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}

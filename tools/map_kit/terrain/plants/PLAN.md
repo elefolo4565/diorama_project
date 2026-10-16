@@ -21,7 +21,7 @@
 | | シャリンバイ | Rhaphiolepis indica var. umbellata | coast | 海岸の低木、春に白い花 (seasons で花の形を分けてもよい) |
 | | ヤブツバキ | Camellia japonica | forest | 林の中の小高木、冬〜春に赤い花 |
 | | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑 |
-| | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち |
+| 済 | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち |
 | | イスノキ | Distylium racemosum | forest | 社寺林の常緑高木 |
 | | アカメガシワ | Mallotus japonicus | farm | 道ばた・畑のふちの落葉樹、赤い新芽 |
 | | ウラジロ | Gleichenia japonica | understory | 森の足もとのシダ (大きな群れ) |
