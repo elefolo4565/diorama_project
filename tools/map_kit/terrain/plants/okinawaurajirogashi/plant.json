@@ -1,0 +1,46 @@
+{
+  "name_ja": "オキナワウラジロガシ",
+  "latin": "Quercus miyagii",
+  "regions": [
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Okinawaurajirogashi": "T_FD_Leaf_Okinawaurajirogashi.png",
+    "FD_Leaf_OkinawaurajirogashiUra": "T_FD_Leaf_OkinawaurajirogashiUra.png"
+  },
+  "barks": {
+    "FD_BarkOkinawaurajirogashi": [
+      "T_FD_BarkOkinawaurajirogashi_D.png",
+      "T_FD_BarkOkinawaurajirogashi_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Okinawaurajirogashi_A": {
+      "file": "SM_FD_Okinawaurajirogashi_A.glb",
+      "height_m": 23.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Okinawaurajirogashi_B": {
+      "file": "SM_FD_Okinawaurajirogashi_B.glb",
+      "height_m": 19.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Okinawaurajirogashi_C": {
+      "file": "SM_FD_Okinawaurajirogashi_C.glb",
+      "height_m": 16.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}
