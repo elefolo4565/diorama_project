@@ -1,0 +1,84 @@
+{
+  "name_ja": "スダジイ",
+  "latin": "Castanopsis sieboldii",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "tohoku",
+    "hokuriku"
+  ],
+  "leaves": {
+    "FD_Leaf_Sudajii": "T_FD_Leaf_Sudajii.png",
+    "FD_Flower_Sudajii": "T_FD_Flower_Sudajii.png"
+  },
+  "barks": {
+    "FD_BarkSudajii": [
+      "T_FD_BarkSudajii_D.png",
+      "T_FD_BarkSudajii_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Sudajii_A": {
+      "file": "SM_FD_Sudajii_A.glb",
+      "height_m": 16.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.1,
+      "seasons": 14
+    },
+    "SM_FD_Sudajii_A_Hana": {
+      "file": "SM_FD_Sudajii_A_Hana.glb",
+      "height_m": 16.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.1,
+      "seasons": 1,
+      "place_with": "SM_FD_Sudajii_A"
+    },
+    "SM_FD_Sudajii_B": {
+      "file": "SM_FD_Sudajii_B.glb",
+      "height_m": 12.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.06,
+      "seasons": 14
+    },
+    "SM_FD_Sudajii_B_Hana": {
+      "file": "SM_FD_Sudajii_B_Hana.glb",
+      "height_m": 12.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.06,
+      "seasons": 1,
+      "place_with": "SM_FD_Sudajii_B"
+    },
+    "SM_FD_Sudajii_C": {
+      "file": "SM_FD_Sudajii_C.glb",
+      "height_m": 10.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.04,
+      "seasons": 14
+    },
+    "SM_FD_Sudajii_C_Hana": {
+      "file": "SM_FD_Sudajii_C_Hana.glb",
+      "height_m": 10.0,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.04,
+      "seasons": 1,
+      "place_with": "SM_FD_Sudajii_C"
+    }
+  }
+}

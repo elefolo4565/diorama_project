@@ -1,0 +1,48 @@
+{
+  "name_ja": "モンパノキ",
+  "latin": "Heliotropium foertherianum",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "kanto"
+  ],
+  "leaves": {
+    "FD_Leaf_Monpanoki": "T_FD_Leaf_Monpanoki.png",
+    "FD_Flower_Monpanoki": "T_FD_Flower_Monpanoki.png"
+  },
+  "barks": {
+    "FD_BarkMonpanoki": [
+      "T_FD_BarkMonpanoki_D.png",
+      "T_FD_BarkMonpanoki_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Monpanoki_A": {
+      "file": "SM_FD_Monpanoki_A.glb",
+      "height_m": 4.2,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Monpanoki_B": {
+      "file": "SM_FD_Monpanoki_B.glb",
+      "height_m": 2.4,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    },
+    "SM_FD_Monpanoki_C": {
+      "file": "SM_FD_Monpanoki_C.glb",
+      "height_m": 1.6,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.015,
+      "seasons": 15
+    }
+  }
+}
