@@ -1,0 +1,52 @@
+{
+  "name_ja": "ウバメガシ",
+  "latin": "Quercus phillyraeoides",
+  "regions": [
+    "kyushu",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto"
+  ],
+  "leaves": {
+    "FD_Leaf_Ubamegashi": "T_FD_Leaf_Ubamegashi.png"
+  },
+  "barks": {
+    "FD_BarkUbamegashi": [
+      "T_FD_BarkUbamegashi_D.png",
+      "T_FD_BarkUbamegashi_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Ubamegashi_A": {
+      "file": "SM_FD_Ubamegashi_A.glb",
+      "height_m": 4.8,
+      "habitat": [
+        "coast",
+        "ridge"
+      ],
+      "share": 0.04,
+      "seasons": 15
+    },
+    "SM_FD_Ubamegashi_B": {
+      "file": "SM_FD_Ubamegashi_B.glb",
+      "height_m": 3.4,
+      "habitat": [
+        "coast",
+        "ridge"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Ubamegashi_C": {
+      "file": "SM_FD_Ubamegashi_C.glb",
+      "height_m": 2.4,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    }
+  }
+}
