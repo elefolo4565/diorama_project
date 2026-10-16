@@ -1,0 +1,11 @@
+# ヤブツバキ (Camellia japonica)
+- 樹形: 林の中では単幹〜根元近くから 2〜3 本立ちの小高木。樹高 5〜8m。樹冠は縦長の卵形 (幅は高さの 0.6〜0.8 倍)。日陰では枝が水平に広がり、葉の層が段になってまばら。日当たりのよい老木はこんもりした大きな半球形で、枝が地面近くまで垂れる
+- 幹: 灰白色〜淡い灰褐色でなめらか (樹皮に割れ目がない)。樹高 7m で太さ 15〜25cm。上の方で何本にも分かれ、枝はくねる
+- 葉: 5〜10cm の楕円、先がとがる。厚く濃い緑で強いつや (光を反射して白っぽく光る)。枝に互い違いに密に付く
+- 花・実: 12〜4 月に赤い花 (直径 5〜7cm、筒形〜半開き、中心に黄色いおしべの束)。樹冠の表面と中に点々と付く。花は丸ごと落ち、根元に赤い花が散らばる
+- 生える所: 海に近い林・社寺林の中 (forest)。シイ・タブの林の下の層
+- 見た写真:
+  - https://www.inaturalist.org/observations/39136176 (CC BY 4.0, Marco Mussita, 東京都大島町)
+  - https://commons.wikimedia.org/wiki/File:Sanmentubaki,_Ofunato.jpg (CC BY-SA 4.0, Ty19080914)
+  - https://commons.wikimedia.org/wiki/File:RyoanJi-Camellia.jpg (CC BY-SA 3.0)
+  - https://commons.wikimedia.org/wiki/File:Camellia_japonica_var._decumbens_3.JPG (CC BY-SA 3.0, Qwert1234)
