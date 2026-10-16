@@ -22,6 +22,7 @@ apply_roads.py の後に実行する。UE への配置は tools/ue/setup_project
 - 神社 (鳥居・参道・灯籠・狛犬・拝殿・本殿・鎮守の森): shrines.py。コースの "features" の "shrines" が true のとき
 - 線路と駅 (道床・枕木・レール・踏切・架線・鉄橋・トンネルの入口・ホーム・駅舎): railways.py。"railways" が true のとき
   (道床は apply_roads.py が地形に焼いてある)。線路とホームの上の木・花・建物は除く
+- 名所 (その土地にしかない記念碑・建物、meisho/<名前>.py): タイルの中にある名所を地形に合わせて作る。周りの木・花・家はよける
 """
 
 import json
@@ -36,6 +37,7 @@ import bark
 import building_textures
 import buildings
 import flowers
+import meisho
 import plants
 import railways
 import road_furniture
@@ -602,6 +604,11 @@ def main():
     if features["shrines"]:  # 神社の参道と建物の所は、木・花・家をよける
         shrine_plans, shrine_clear = shrines.plan(area, grid, roads, stamp_roads)
         keep_clear += shrine_clear
+    # meisho/ の名所 (金印公園など)。周りの木・花・家はよける
+    spots = meisho.find(area, grid, roads) if features["meisho"] else []
+    keep_clear += meisho.keep_clear(spots)
+    replaced = meisho.replaced_shrines(spots)   # 名所として作る神社は、一般の神社の形では置かない
+    shrine_plans = [p for p in shrine_plans if p["name"] not in replaced]
     # plants/ の植物 (Codex などが足す)。コースの地方 (九州・四国…) の植物だけ
     course = course_of_area(sys.argv[1])
     region = plants.region_of(area.center_lat, area.center_lon, course.cfg if course else None)
@@ -635,6 +642,7 @@ def main():
         stretch_extra = [k for k in shrines.STRETCH if k in shrine_items]
         if sando.parts:
             world[sando.name] = sando
+    world.update(meisho.build(spots))
     rail_lights, rail_stats = {}, {}
     if tracks:
         rail_items, rail_world, rail_lights, rail_stats = railways.place(tracks, rail_plans, grid, roads, out)
@@ -718,7 +726,7 @@ def main():
         "stretch_x": stretch,
         # 原点に1つだけ置く、道路に沿ってつながった形 (ガードレールのビーム・区画線・側溝)。shadow は影を落とすか
         "world_meshes": {name: {"shadow": name in ("SM_FD_GuardrailBeams", "SM_FD_Railway", "SM_FD_RailStations")
-                                           or name.startswith("SM_FD_Buildings")}
+                                           or name.startswith(("SM_FD_Buildings", meisho.MESH_PREFIX))}
                          for name in world},
         # 細い電線の影は地面に濃い線になって目立つので落とさない
         "no_shadow": [n for n in stretch],
@@ -748,6 +756,8 @@ def main():
     if features["railways"]:
         print("線路と駅: " + (", ".join(f"{k} {v}" for k, v in rail_stats.items()) or "なし")
               + f"。駅舎 {station_buildings}、線路の上の木や花 {removed_by_rails} を除きました")
+    if spots:
+        print("名所: " + "、".join(mod.NAME_JA for _, mod, _ in spots))
     print("夜の光源: " + ", ".join(f"{k} {len(v)}" for k, v in lights.items()))
 
 
