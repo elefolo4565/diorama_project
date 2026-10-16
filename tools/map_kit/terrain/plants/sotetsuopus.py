@@ -67,7 +67,7 @@ MATERIALS = {
 }
 LEAVES = {LEAF: (LEAF_PNG, leaf_texture)}
 BARKS = {BARK: (BARK_D, BARK_N, lambda c, n: bark.bark_textures(BARK, c, n))}
-REGIONS = ("kyushu",)   # 自然に生えるのは南九州 (と沖縄だが、沖縄は別に作る)
+REGIONS = ("kyushu", "okinawa")   # 自然に生えるのは南九州と沖縄
 
 
 def _frond_card(fol, base, out_dir, rise, length, width, cell):
