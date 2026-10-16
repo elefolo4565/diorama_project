@@ -44,7 +44,7 @@
 | | テリハボク | Calophyllum inophyllum | coast | 海岸の常緑高木。つやのある丸い葉、防潮林 |
 | | オオハマボウ | Hibiscus tiliaceus | coast | 海岸・河口の低木〜小高木。ハート形の葉、黄色い花 (夏) |
 | | クサトベラ | Scaevola taccada | coast | 砂浜の低木。明るい緑のへら形の葉がこんもり |
-| | モンパノキ | Heliotropium foertherianum | coast | 砂浜の低木。銀白色の毛に覆われた葉 |
+| 済 | モンパノキ | Heliotropium foertherianum | coast | 砂浜の低木。銀白色の毛に覆われた葉 |
 | | ビロウ | Livistona chinensis var. subglobosa | coast, forest | ヤシの仲間。扇形の大きな葉が垂れる |
 | | スダジイ | Castanopsis sieboldii | forest | やんばるの森の主役 (イタジイ)。ブロッコリーのような樹冠、春に黄色い花 |
 | | オキナワウラジロガシ | Quercus miyagii | forest | やんばるのカシの大木。板根、葉の裏が白い |
