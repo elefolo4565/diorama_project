@@ -1,6 +1,4 @@
-# ヤブツバキ
-
-和名: ヤブツバキ。学名: *Camellia japonica*。
+# ヤブツバキ (Camellia japonica)
 
 ## 制作前に決めた樹形
 
@@ -13,48 +11,33 @@
 - 葉は濃緑の楕円形、先が鋭く、縁に細かい鋸歯。小枝に互生する葉の集まりを 2×2 の透過画像に自作する。
 - 房は樹冠の表面近くに置き、内部には葉の板を詰めない。下部は房を減らし、水平な下端を作らない。幹・主枝は樹冠の中で細く分かれる。
 
-## 比較条件
+## FIXES.md の修正への対応
 
-今回の制作では `plants/*opus.py` と、その実装・画像を参照しない。AGENTS.md と植物の形態の文章、既存の受け口だけを使う。
-検査画像を見て最低 2 回改稿する。外部の画像・モデル・アセットを使用しない。
+A/B/C の基本形は葉だけで夏・秋 (6)、_Hana は冬・春 (9) とした。B が夏秋に消える欠陥を直し、全個体に直径約 6 cm の赤い花を分散させた。元の B の花・雄しべだけを除き、幹・枝・葉は同じ座標のまま残した。
 
-## プレビューを見た修正
+既存 GLB の幹・枝・葉のバッファを再生成せず、同じ頂点・法線・UV・頂点色・インデックスに花を追加した。季節形には `place_with` を指定し、季節のビットは各個体で 1/2/4/8 を一度ずつ使う。元の枝葉と季節形が数値で完全一致することを確認した。
 
-1. 初稿では C の輪郭が A の縮小に近く、B/C の正面に抜けがあった。C の上部を細くし、幹を軽く傾けて若木の姿を分けた。B/C の外周の中段へ房を補い、B の花を枝先の外側に出した。
-2. Blender で A の幹の露出がそろいすぎていたため、異なる高さの低い側枝と房を追加し、樹冠の裾を崩した。C には片側へ伸びる低い枝を足し、正面の表面の房を補った。B の花は拡大画像でも形を確認する。
-3. 花の拡大画像では花弁の縁が角張り、雄しべが単純な柱に見えたため、花弁を丸い曲面に細分化し、黄色い筒の先に細い雄しべの束を加えた。
+## 配置と三角形数
 
-## 形態の文章の参照
+既存の生息場所と配置割合を保つ。森林に混ぜる常緑の木として forest を使う。
 
-[森林総合研究所 九州支所: ヤブツバキ](https://www.ffpri.go.jp/kys/business/jumokuen/jumoku/zukan/yabutubaki.html)
-
-## 成果物と配置
-
-| 形 | 樹高 | 三角形数 | habitat | share | seasons |
+| メッシュ | 高さ | 三角形 | habitat | share | seasons |
 | --- | --- | --- | --- | --- | --- |
-| A | 5.2 m | 7,468 | forest | 0.025 | 15 |
-| B | 3.7 m | 19,056 | forest | 0.02 | 9 |
-| C | 2.2 m | 2,786 | forest | 0.02 | 15 |
+| SM_FD_Yabutsubaki_A | 5.2 m | 7,468 | forest | 0.025 | 6 |
+| SM_FD_Yabutsubaki_A_Hana | 5.2 m | 8,192 | forest | 0.025 | 9 |
+| SM_FD_Yabutsubaki_B | 3.7 m | 6,952 | forest | 0.02 | 6 |
+| SM_FD_Yabutsubaki_B_Hana | 3.7 m | 7,504 | forest | 0.02 | 9 |
+| SM_FD_Yabutsubaki_C | 2.2 m | 2,786 | forest | 0.02 | 6 |
+| SM_FD_Yabutsubaki_C_Hana | 2.2 m | 3,110 | forest | 0.02 | 9 |
 
-林内の小高木として `forest` に配置する。A/C は通年の非開花個体、B は冬・春の開花個体。割合は合計で冬・春 6.5%、夏・秋 4.5% を目安とする。
-月単位の切り替えは受け口にないため、開花期は `seasons=9`（冬と春）の近似。B は夏・秋に置かない。
+regions: kyushu, okinawa, shikoku, chugoku, kansai, chubu, kanto, tohoku, hokuriku。
 
-`regions`: kyushu, okinawa, shikoku, chugoku, kansai, chubu, kanto, tohoku, hokuriku。
-東北・北陸では沿海地に分布する。地域指定は地方単位で、林内の位置を月・県・地形ごとに細分する機能は今回追加していない。
+## 検査と画像確認
 
-外部アセット・画像・モデルは使用していない。葉は 1024×1024 RGBA の 2×2 アトラスで、透明な縁へ葉色を広げた。
-樹皮の色・法線は 1024×1024 RGB、上下左右の境界画素が一致する。法線は既存の `bark.normal_map` と同じ向き。
-各 GLB は画像の埋め込みがない 1 メッシュ、根元の地面中心を原点としたメートル単位の Y 上。ノード変換・骨・アニメーションはない。
-葉の法線は外向き、頂点色は奥・下を暗くする。板の面も法線にそろえて書き出し、裏面は重複させていない。
+`python plants/check.py yabutsubaki` → **OK**。単位法線・面の向き・同じ枝葉・季節ビットも追加確認した。プレビューと納品 GLB / PNG の Blender レンダーを目視した。
 
-## 検証と確認画像
+葉と花は 1024×1024 RGBA、外部の画像・アセットは不使用。GLB には画像・骨・アニメーション・ノード変換を入れない。制作スクリプト・blend・out はコミットしない。九州の PLAN.md の状態は変更しない。
 
-`python plants/check.py yabutsubaki` → **OK**。プレビューを見て最低 2 回改稿した後、納品 GLB と PNG を Blender 4.5.0 で読み直した。
-有限値・単位法線・面の向き・樹皮の継ぎ目を追加確認済み。UE での最終的な色・光・風はマージ後に確認する。
-制作スクリプト・.blend・out/ はコミットに含めず、review/ は PR 用画像のスナップショットのみを置く。
+![季節ごとの確認画像](review/yabutsubaki_preview.png)
 
-![正面・横・真上と透過画像](review/yabutsubaki_preview.png)
-
-![Blender、左から A・B・C](review/yabutsubaki_blender.png)
-
-![B の花の拡大](review/yabutsubaki_flower_detail.png)
+![季節ごとの確認画像](review/yabutsubaki_blender.png)

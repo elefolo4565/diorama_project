@@ -30,7 +30,17 @@
         "forest"
       ],
       "share": 0.025,
-      "seasons": 15
+      "seasons": 6
+    },
+    "SM_FD_Yabutsubaki_A_Hana": {
+      "file": "SM_FD_Yabutsubaki_A_Hana.glb",
+      "height_m": 5.2,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.025,
+      "seasons": 9,
+      "place_with": "SM_FD_Yabutsubaki_A"
     },
     "SM_FD_Yabutsubaki_B": {
       "file": "SM_FD_Yabutsubaki_B.glb",
@@ -39,7 +49,17 @@
         "forest"
       ],
       "share": 0.02,
-      "seasons": 9
+      "seasons": 6
+    },
+    "SM_FD_Yabutsubaki_B_Hana": {
+      "file": "SM_FD_Yabutsubaki_B_Hana.glb",
+      "height_m": 3.7,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 9,
+      "place_with": "SM_FD_Yabutsubaki_B"
     },
     "SM_FD_Yabutsubaki_C": {
       "file": "SM_FD_Yabutsubaki_C.glb",
@@ -48,7 +68,17 @@
         "forest"
       ],
       "share": 0.02,
-      "seasons": 15
+      "seasons": 6
+    },
+    "SM_FD_Yabutsubaki_C_Hana": {
+      "file": "SM_FD_Yabutsubaki_C_Hana.glb",
+      "height_m": 2.2,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 9,
+      "place_with": "SM_FD_Yabutsubaki_C"
     }
   }
 }
