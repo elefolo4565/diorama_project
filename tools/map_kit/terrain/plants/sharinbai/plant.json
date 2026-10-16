@@ -30,8 +30,8 @@
       "share": 0.025,
       "seasons": 14
     },
-    "SM_FD_Sharinbai_A_Spring": {
-      "file": "SM_FD_Sharinbai_A_Spring.glb",
+    "SM_FD_Sharinbai_A_Hana": {
+      "file": "SM_FD_Sharinbai_A_Hana.glb",
       "height_m": 2.65,
       "habitat": [
         "coast"
@@ -49,8 +49,8 @@
       "share": 0.025,
       "seasons": 14
     },
-    "SM_FD_Sharinbai_B_Spring": {
-      "file": "SM_FD_Sharinbai_B_Spring.glb",
+    "SM_FD_Sharinbai_B_Hana": {
+      "file": "SM_FD_Sharinbai_B_Hana.glb",
       "height_m": 1.85,
       "habitat": [
         "coast"
@@ -68,8 +68,8 @@
       "share": 0.02,
       "seasons": 14
     },
-    "SM_FD_Sharinbai_C_Spring": {
-      "file": "SM_FD_Sharinbai_C_Spring.glb",
+    "SM_FD_Sharinbai_C_Hana": {
+      "file": "SM_FD_Sharinbai_C_Hana.glb",
       "height_m": 1.05,
       "habitat": [
         "coast"
