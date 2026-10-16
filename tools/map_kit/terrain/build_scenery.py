@@ -463,7 +463,7 @@ def write_preview(grid, doc, path, scale=2, building_mask=None):
     def plot(items, color, r=0):
         if not items:
             return
-        a = np.array(items, float)
+        a = np.array([it[:2] for it in items], float)   # 枕木などは pitch の有無で長さが違う
         c, w = grid.ue_to_px(a[:, 0], a[:, 1])
         c, w = (c / scale).astype(int), (w / scale).astype(int)
         for dy in range(-r, r + 1):

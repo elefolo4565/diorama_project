@@ -916,7 +916,7 @@ def remove_in_mask(instances, mask, mpp, half_m, names):
         items = instances.get(name)
         if not items:
             continue
-        a = np.array(items, float)
+        a = np.array([it[:2] for it in items], float)
         ci = np.clip(((a[:, 0] / 100 + half_m) / mpp).astype(int), 0, n - 1)
         ri = np.clip(((a[:, 1] / 100 + half_m) / mpp).astype(int), 0, n - 1)
         keep = ~mask[ri, ci]
