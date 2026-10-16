@@ -1,0 +1,12 @@
+# フカノキ (Schefflera heptaphylla, iNaturalist では Heptapleurum heptaphyllum)
+- 樹形: 常緑の小高木〜高木。樹高 5〜15m (林の中では 5〜8m が多い)。幹は細めでまっすぐ、上の方で少数の枝に分かれ、枝先にだけ葉が集まる。樹冠は小さく丸い傘形〜縦長で、葉の塊が枝先ごとに離れて浮き、すき間が多い
+- 幹: 灰白色〜明るい灰褐色でなめらか、細かい点々 (皮目)。太さ 10〜30cm。葉の落ちた跡が輪になる
+- 葉: 手のひら形の複葉。長さ 10〜30cm の長い葉柄の先に、7〜10 枚の小葉 (10〜18cm の長い楕円、先がとがる) が放射状に開く (傘の骨のよう)。濃い緑でつや。枝先に複葉が 5〜10 枚集まり、上から見ると車輪が重なったように見える
+- 花・実: 冬に枝先から黄緑〜白っぽい小さな花の大きな房 (30cm) が上へ広がる。冬〜春に小さな丸い実の房が緑 → 黒紫に
+- 季節の形: 1 つ (一年中ほぼ同じ)
+- 生える所: 林の中・林のふち (forest)。九州南部〜沖縄・八重山
+- 見た写真:
+  - https://www.inaturalist.org/observations/320610521 (CC BY 4.0, MYoshi, 沖縄県名護市) 木全体
+  - https://www.inaturalist.org/observations/16272234 (CC BY 4.0, Pieter Pelser, 沖縄県国頭村) 林の中の株
+  - https://www.inaturalist.org/observations/249100233 (CC BY 4.0, Daniel J. Layton, 鹿児島県屋久島町) 幹
+  - https://www.inaturalist.org/observations/166034510 (CC BY 4.0, Takaaki Hattori, 沖縄県今帰仁村) 葉

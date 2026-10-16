@@ -25,6 +25,7 @@ MATERIALS = {
     "FD_ToriiWhite": dict(color=(0.80, 0.80, 0.77), roughness=0.45),
     "FD_Guardrail": dict(color=(0.72, 0.72, 0.70), roughness=0.35),
     "FD_GuardrailPost": dict(color=(0.55, 0.55, 0.54), roughness=0.5),
+    # "surface" は模様と凹凸の絵 (tools/terrain/surface_textures.py) の名前。UE で色に掛けてワールド座標から貼る
     # 樹皮 (tools/terrain/bark.py の絵と凹凸を貼る。UE では setup_project.py が樹皮用のマテリアルに差し替える)
     "FD_Bark": dict(color=(1, 1, 1), roughness=0.9, texture="T_FD_Bark_D.png", normal="T_FD_Bark_N.png"),
     "FD_PineBark": dict(color=(1, 1, 1), roughness=0.9, texture="T_FD_PineBark_D.png", normal="T_FD_PineBark_N.png"),
@@ -94,13 +95,13 @@ MATERIALS = {
     # 神社 (tools/terrain/shrines.py)
     "FD_ShrineVermilion": dict(color=(0.58, 0.05, 0.022), roughness=0.55),   # 朱塗り
     "FD_ShrineBlack": dict(color=(0.02, 0.02, 0.02), roughness=0.5),         # 朱の鳥居の笠木
-    "FD_ShrineStone": dict(color=(0.13, 0.125, 0.115), roughness=0.9),       # 石の鳥居・灯籠・狛犬・基礎・参道
+    "FD_ShrineStone": dict(color=(0.13, 0.125, 0.115), roughness=0.9, surface="StoneGranite"),       # 石の鳥居・灯籠・狛犬・基礎・参道
     "FD_ShrineGravel": dict(color=(0.24, 0.235, 0.22), roughness=0.95),      # 拝殿の前の玉砂利
-    "FD_ShrineWood": dict(color=(0.20, 0.12, 0.06), roughness=0.8),          # 白木が古びた色
-    "FD_ShrineWoodDark": dict(color=(0.07, 0.045, 0.025), roughness=0.8),
-    "FD_ShrineWhite": dict(color=(0.62, 0.60, 0.55), roughness=0.85),        # 白壁
-    "FD_ShrineCopper": dict(color=(0.035, 0.12, 0.08), roughness=0.7),       # 緑青の銅板葺き
-    "FD_ShrineKawara": dict(color=(0.045, 0.05, 0.055), roughness=0.6),      # 社務所の瓦
+    "FD_ShrineWood": dict(color=(0.20, 0.12, 0.06), roughness=0.8, surface="WoodGrain"),          # 白木が古びた色
+    "FD_ShrineWoodDark": dict(color=(0.07, 0.045, 0.025), roughness=0.8, surface="WoodGrain"),
+    "FD_ShrineWhite": dict(color=(0.62, 0.60, 0.55), roughness=0.85, surface="Plaster"),        # 白壁
+    "FD_ShrineCopper": dict(color=(0.035, 0.12, 0.08), roughness=0.7, surface="CopperSheet"),       # 緑青の銅板葺き
+    "FD_ShrineKawara": dict(color=(0.045, 0.05, 0.055), roughness=0.6, surface="Kawara"),      # 社務所の瓦
     "FD_ShrineGold": dict(color=(0.65, 0.45, 0.12), metallic=0.8, roughness=0.35),  # 鰹木と千木の金具
     "FD_ShrineLight": dict(color=(0.80, 0.76, 0.62), roughness=0.6),         # 灯籠の火袋
     "FD_ShrineWater": dict(color=(0.03, 0.06, 0.07), roughness=0.05),        # 手水の水

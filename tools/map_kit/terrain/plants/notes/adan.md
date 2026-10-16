@@ -1,0 +1,12 @@
+# アダン (Pandanus odoratissimus, iNaturalist では Pandanus odorifer)
+- 樹形: 常緑の低木〜小高木。高さ 2〜5m。細い幹が斜めに伸びて 2〜3 回ずつ二又に分かれ、枝の先ごとに葉の束がのる。1 株では傘を何本も束ねたような形、群れると幹と支柱根が絡み合った背の低いやぶ (幅 5〜10m) になる
+- 幹と根: 灰褐色で、葉の落ちた跡の輪の模様。根元と幹の下の方から太さ 3〜6cm の支柱根 (タコ足) が斜めに何本も地面へ刺さり、株を持ち上げる
+- 葉: 長さ 1〜1.5m、幅 4〜6cm の細長い剣形。ふちと裏の中央にとげ。枝先にらせん状に密に付き、噴水のように四方へ広がって先が垂れる。濃い緑〜青緑、古い葉は黄色〜茶色になって下に垂れ残る
+- 花・実: 直径 15〜20cm のパイナップルのような丸い実が枝先からぶら下がる。緑 → 熟すとオレンジ〜朱色 (夏〜秋)
+- 季節の形: 1 つ (実は一年中どこかに付いている)
+- 生える所: 砂浜の奥・海岸の岩場の上 (coast)。浜の草地とその奥の林の間に帯になってやぶを作る
+- 見た写真:
+  - https://www.inaturalist.org/observations/145026085 (CC BY 4.0, Takaaki Hattori, 沖縄県久米島町)
+  - https://www.inaturalist.org/observations/240715758 (CC BY 4.0, Jessica Utrup, 沖縄県渡嘉敷村)
+  - https://www.inaturalist.org/observations/240226204 (CC BY 4.0, Cheng-Te Hsu, 沖縄県)
+  - https://www.inaturalist.org/observations/269418191 (CC0, Tom Ferguson, 沖縄県石垣市)
