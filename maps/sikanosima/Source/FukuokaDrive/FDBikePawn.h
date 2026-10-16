@@ -257,6 +257,29 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CrossCub|カメラ")
 	float MaxLookIntoTurnDeg = 15.f;
 
+	/** マウスを動かした量 1 あたりに視点を回す角度 (度、歩くときと同じ)。マウスで見回し、上を向けば夜空も見られる */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CrossCub|カメラ")
+	float MouseLookScale = 2.5f;
+
+	/** 右スティックを倒しきったときに視点を回す速さ (度/秒) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CrossCub|カメラ")
+	float StickLookRateDeg = 120.f;
+
+	/** 見回したあと、これだけの秒数マウスを動かさずに走っていると前に戻る */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CrossCub|カメラ")
+	float LookReturnDelaySeconds = 4.f;
+
+	/** この速さ (km/h) より遅いときは前に戻さない (止まって星を見ていられるように) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CrossCub|カメラ")
+	float LookReturnMinKmh = 10.f;
+
+	/** 見上げる / 見下ろす限度 (度、正面からの角度) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CrossCub|カメラ")
+	float MaxLookUpDeg = 85.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CrossCub|カメラ")
+	float MaxLookDownDeg = 60.f;
+
 	/** 速いとき (FovFullSpeedKmh) のカメラの細かい揺れ (cm) */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CrossCub|カメラ")
 	float SpeedShakeCm = 0.6f;
@@ -483,6 +506,8 @@ private:
 	void OnSteer(const FInputActionValue& Value);
 	void OnReset(const FInputActionValue& Value);
 	void ApplyPaint();
+	/** マウスや右スティックで視点を回す (度。右と上が正) */
+	void Look(const FVector2D& DeltaDeg);
 	void UpdateRiderVisibility();
 	/** 速度とアクセルから回転数とギアを決める。変速中は駆動力を抜く割合 (0-1) を返す */
 	float UpdateEngine(float DeltaSeconds);
@@ -545,6 +570,15 @@ private:
 	UPROPERTY(Transient)
 	TObjectPtr<UInputAction> FlyAction;
 
+	UPROPERTY(Transient)
+	TObjectPtr<UInputAction> LookAction;
+
+	UPROPERTY(Transient)
+	TObjectPtr<UInputAction> LookStickAction;
+
+	UPROPERTY(Transient)
+	TObjectPtr<UInputAction> LookResetAction;
+
 	/** ミニマップに出している地図 (Slate のブラシは参照を持たないので、ここで持っておく) */
 	UPROPERTY(Transient)
 	TObjectPtr<UTexture2D> LoadedMinimapTexture;
@@ -591,5 +625,9 @@ private:
 	// カメラと車体の前後の沈み
 	float ForwardAccel = 0.f;  // なめらかにした前後の加速度 (m/s^2)
 	float LookYawDeg = 0.f;
+	// マウスで見回した角度 (度、正面から)。しばらく動かさずに走ると前に戻る
+	float FreeLookYawDeg = 0.f;
+	float FreeLookPitchDeg = 0.f;
+	float LookIdleSeconds = 0.f;
 	float ShakeTime = 0.f;
 };

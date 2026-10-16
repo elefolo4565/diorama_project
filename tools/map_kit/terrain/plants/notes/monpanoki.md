@@ -1,0 +1,12 @@
+# モンパノキ (Heliotropium foertherianum, iNaturalist では Heliotropium arboreum)
+- 樹形: 常緑の低木〜小高木。高さ 1〜5m。太い枝が低い所から斜め上〜横へ曲がりながら広がり、枝先にだけ葉が付く。樹冠は丸く横に広い (幅は高さの 1.5〜2 倍) が、枝先の葉の房の間にすき間があり、中の曲がった枝が見える
+- 幹: 灰褐色〜暗い灰色、縦に深い割れ目でコルク質。太さ 10〜20cm、くねる
+- 葉: 10〜20cm の倒卵形 (先が丸い)。厚く、両面がやわらかい銀白色の毛に覆われ、遠目には白っぽい灰緑色 (まわりの緑から浮いて見える)。枝先に 15〜25 枚がらせん状に集まってロゼットのように開く
+- 花・実: 枝先から、くるりと巻いた穂に白い小さな花がびっしり並ぶ (直径 10〜20cm の房)。ほぼ一年中。花のあと緑白色の小さな実の房
+- 季節の形: 1 つ (一年中ほぼ同じ)
+- 生える所: 砂浜の奥・サンゴ礁の岩場の上 (coast)。クサトベラと並んで海に一番近いやぶを作る。奄美〜沖縄・八重山、小笠原
+- 見た写真:
+  - https://www.inaturalist.org/observations/270121239 (CC0, Tom Ferguson, 沖縄県石垣市) 株全体
+  - https://www.inaturalist.org/observations/345814791 (CC BY 4.0, 岸本年郎, 東京都小笠原村) 砂浜の株
+  - https://www.inaturalist.org/observations/199186405 (CC BY 4.0, Takaaki Hattori, 鹿児島県) 葉の房と花
+  - https://www.inaturalist.org/observations/240451701 (CC BY 4.0, Jessica Utrup, 沖縄県) 幹
