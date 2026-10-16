@@ -1,0 +1,12 @@
+# トベラ (Pittosporum tobira)
+- 樹形: 根元から 3〜6 本に分かれる株立ちの低木。海岸の崖や岩場では高さ 1〜2m、幅は高さの 1.2〜1.5 倍で、地面まで葉が付く半球〜横長のこんもりした塊。風の弱い所の古木は 3〜5m の小高木になり、灰色の細い幹が何本も見える
+- 幹・枝: 灰色〜灰褐色でなめらか。枝は先で 3〜5 本に車輪状に分かれ、それをくり返すので枝先が放射状に広がる
+- 葉: 5〜10cm の倒卵形 (先が丸く根元が細い)。厚くて縁が少し裏へ巻く。濃い緑でつやがあり、枝先に輪のように (ロゼット状に) 集まる。枝の途中には葉がない
+- 花・実: 4〜5 月、枝先に白い花の房 (後に黄色くなる)。秋〜冬に丸い実 (1〜1.5cm) が熟して 3 つに割れ、赤い種が見える
+- 生える所: 海岸の崖・岩場・海辺の林のふち (coast)。潮風の強い所ほど低く丸い
+- 見た写真:
+  - https://www.inaturalist.org/observations/159636654 (CC0, 鹿児島県薩摩川内市)
+  - https://www.inaturalist.org/observations/34106905 (CC BY 4.0, Marco Mussita, 神奈川県横須賀市)
+  - https://commons.wikimedia.org/wiki/File:Pittosporum_tobira_kz06.jpg (CC BY 4.0, Krzysztof Ziarnek, Kenraiz)
+  - https://commons.wikimedia.org/wiki/File:Pittosporum_tobira_kz07.jpg (CC BY 4.0, Krzysztof Ziarnek, Kenraiz)
+  - https://commons.wikimedia.org/wiki/File:Pittosporum_tobira_Pospornica_japo%C5%84ska_2023-02-22_02.jpg (CC BY-SA 4.0, Agnieszka Kwiecień, Nova)

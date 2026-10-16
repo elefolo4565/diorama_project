@@ -1,0 +1,11 @@
+# ススキ (Miscanthus sinensis)
+- 形: 根元から密に葉が出る株立ちの大きな草。高さ 1〜2m (穂を含む)。葉は株の中心から噴水のように立ち上がって外へ弓なりに垂れる。1 株の幅 0.5〜1m、草原では株が並んで一面を覆う
+- 葉: 50〜80cm の細長い線形 (幅 1〜2cm)、中央に白い筋。緑〜灰緑。縁がざらつき、先は垂れる
+- 穂: 8〜11 月に株の上へ稈が抜き出て、先に 15〜30cm の穂 (細い枝が 10〜20 本、ほうきのように広がる)。出たては赤紫〜銀色、秋が深まると白〜銀色の綿毛でふわふわになり、逆光で光る。冬は株全体が枯れて茶色〜薄い黄土色、穂の名残が残る
+- 季節: 春〜夏は緑の葉だけ、秋は穂、冬は枯れ色 (seasons で 3 つに分けるとよい)
+- 生える所: 草原・あぜ・土手・道ばた・伐採跡 (grassland, farm)
+- 見た写真:
+  - https://www.inaturalist.org/observations/250322613 (CC BY 4.0, WATANABE Hitoshi 渡辺仁)
+  - https://www.inaturalist.org/observations/252692229 (CC0, 埼玉県)
+  - https://www.inaturalist.org/observations/406730309 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都日野市)
+  - https://www.inaturalist.org/observations/258411610 (CC BY 4.0, 岸本年郎, 静岡県湖西市)
