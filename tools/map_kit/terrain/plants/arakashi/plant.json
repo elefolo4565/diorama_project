@@ -1,0 +1,53 @@
+{
+  "name_ja": "アラカシ",
+  "latin": "Quercus glauca",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "tohoku",
+    "hokuriku"
+  ],
+  "leaves": {
+    "FD_Leaf_Arakashi": "T_FD_Leaf_Arakashi.png"
+  },
+  "barks": {
+    "FD_BarkArakashi": [
+      "T_FD_BarkArakashi_D.png",
+      "T_FD_BarkArakashi_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Arakashi_A": {
+      "file": "SM_FD_Arakashi_A.glb",
+      "height_m": 10.5,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Arakashi_B": {
+      "file": "SM_FD_Arakashi_B.glb",
+      "height_m": 8.2,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.03,
+      "seasons": 15
+    },
+    "SM_FD_Arakashi_C": {
+      "file": "SM_FD_Arakashi_C.glb",
+      "height_m": 6.3,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    }
+  }
+}
