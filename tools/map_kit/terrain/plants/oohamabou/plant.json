@@ -1,0 +1,77 @@
+{
+  "name_ja": "オオハマボウ",
+  "latin": "Hibiscus tiliaceus",
+  "regions": [
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Oohamabou": "T_FD_Leaf_Oohamabou.png",
+    "FD_Flower_Oohamabou": "T_FD_Flower_Oohamabou.png"
+  },
+  "barks": {
+    "FD_BarkOohamabou": [
+      "T_FD_BarkOohamabou_D.png",
+      "T_FD_BarkOohamabou_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Oohamabou_A": {
+      "file": "SM_FD_Oohamabou_A.glb",
+      "height_m": 4.8,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 13
+    },
+    "SM_FD_Oohamabou_A_Hana": {
+      "file": "SM_FD_Oohamabou_A_Hana.glb",
+      "height_m": 4.8,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 2,
+      "place_with": "SM_FD_Oohamabou_A"
+    },
+    "SM_FD_Oohamabou_B": {
+      "file": "SM_FD_Oohamabou_B.glb",
+      "height_m": 3.1,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 13
+    },
+    "SM_FD_Oohamabou_B_Hana": {
+      "file": "SM_FD_Oohamabou_B_Hana.glb",
+      "height_m": 3.1,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 2,
+      "place_with": "SM_FD_Oohamabou_B"
+    },
+    "SM_FD_Oohamabou_C": {
+      "file": "SM_FD_Oohamabou_C.glb",
+      "height_m": 3.7,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.015,
+      "seasons": 13
+    },
+    "SM_FD_Oohamabou_C_Hana": {
+      "file": "SM_FD_Oohamabou_C_Hana.glb",
+      "height_m": 3.7,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.015,
+      "seasons": 2,
+      "place_with": "SM_FD_Oohamabou_C"
+    }
+  }
+}
