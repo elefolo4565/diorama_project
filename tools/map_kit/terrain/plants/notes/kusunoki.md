@@ -1,0 +1,14 @@
+# クスノキ (Cinnamomum camphora, iNaturalist では Camphora officinarum)
+- 樹形: 常緑高木。樹高 15〜25m の大木。幹は太く短く、地上 2〜5m で太い枝が何本にも分かれ、横〜斜め上へ大きくうねりながら広がる。樹冠は横に広い丸いドーム形〜ブロッコリー形 (幅は高さの 1.2〜1.5 倍)。表面はこんもりした丸い塊がいくつも重なり、明るい緑で、遠くからでも周りの木より明るく見える
+- 幹: 灰褐色〜赤茶がかった灰色。縦に細かい短冊状の割れ目が入る。神社の大木は太さ 1〜3m、根元が大きく張り出し、こぶがある (しめ縄)。枝もうねって太い
+- 葉: 6〜10cm の卵形、先がとがり、ふちは波打つ。表は明るい黄緑〜緑でつやがある。葉柄が長く、葉が枝先に軽く広がる (樹冠がやわらかく見える)
+- 花・実: 5 月に小さな黄白色の花 (目立たない)。秋〜冬に黒い小さな実 (8mm)
+- 季節: 4〜5 月に新芽が赤〜オレンジ色 (樹冠の表面がところどころ赤っぽくなる)、同じころ古い葉が赤く色づいて落ちる。ほかの季節は明るい緑
+- 季節の形: 2 つ。夏・秋・冬 = 明るい緑 (基本の形)、春 = 樹冠の表面に赤〜オレンジ色の新芽が混じる (`_Haru`)
+- 生える所: 神社・寺・公園・集落の大木 (farm)、里の林 (forest)
+- 見た写真:
+  - https://www.inaturalist.org/observations/2572289 (CC BY-SA 4.0, harum.koh, 兵庫県神戸市) 丘の上の丸いドーム形の樹冠
+  - https://www.inaturalist.org/observations/262920937 (CC BY 4.0, Daniel J. Layton, 徳島県板野町 大山寺) しめ縄の大木の幹
+  - https://www.inaturalist.org/observations/6266352 (CC BY 4.0, Marco Mussita, 徳島県神山町) 道ばたの大木、横にうねる太い枝
+  - https://www.inaturalist.org/observations/42943478 (CC BY 4.0, Marco Mussita, 埼玉県越生町) 4 月の赤〜オレンジ色の新芽
+  - https://www.inaturalist.org/observations/6605461 (CC BY-SA 4.0, harum.koh, 静岡県沼津市) 幹の樹皮

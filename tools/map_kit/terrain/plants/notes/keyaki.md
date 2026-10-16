@@ -1,0 +1,15 @@
+# ケヤキ (Zelkova serrata)
+- 樹形: 落葉高木。樹高 20〜30m の大木。幹は太く、地上 2〜5m で何本もの枝に分かれ、すべて斜め上へ放射状に広がる。樹冠は逆三角形〜扇形 (ほうきを逆さに立てた形) で上が丸く広く、幅は高さの 1〜1.3 倍。細い枝が非常に多く、冬は細かい枝の網がほうきのように見える
+- 幹: 灰白色〜灰褐色でなめらか、古い木は樹皮がうろこ状にはがれて、オレンジ〜赤茶色のまだら模様になる。根元は板のように張り出す。太さ 50cm〜1.5m
+- 葉: 4〜8cm の細長い卵形、先がとがり、ふちに規則正しいぎざぎざ。細い枝に 2 列に並ぶ。夏は緑、つやは弱い
+- 花・実: 花・実は小さく目立たない
+- 季節: 4 月の新芽は明るい黄緑。11 月に黄色〜オレンジ〜赤茶色に紅葉 (木ごとに色が違う)。冬は葉がなく、灰色の細かい枝がほうき形に広がる
+- 季節の形: 4 つ。春 = 明るい黄緑の新芽 (`_Haru`)、夏 = 緑 (基本の形)、秋 = 黄〜オレンジ〜赤茶色 (`_Aki`)、冬 = 葉を落としたほうき形の細かい枝 (`_Fuyu`)
+- 生える所: 集落・神社・農家の屋敷林・川べり・道ばたの大木 (farm)
+- 見た写真:
+  - https://www.inaturalist.org/observations/2455115 (CC BY-SA 4.0, harum.koh, 岐阜県下呂市) 道ばたの大木、赤茶色に紅葉した扇形の樹冠
+  - https://www.inaturalist.org/observations/140957667 (CC BY 4.0, Yoshihiro Tokue, 栃木県宇都宮市) 公園の木、斜め上に広がる枝と紅葉
+  - https://www.inaturalist.org/observations/6430173 (CC BY 4.0, Marco Mussita, 神奈川県南足柄市) 夏の樹冠
+  - https://www.inaturalist.org/observations/248885515 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市) 板のように張った根元
+  - https://www.inaturalist.org/observations/335190973 (CC0, renshuchu, 日本) まだらにはがれた樹皮
+  - https://www.inaturalist.org/observations/102395939 (CC BY 4.0, Marco Mussita, 東京都江戸川区) 12 月のオレンジ色の葉

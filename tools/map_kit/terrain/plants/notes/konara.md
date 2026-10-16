@@ -1,0 +1,14 @@
+# コナラ (Quercus serrata)
+- 樹形: 落葉高木。樹高 10〜20m。里山 (薪炭林) では根元から 2〜4 本に分かれた株立ちが多く、幹は斜め上へ伸びる。樹冠は丸い卵形〜不規則な形で、すき間が多い。雑木林ではほかの木と樹冠を寄せ合って並ぶ
+- 幹: 灰色〜灰褐色。縦に不規則な浅い割れ目が入り、割れ目の間は白っぽい灰色の帯になる。太さ 20〜40cm
+- 葉: 10〜15cm の倒卵形 (先の方が幅広い)、ふちに大きめのとがったぎざぎざ。枝先に集まって付く。夏は明るい緑〜緑、つやは弱い
+- 花・実: 4 月、新芽と同時に黄緑色の細い花の穂が垂れる。秋に細長いどんぐり (2cm)
+- 季節: 4 月の新芽は銀白色〜淡い黄緑 (細かい毛で白っぽく光る)。11〜12 月に黄色〜オレンジ〜茶色に紅葉。冬は茶色の枯れ葉が一部残るが、ほとんど枝だけ
+- 季節の形: 4 つ。春 = 銀白色〜淡い黄緑の新芽 (`_Haru`)、夏 = 緑 (基本の形)、秋 = 黄〜オレンジ〜茶色 (`_Aki`)、冬 = 葉を落とした灰色の枝だけ (`_Fuyu`)
+- 生える所: 里山の雑木林・林のふち・畑の裏山 (forest, farm)
+- 見た写真 (葉・幹の写真が中心。全体の形は雑木林の一般的な姿から):
+  - https://www.inaturalist.org/observations/332458879 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市) 12 月、オレンジ色の紅葉と枝
+  - https://www.inaturalist.org/observations/2546486 (CC BY-SA 4.0, harum.koh, 兵庫県神戸市) 12 月の紅葉
+  - https://www.inaturalist.org/observations/342152018 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市) 冬の幹 (株立ち)
+  - https://www.inaturalist.org/observations/268852876 (CC0, renshuchu, 埼玉県) 4 月の銀白色の新芽
+  - https://www.inaturalist.org/observations/291794904 (CC BY 4.0, Ashwin Srinivasan, 千葉県富津市) 夏の葉の茂り
