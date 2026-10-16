@@ -607,6 +607,8 @@ def main():
     # meisho/ の名所 (金印公園など)。周りの木・花・家はよける
     spots = meisho.find(area, grid, roads) if features["meisho"] else []
     keep_clear += meisho.keep_clear(spots)
+    replaced = meisho.replaced_shrines(spots)   # 名所として作る神社は、一般の神社の形では置かない
+    shrine_plans = [p for p in shrine_plans if p["name"] not in replaced]
     # plants/ の植物 (Codex などが足す)。コースの地方 (九州・四国…) の植物だけ
     course = course_of_area(sys.argv[1])
     region = plants.region_of(area.center_lat, area.center_lon, course.cfg if course else None)

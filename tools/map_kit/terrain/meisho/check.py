@@ -30,7 +30,7 @@ from plants.check import render  # noqa: E402
 
 OUT = os.path.join(os.path.dirname(HERE), "out", "meisho")
 MAX_TRIS = 60000
-MAX_SPREAD_M = 150.0
+MAX_SPREAD_M = 250.0     # 志賀海神社は参道の入口の鳥居が本殿から 180m 離れている
 PATCH_M = 26.0          # 確認用の地形を描く範囲 (名所の点から)
 sm.MATERIALS.setdefault("FD_MeishoCheckGround", dict(color=(0.10, 0.20, 0.06), roughness=1.0))
 sm.MATERIALS.setdefault("FD_MeishoCheckRoad", dict(color=(0.12, 0.12, 0.12), roughness=1.0))

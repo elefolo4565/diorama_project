@@ -13,6 +13,7 @@
                z: "road" = いちばん近い道路の路面の高さ、"ground" = 平らにする前のその中心の地面の高さ。dz を足す。
                feather (m) の幅で元の斜面へなめらかにつなぐ。道路の路面は変えない
     MATERIALS  {マテリアル名: scenery_meshes.MATERIALS と同じ書き方} (省略可)。名前は FD_Meisho<名前> にする
+    REPLACES_SHRINES  (省略可) この名所で置き換える神社の名前 (OSM の name)。shrines.py の一般の神社は置かない
     build(ctx) -> scenery_meshes.Mesh。タイルの UE 座標 (m、X 東寄り・Y 南寄り・Z 上) で作る
                (地面の高さに合わせて作るので、名所の形はタイルごとの形 world_meshes として原点に置く)
 
@@ -20,6 +21,7 @@ ctx (build に渡すもの):
     ctx.x, ctx.y, ctx.z     LATLON の点 (m)。z はその点の地面の高さ
     ctx.ground(x, y)        地面の高さ (m)。x, y は数でも numpy 配列でも可
     ctx.road                いちばん近い道路 dict(name, width, point=(x, y), tangent=(tx, ty), z, dist)
+    ctx.latlon(lat, lon)    緯度経度 -> UE 座標 (m)
     ctx.frame(s, u)         道路の座標 -> UE 座標 (m)。s は道路の中心から名所の方への奥行き、u は道路に沿った位置
                             (どちらも m、原点は名所にいちばん近い道路の中心の点)。名所を道路の向きに合わせて並べるのに使う
 
@@ -58,8 +60,9 @@ def mesh_name(name):
 
 
 class Ctx:
-    def __init__(self, grid, roads, x, y):
+    def __init__(self, grid, roads, x, y, area=None):
         self.grid = grid
+        self.area = area
         self.x, self.y = float(x), float(y)
         self.z = float(self.ground(x, y))
         self.road = nearest_road(roads, self.x, self.y)
@@ -85,6 +88,11 @@ class Ctx:
         x = self._o[0] + self._n[0] * s + self._t[0] * u
         y = self._o[1] + self._n[1] * s + self._t[1] * u
         return (float(x), float(y)) if x.ndim == 0 else (x, y)
+
+    def latlon(self, lat, lon):
+        """緯度経度 -> UE 座標 (m)。OSM の輪郭などをそのまま置くときに使う。"""
+        e, n = self.area.to_local(lat, lon)
+        return float(e), float(-n)
 
     def to_frame(self, x, y):
         """UE 座標 (m) -> 道路の座標 (s, u)。"""
@@ -128,8 +136,12 @@ def find(area, grid, roads, names=None):
         x, y = e, -n    # UE: +Y は南
         if abs(x) >= area.half_m or abs(y) >= area.half_m:
             continue
-        out.append((name, mod, Ctx(grid, roads, x, y)))
+        out.append((name, mod, Ctx(grid, roads, x, y, area)))
     return out
+
+
+def replaced_shrines(spots):
+    return {n for _, mod, _ in spots for n in getattr(mod, "REPLACES_SHRINES", ())}
 
 
 def keep_clear(spots):
