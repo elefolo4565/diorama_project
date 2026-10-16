@@ -10,12 +10,14 @@
 #include "FDBikePawn.h"
 #include "FDCourseInfo.h"
 #include "FDFlyPawn.h"
+#include "FDRegions.h"
 #include "FDTimeOfDay.h"
 #include "FDTravelPoint.h"
 #include "FDWalkerCharacter.h"
 #include "GameFramework/PlayerController.h"
 #include "InputAction.h"
 #include "InputMappingContext.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "Styling/CoreStyle.h"
 #include "Widgets/Layout/SBorder.h"
 #include "Widgets/Layout/SBox.h"
@@ -66,6 +68,10 @@ void AFDGameMenu::BeginPlay()
 {
 	Super::BeginPlay();
 	CreateInput();
+	if (FFDRegions::IsStartMap(GetWorld()))
+	{
+		OpenRegions();
+	}
 }
 
 void AFDGameMenu::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -132,6 +138,11 @@ void AFDGameMenu::CreateInput()
 
 void AFDGameMenu::ToggleMenu()
 {
+	if (FFDRegions::IsStartMap(GetWorld()))
+	{
+		OpenRegions();   // 起動画面では一覧だけ (Tab で閉じても、もう一度押せば出る)
+		return;
+	}
 	if (Menu.IsOpen())
 	{
 		Menu.Close();
@@ -170,6 +181,10 @@ void AFDGameMenu::OpenMain(int32 FocusIndex)
 	};
 
 	AddAction(TEXT("地図とファストトラベル   (M)"), [this]() { ToggleMap(); });
+	if (FFDRegions::Find().Num() > 0)   // ツーリングシミュレータのコアだけ (地域ごとのプロジェクトには地域が無い)
+	{
+		AddAction(TEXT("走る地域を変える"), [this]() { OpenRegions(); });
+	}
 	AddAction(TEXT("行き先の一覧   (F)"), [this]()
 	{
 		TWeakObjectPtr<AFDGameMenu> Self(this);
@@ -258,6 +273,61 @@ void AFDGameMenu::OpenTimeMenu()
 	OpenKind = EOpen::Main;
 	Menu.Open(GetPC(), FString::Printf(TEXT("時刻   いま %s"), *ClockText(Time->GetHour())), MoveTemp(Items),
 	          TEXT("T / G を押している間は時間が進む / 戻る"));
+}
+
+void AFDGameMenu::OpenRegions()
+{
+	APlayerController* PC = GetPC();
+	UWorld* World = GetWorld();
+	if (!PC || !World)
+	{
+		return;
+	}
+	const bool bStart = FFDRegions::IsStartMap(World);
+	const FString Current = FFDRegions::CurrentMapPackage(World);
+	const FString Last = FFDRegions::LastRegion();
+
+	TArray<FFDMenu::FItem> Items;
+	for (const FFDRegion& Region : FFDRegions::Find())
+	{
+		const bool bHere = Region.MapPackage == Current;
+		FString Label = Region.DisplayName;
+		if (bHere)
+		{
+			Label += TEXT("   (いまの地域)");
+		}
+		Items.Add({Label, TOptional<FLinearColor>(), bHere || (bStart && Region.Name == Last), [this, Region, bHere]()
+		{
+			if (!bHere)
+			{
+				FFDRegions::Open(this, Region);
+			}
+		}});
+	}
+	if (Items.IsEmpty())
+	{
+		Items.Add({TEXT("地域がまだありません (tools/kit/install_kit.py --add-region で足す)"), TOptional<FLinearColor>(), false, [this, bStart]()
+		{
+			if (bStart)
+			{
+				OpenRegions();
+			}
+		}});
+	}
+	if (bStart)
+	{
+		Items.Add({TEXT("終わる"), TOptional<FLinearColor>(), false, [this]()
+		{
+			UKismetSystemLibrary::QuitGame(this, GetPC(), EQuitPreference::Quit, false);
+		}});
+	}
+	else
+	{
+		Items.Add({TEXT("もどる"), TOptional<FLinearColor>(), false, [this]() { OpenMain(); }});
+	}
+	OpenKind = EOpen::Main;
+	Menu.Open(PC, bStart ? TEXT("ツーリングシミュレータ   走る地域を選ぶ") : TEXT("走る地域を変える"), MoveTemp(Items),
+	          bStart ? TEXT("選ぶとその地域のスタート地点から走り始めます") : TEXT("選ぶとその地域のスタート地点へ移ります (いまの場所は残りません)"));
 }
 
 // ---------------------------------------------------------------- 拡大マップ

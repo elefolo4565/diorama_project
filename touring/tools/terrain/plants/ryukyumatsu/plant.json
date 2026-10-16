@@ -1,0 +1,49 @@
+{
+  "name_ja": "リュウキュウマツ",
+  "latin": "Pinus luchuensis",
+  "regions": [
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Ryukyumatsu": "T_FD_Leaf_Ryukyumatsu.png"
+  },
+  "barks": {
+    "FD_BarkRyukyumatsu": [
+      "T_FD_BarkRyukyumatsu_D.png",
+      "T_FD_BarkRyukyumatsu_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Ryukyumatsu_A": {
+      "file": "SM_FD_Ryukyumatsu_A.glb",
+      "height_m": 16.0,
+      "habitat": [
+        "forest",
+        "ridge"
+      ],
+      "share": 0.05,
+      "seasons": 15
+    },
+    "SM_FD_Ryukyumatsu_B": {
+      "file": "SM_FD_Ryukyumatsu_B.glb",
+      "height_m": 7.5,
+      "habitat": [
+        "forest",
+        "ridge"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Ryukyumatsu_C": {
+      "file": "SM_FD_Ryukyumatsu_C.glb",
+      "height_m": 10.0,
+      "habitat": [
+        "forest",
+        "ridge"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    }
+  }
+}

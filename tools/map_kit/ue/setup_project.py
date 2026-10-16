@@ -58,6 +58,10 @@ COURSE = course_config.Course()
 
 # コースごとのアセット (遠景・ミニマップ) を分けるフォルダ。汎用化の前からある糸島は分けない (これまでと同じ場所)
 COURSE_SUBDIR = "" if COURSE.name in course_config.LEGACY else f"/{COURSE.name}"
+# ツーリングシミュレータの地域 (コアに足すマップ、tools/kit/install_kit.py --add-region) なら、レベル・タイル・遠景・
+# ミニマップは地域のプラグインの Content (/<プラグイン名>/) に入れる。共通のアセット (木・草・バイクなど) はコアの
+# /Game/FukuokaDrive のまま。地域ごとのプロジェクトでは REGION_ROOT は None で、これまでと同じ場所に作る
+REGION_ROOT = f"/{COURSE.plugin}" if COURSE.plugin else None
 
 # 共通のアセット (木・草・花など) を作るタイル。コースのタイルがまだ無ければ最初の区間 (二見ヶ浦)
 AREA = COURSE.base_tile() if COURSE.tiles_doc() else "futamigaura"
@@ -195,7 +199,7 @@ GUST_WAVE = 0.00008
 GRASS_SINK_CM = 120.0         # 消える距離の手前で、草を地面に沈めて消す (ぱっと消えないように)
 
 # 遠景の地形 (tools/terrain/build_far_terrain.py の出力)。取り込みに少し時間がかかるので、glTF が変わったときだけ取り込み直す
-FAR_TERRAIN_DIR = f"{ROOT}/FarTerrain{COURSE_SUBDIR}"
+FAR_TERRAIN_DIR = f"{REGION_ROOT}/FarTerrain" if REGION_ROOT else f"{ROOT}/FarTerrain{COURSE_SUBDIR}"
 FAR_TERRAIN_MESH = "SM_FD_FarTerrain"
 FAR_TERRAIN_ROUGHNESS = 0.9
 FAR_TERRAIN_SPECULAR = 0.3
@@ -238,6 +242,8 @@ def set_props(obj, **props):
 # 「作り方」(関数のコードとそれが使う定数・引数・入力ファイルの中身) のハッシュを STATE_PATH に残し、
 # 前回と同じならそのアセットには触らない。STATE_PATH は Content と一緒にコミットする
 STATE_PATH = os.path.join(PROJECT_DIR, "Content", "FukuokaDrive", "SetupState.json")
+# 地域のアセット (REGION_ROOT の下) の記録は地域のフォルダに残す (地域ごとにコミットでき、ほかの地域の記録に触らない)
+REGION_STATE_PATH = os.path.join(COURSE.region_dir, "SetupState.json") if COURSE.region_dir else None
 FORCE_ALL = False   # True なら前回の記録を無視してすべて作り直す
 _PLAIN = (bool, int, float, str, bytes, type(None), tuple, list, dict)
 
@@ -298,13 +304,18 @@ def recipe(*parts, files=(), skip=()):
 class SetupState:
     def __init__(self):
         self.data = {}
-        if os.path.exists(STATE_PATH):
-            try:
-                with open(STATE_PATH, encoding="utf-8") as f:
-                    self.data = json.load(f)
-            except Exception as e:
-                unreal.log_warning(f"[setup_project] {STATE_PATH} を読めませんでした ({e})。すべて作り直します")
+        for path in (STATE_PATH, REGION_STATE_PATH):
+            if path and os.path.exists(path):
+                try:
+                    with open(path, encoding="utf-8") as f:
+                        self.data.update(json.load(f))
+                except Exception as e:
+                    unreal.log_warning(f"[setup_project] {path} を読めませんでした ({e})。そこに記録したものは作り直します")
         self.changed = []
+
+    @staticmethod
+    def _regional(key):
+        return bool(REGION_ROOT) and key.startswith(REGION_ROOT + "/")
 
     def fresh(self, key, digest, *asset_paths):
         """前回と同じ作り方で、アセットもあるなら True (作り直さなくてよい)。"""
@@ -316,10 +327,15 @@ class SetupState:
         self.changed.append(key)
 
     def save(self):
-        os.makedirs(os.path.dirname(STATE_PATH), exist_ok=True)
-        with open(STATE_PATH, "w", encoding="utf-8", newline="\n") as f:
-            json.dump(dict(sorted(self.data.items())), f, indent=1, ensure_ascii=False)
-            f.write("\n")
+        core = {k: v for k, v in self.data.items() if not self._regional(k)}
+        parts = [(STATE_PATH, core)]
+        if REGION_STATE_PATH:
+            parts.append((REGION_STATE_PATH, {k: v for k, v in self.data.items() if self._regional(k)}))
+        for path, data in parts:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "w", encoding="utf-8", newline="\n") as f:
+                json.dump(dict(sorted(data.items())), f, indent=1, ensure_ascii=False)
+                f.write("\n")
 
 
 state = None  # main() で作る
@@ -2281,7 +2297,7 @@ def setup_walker():
 
 
 # ---------------------------------------------------------------- ミニマップとファストトラベル
-UI_DIR = f"{ROOT}/UI{COURSE_SUBDIR}"
+UI_DIR = f"{REGION_ROOT}/UI" if REGION_ROOT else f"{ROOT}/UI{COURSE_SUBDIR}"
 MINIMAP_TEXTURE = "T_FD_Minimap"   # C++ の AFDBikePawn::MinimapTexture の既定値と同じ
 MINIMAP_PNG = os.path.join(DATA_DIR, "minimap.png")
 
@@ -2423,8 +2439,10 @@ LOOP_DIR = os.path.join(PROJECT_DIR, "tools", "terrain", "out", LOOP_NAME)
 LOOP_AREA_JSON = COURSE.path
 TILES_JSON = os.path.join(LOOP_DIR, "tiles.json")
 LOOP = os.path.exists(TILES_JSON)
-LOOP_MAP_PATH = f"{ROOT}/Maps/{COURSE.map}"
-TILE_ASSET_DIR = f"{ROOT}/Tiles"            # タイルごとの形 (建物・区画線・ガードレールのビームなど、置き場所が決まったもの)
+# 地域のレベルはプラグインと同じ名前 (/<プラグイン名>/Maps/<プラグイン名>)。C++ の地域を選ぶメニュー (FDRegions) がこの名前で開く
+LOOP_MAP_PATH = f"{REGION_ROOT}/Maps/{COURSE.plugin}" if REGION_ROOT else f"{ROOT}/Maps/{COURSE.map}"
+# タイルごとの形 (建物・区画線・ガードレールのビームなど、置き場所が決まったもの)
+TILE_ASSET_DIR = f"{REGION_ROOT}/Tiles" if REGION_ROOT else f"{ROOT}/Tiles"
 ROAD_LAYER_INFO = f"{MATERIAL_DIR}/Road_LayerInfo"
 COAST_MASK_DEFAULT = "/Engine/EngineResources/WhiteSquareTexture"   # 海岸の絵の既定 (白 = どこでも砂浜にしてよい)
 LANDSCAPE_IMPORT_VERSION = 3               # FDEditorTools.CreateLandscape の作り方を変えたら上げる (タイルの地面を作り直す)
@@ -2891,9 +2909,42 @@ def level_recipe(scenery_meshes, far_mesh):
     return recipe(populate_level, available, files=files)
 
 
+START_MAP_PATH = f"{ROOT}/Maps/Start"   # ツーリングシミュレータの起動画面 (地域を選ぶ)。FDRegions.h の StartMap と同じ
+
+
+def check_region():
+    """地域のプラグインがエディタに読み込まれているか。.uplugin をエディタを開いた後に作ると読み込まれていない"""
+    lib = getattr(unreal, "PluginBlueprintLibrary", None)
+    if lib is None or not hasattr(lib, "get_enabled_plugin_names"):
+        return True
+    if COURSE.plugin in [str(n) for n in lib.get_enabled_plugin_names()]:
+        return True
+    unreal.log_error(f"[setup_project] 地域のプラグイン {COURSE.plugin} ({COURSE.region_dir}) が読み込まれていません。"
+                     "エディタを閉じて開き直してください (.uproject の AdditionalPluginDirectories の下にあるか確かめる)")
+    return False
+
+
+def ensure_start_level():
+    """起動画面の空のレベル。中身は C++ (AFDGameMode と AFDGameMenu) が出す地域の一覧だけ"""
+    if eal.does_asset_exist(START_MAP_PATH):
+        return
+    les = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
+    try:
+        les.new_level(START_MAP_PATH, False)   # World Partition は使わない (何も置かない)
+    except TypeError:
+        les.new_level(START_MAP_PATH)
+    les.save_current_level()
+    log(f"起動画面のレベルを作りました: {START_MAP_PATH}")
+
+
 def main():
     global state
+    if REGION_ROOT and not check_region():
+        return
     state = SetupState()
+    if REGION_ROOT:
+        log(f"地域 {COURSE.name}: レベルとタイルは {REGION_ROOT}、記録は {REGION_STATE_PATH}")
+        ensure_start_level()
     setup_grass()
     create_landscape_material()
     setup_vehicle()

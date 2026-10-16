@@ -13,9 +13,18 @@ Content は入れない (setup_project.py がすべて作る)。
 使い方 (標準ライブラリだけ、Python 3.8 以上):
     py -3 tools/kit/install_kit.py <プロジェクトのフォルダか .uproject>
     py -3 tools/kit/install_kit.py <新しいフォルダ> --create MyDiorama   .uproject から新しく作る
+
+ツーリングシミュレータ (走りのコア 1 つに、地域のマップを足していく形):
+    py -3 tools/kit/install_kit.py touring --create TouringSim --regions ../maps
+        コアを作る。--regions のフォルダ (.uproject からの相対) の下の地域を読み込み、起動すると地域を選ぶ画面が出る
+    py -3 tools/kit/install_kit.py touring --add-region ../maps/sikanosima --title 志賀島
+        コアに地域を足す: <地域>/<レベル名>.uplugin (コンテンツプラグイン)、Content/、areas/ を作り、
+        course.txt をこの地域にする。コースの設定は <地域>/areas/<地域>.json (tools/kit/area_picker.py が書く)。
+        レベル名 (= プラグイン名) は既定でフォルダ名の頭を大文字にしたもの (--map で変えられる)
     オプション:
         --no-mcp    UE 付属の MCP サーバー (ModelContextProtocol, AllToolsets) を入れない (既定では有効にし、エディタを開くと自動で起動する)
         --startup-map <レベル名>   起動時に開くレベルを /Game/FukuokaDrive/Maps/<レベル名> にする (コースを作った後に使う)
+        --regions <フォルダ>       ツーリングシミュレータのコアにする (地域を並べるフォルダ。何度でも足せる)
         --dry-run   何を変えるかだけ表示する
 
 何度実行してもよい (同じ結果になる)。既存の設定は残し、足りないキーだけ足す (キーが同じで値が違うものは上書きする)。
@@ -163,9 +172,16 @@ def engine_version():
         return json.load(f).get("EngineAssociation", ENGINE_VERSION)
 
 
-def patch_uproject(path, mcp):
+def patch_uproject(path, mcp, regions=()):
     text, enc = read_text(path)
     doc = json.loads(text)
+    if regions:
+        dirs = doc.setdefault("AdditionalPluginDirectories", [])
+        for d in regions:
+            d = d.replace("\\", "/")
+            if d not in dirs:
+                dirs.append(d)
+                note(f".uproject の AdditionalPluginDirectories に {d} を足す (地域のフォルダを読み込む)")
     mods = doc.setdefault("Modules", [])
     if not any(m.get("Name") == MODULE for m in mods):
         mods.append({"Name": MODULE, "Type": "Runtime", "LoadingPhase": "Default",
@@ -314,6 +330,69 @@ def merge_lines(path, block):
                 f.write(("\n" if have else "") + "\n".join(add) + "\n")
 
 
+# --- ツーリングシミュレータの地域 ---
+START_MAP = "/Game/FukuokaDrive/Maps/Start.Start"   # 地域を選ぶ起動画面 (setup_project.py が作る)
+REGION_CATEGORY = "Touring Region"                 # C++ の FFDRegions はこの Category のプラグインを地域とみなす
+REGION_GITATTRIBUTES = """# 地域のアセットは Git LFS で管理する
+Content/**/*.png filter=lfs diff=lfs merge=lfs -text
+*.json text eol=lf
+"""
+
+
+def default_map_name(folder_name):
+    return "".join(w.capitalize() for w in folder_name.split("_"))
+
+
+def add_region(project_dir, folder, plugin=None, title=None):
+    """コアに地域のフォルダ (UE のコンテンツプラグイン) を足す。何度実行してもよい。地域のフォルダを返す。"""
+    folder = os.path.abspath(folder)
+    name = os.path.basename(folder)
+    if not re.fullmatch(r"[a-z][a-z0-9_]{1,40}", name):
+        sys.exit(f"[kit] 地域のフォルダ名 {name} は英小文字で始まる英小文字・数字・_ にしてください (コース名になる)")
+    plugin = plugin or default_map_name(name)
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,39}", plugin):
+        sys.exit(f"[kit] レベル名 {plugin} は英字で始まる英数字と _ にしてください")
+    uproject = find_uproject(project_dir)
+    doc = json.loads(read_text(uproject)[0])
+    roots = [os.path.normcase(os.path.normpath(os.path.join(project_dir, d))) for d in doc.get("AdditionalPluginDirectories", [])]
+    if os.path.normcase(os.path.dirname(folder)) not in roots:
+        sys.exit(f"[kit] {folder} はコアの地域のフォルダ ({', '.join(roots) or 'まだ無い'}) の下にありません。"
+                 "コアを --regions 付きで入れ直すか、そこへ置いてください")
+    if os.path.isdir(folder):
+        if any(f.endswith(".uproject") for f in os.listdir(folder)):
+            sys.exit(f"[kit] {folder} に地域ごとの UE プロジェクト (.uproject) が残っています。"
+                     "コアの地域にする前に古いプロジェクトのファイルを片付けてください (Content もプラグインの中身として読まれるため)")
+        others = [f for f in os.listdir(folder) if f.endswith(".uplugin") and f != f"{plugin}.uplugin"]
+        if others:
+            sys.exit(f"[kit] {folder} には別の名前のプラグイン {others} があります")
+    path = os.path.join(folder, f"{plugin}.uplugin")
+    want = {"FileVersion": 3, "Version": 1, "VersionName": "1.0", "FriendlyName": title or name,
+            "Description": "ツーリングシミュレータの地域 (国土地理院と OSM から作るマップ)", "Category": REGION_CATEGORY,
+            "CanContainContent": True, "EnabledByDefault": True, "ExplicitlyLoaded": False}
+    if os.path.exists(path):
+        have = json.loads(read_text(path)[0])
+        if title is None:
+            want["FriendlyName"] = have.get("FriendlyName", want["FriendlyName"])
+        merged = {**have, **want}
+        if merged != have:
+            note(f"{os.path.relpath(path, project_dir)} を直す")
+            write_text(path, json.dumps(merged, ensure_ascii=False, indent="\t") + "\n")
+    else:
+        note(f"地域 {name} ({want['FriendlyName']}) のプラグイン {os.path.relpath(path, project_dir)} を作る")
+        write_text(path, json.dumps(want, ensure_ascii=False, indent="\t") + "\n")
+    if not DRY:
+        for sub in ("Content", "areas"):
+            os.makedirs(os.path.join(folder, sub), exist_ok=True)
+    merge_lines(os.path.join(folder, ".gitattributes"), REGION_GITATTRIBUTES)
+    # いま作るコースをこの地域にする (setup_project.py と rebuild.bat が読む)
+    course_txt = os.path.join(project_dir, "tools", "terrain", "course.txt")
+    text = f"# 作るコースの名前 (tools/terrain/areas/ か地域のフォルダの areas/ の <名前>.json)。setup_project.py と rebuild.bat がこれを読む\n{name}\n"
+    if not os.path.exists(course_txt) or open(course_txt, encoding="utf-8").read() != text:
+        note(f"course.txt を {name} にする")
+        write_text(course_txt, text)
+    return folder
+
+
 def kit_commit():
     try:
         return subprocess.run(["git", "-C", KIT_ROOT, "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
@@ -328,6 +407,10 @@ def main():
     ap.add_argument("--create", metavar="NAME")
     ap.add_argument("--no-mcp", dest="mcp", action="store_false")
     ap.add_argument("--startup-map", metavar="MAP")
+    ap.add_argument("--regions", action="append", default=[], metavar="DIR")
+    ap.add_argument("--add-region", metavar="DIR")
+    ap.add_argument("--map", metavar="NAME")
+    ap.add_argument("--title")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
     DRY = a.dry_run
@@ -341,17 +424,27 @@ def main():
     else:
         uproject = find_uproject(a.target)
     project_dir = os.path.dirname(uproject)
+    if a.add_region:
+        # 地域を足すだけなら、コアに入れたキット (tools/kit) からも実行できる
+        folder = a.add_region if os.path.isabs(a.add_region) else os.path.join(project_dir, a.add_region)
+        add_region(project_dir, folder, a.map, a.title)
+        print(f"[kit] 完了: 地域 {os.path.abspath(folder)} (変更 {len(changes)} 件{'、dry-run なので書いていません' if DRY else ''})")
+        return
     if os.path.normcase(project_dir) == os.path.normcase(KIT_ROOT):
         sys.exit("[kit] 入れる先がこのリポジトリ自身です")
     name = os.path.splitext(os.path.basename(uproject))[0]
     if DRY and not os.path.exists(uproject):
         sys.exit(f"[kit] (dry-run) {uproject} はまだありません")
 
-    patch_uproject(uproject, a.mcp)
+    patch_uproject(uproject, a.mcp, a.regions)
     install_source(project_dir, name)
     install_tools(project_dir, name)
     install_config(project_dir, a.mcp)
-    if a.startup_map:
+    if a.regions:
+        # ツーリングシミュレータは地域を選ぶ画面から始まる
+        merge_ini(os.path.join(project_dir, "Config", "DefaultEngine.ini"), "/Script/EngineSettings.GameMapsSettings",
+                  [("EditorStartupMap", START_MAP), ("GameDefaultMap", START_MAP)])
+    elif a.startup_map:
         m = f"/Game/FukuokaDrive/Maps/{a.startup_map}.{a.startup_map}"
         merge_ini(os.path.join(project_dir, "Config", "DefaultEngine.ini"), "/Script/EngineSettings.GameMapsSettings",
                   [("EditorStartupMap", m), ("GameDefaultMap", m)])

@@ -1,0 +1,85 @@
+{
+  "name_ja": "アコウ",
+  "latin": "Ficus superba var. japonica",
+  "regions": [
+    "kansai",
+    "shikoku",
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Ako": "T_FD_Leaf_Ako.png",
+    "FD_Leaf_AkoHaru": "T_FD_Leaf_AkoHaru.png"
+  },
+  "barks": {
+    "FD_BarkAko": [
+      "T_FD_BarkAko_D.png",
+      "T_FD_BarkAko_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Ako_A": {
+      "file": "SM_FD_Ako_A.glb",
+      "height_m": 16.0,
+      "habitat": [
+        "farm",
+        "coast"
+      ],
+      "share": 0.018,
+      "seasons": 14
+    },
+    "SM_FD_Ako_A_Haru": {
+      "file": "SM_FD_Ako_A_Haru.glb",
+      "height_m": 16.0,
+      "habitat": [
+        "farm",
+        "coast"
+      ],
+      "share": 0.018,
+      "seasons": 1,
+      "place_with": "SM_FD_Ako_A"
+    },
+    "SM_FD_Ako_B": {
+      "file": "SM_FD_Ako_B.glb",
+      "height_m": 13.0,
+      "habitat": [
+        "farm",
+        "coast"
+      ],
+      "share": 0.014,
+      "seasons": 14
+    },
+    "SM_FD_Ako_B_Haru": {
+      "file": "SM_FD_Ako_B_Haru.glb",
+      "height_m": 13.0,
+      "habitat": [
+        "farm",
+        "coast"
+      ],
+      "share": 0.014,
+      "seasons": 1,
+      "place_with": "SM_FD_Ako_B"
+    },
+    "SM_FD_Ako_C": {
+      "file": "SM_FD_Ako_C.glb",
+      "height_m": 10.0,
+      "habitat": [
+        "farm",
+        "coast"
+      ],
+      "share": 0.012,
+      "seasons": 14
+    },
+    "SM_FD_Ako_C_Haru": {
+      "file": "SM_FD_Ako_C_Haru.glb",
+      "height_m": 10.0,
+      "habitat": [
+        "farm",
+        "coast"
+      ],
+      "share": 0.012,
+      "seasons": 1,
+      "place_with": "SM_FD_Ako_C"
+    }
+  }
+}

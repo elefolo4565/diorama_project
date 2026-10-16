@@ -10,7 +10,7 @@ public class FukuokaDrive : ModuleRules
 
 		PublicDependencyModuleNames.AddRange(new string[]
 		{
-			"Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Slate", "SlateCore", "AudioMixer", "Landscape", "Water", "AssetRegistry"
+			"Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Slate", "SlateCore", "AudioMixer", "Landscape", "Water", "AssetRegistry", "Projects"
 		});
 	}
 }

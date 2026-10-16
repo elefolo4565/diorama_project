@@ -1,0 +1,50 @@
+{
+  "name_ja": "ビロウ",
+  "latin": "Livistona chinensis var. subglobosa",
+  "regions": [
+    "shikoku",
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Birou": "T_FD_Leaf_Birou.png"
+  },
+  "barks": {
+    "FD_BarkBirou": [
+      "T_FD_BarkBirou_D.png",
+      "T_FD_BarkBirou_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Birou_A": {
+      "file": "SM_FD_Birou_A.glb",
+      "height_m": 10.5,
+      "habitat": [
+        "coast",
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    },
+    "SM_FD_Birou_B": {
+      "file": "SM_FD_Birou_B.glb",
+      "height_m": 6.5,
+      "habitat": [
+        "coast",
+        "forest"
+      ],
+      "share": 0.015,
+      "seasons": 15
+    },
+    "SM_FD_Birou_C": {
+      "file": "SM_FD_Birou_C.glb",
+      "height_m": 1.8,
+      "habitat": [
+        "coast",
+        "forest"
+      ],
+      "share": 0.01,
+      "seasons": 15
+    }
+  }
+}

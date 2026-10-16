@@ -184,9 +184,24 @@ def forget_old_data(path, cfg):
             print(f"前の範囲のデータを消しました: {os.path.relpath(d, ROOT)}", flush=True)
 
 
+def areas_dir_for(cfg, create):
+    """コースの設定を書くフォルダ。ツーリングシミュレータのコアなら地域のフォルダ (<地域>/areas/、無ければ作る)"""
+    import course
+    if not course.region_dirs():
+        return AREAS
+    folder = course.region_folders().get(cfg["name"]) or os.path.join(course.region_dirs()[0], cfg["name"])
+    if create:
+        import install_kit
+        desc = cfg.get("description", "")
+        title = None if desc.endswith("(地図で範囲を指定)") else desc
+        install_kit.add_region(ROOT, folder, cfg["map"], title)
+    return os.path.join(folder, "areas")
+
+
 def save(req):
     cfg = course_json(req)
-    path = os.path.join(AREAS, f"{cfg['name']}.json")
+    areas = areas_dir_for(cfg, create=False)
+    path = os.path.join(areas, f"{cfg['name']}.json")
     if os.path.exists(path):
         with open(path, encoding="utf-8") as f:
             if not json.load(f).get("polygon"):
@@ -195,7 +210,8 @@ def save(req):
         return {"ok": False, "exists": True, "error": f"{os.path.relpath(path, ROOT)} がもうあります。上書きしますか"}
     if os.path.exists(path):
         forget_old_data(path, cfg)
-    os.makedirs(AREAS, exist_ok=True)
+    areas = areas_dir_for(cfg, create=True)
+    os.makedirs(areas, exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(cfg, f, ensure_ascii=False, indent=2)
         f.write("\n")
@@ -204,12 +220,16 @@ def save(req):
 
 
 def existing():
+    import course
     out = []
-    for fn in sorted(os.listdir(AREAS)) if os.path.isdir(AREAS) else []:
-        if not fn.endswith(".json"):
+    files = [os.path.join(AREAS, fn) for fn in sorted(os.listdir(AREAS))] if os.path.isdir(AREAS) else []
+    for name, folder in course.region_folders().items():
+        files.append(os.path.join(folder, "areas", f"{name}.json"))
+    for path in files:
+        if not path.endswith(".json") or not os.path.exists(path):
             continue
         try:
-            with open(os.path.join(AREAS, fn), encoding="utf-8") as f:
+            with open(path, encoding="utf-8") as f:
                 c = json.load(f)
         except (OSError, ValueError):
             continue

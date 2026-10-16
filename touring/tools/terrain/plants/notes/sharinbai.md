@@ -1,0 +1,11 @@
+# シャリンバイ (Rhaphiolepis indica var. umbellata)
+- 樹形: 根元近くから分かれる株立ちの低木。高さ 1〜3m (崖では 1m 前後)。樹冠は丸くこんもりして、下の方まで葉が付く。枝は黒っぽい灰褐色でやや太く、細かく分かれる
+- 枝: 枝先で数本に車輪状に分かれる (名前の「車輪」)。分かれ目に葉が輪のように集まる
+- 葉: 4〜8cm の倒卵形〜長楕円形。厚く革のようで縁が少し裏へ巻く。濃い緑でつやがあり、新しい葉は黄緑〜赤みを帯びる。枝先に輪生状に集まる
+- 花・実: 4〜5 月、枝先に白い花の房 (直径 1〜1.5cm の 5 弁、中心が赤い)。株全体に点々と白が散る。秋〜冬に黒紫色の丸い実 (1cm) の房
+- 季節の形: 2 つ。夏〜冬 = 葉だけ (基本の形)、春 = 白い花 (`_Hana`)
+- 生える所: 海岸の崖・岩場・海辺の林のふち (coast)。トベラと並んで生えることが多い
+- 見た写真:
+  - https://www.inaturalist.org/observations/158088194 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都大田区)
+  - https://www.inaturalist.org/observations/151475723 (CC BY 4.0, Takaaki Hattori, 沖縄県国頭村)
+  - https://www.inaturalist.org/observations/240331316 (CC BY 4.0, Cheng-Te Hsu, 沖縄県うるま市)

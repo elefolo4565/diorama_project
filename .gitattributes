@@ -12,3 +12,5 @@ tools/map_kit/terrain/plants/**/*.glb filter=lfs diff=lfs merge=lfs -text
 tools/map_kit/terrain/plants/**/*.png filter=lfs diff=lfs merge=lfs -text
 maps/*/tools/terrain/plants/**/*.glb filter=lfs diff=lfs merge=lfs -text
 maps/*/tools/terrain/plants/**/*.png filter=lfs diff=lfs merge=lfs -text
+touring/tools/terrain/plants/**/*.glb filter=lfs diff=lfs merge=lfs -text
+touring/tools/terrain/plants/**/*.png filter=lfs diff=lfs merge=lfs -text
