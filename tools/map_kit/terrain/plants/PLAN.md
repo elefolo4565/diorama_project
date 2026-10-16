@@ -54,6 +54,6 @@
 | 済 | クワズイモ | Alocasia odora | understory | 森の足もとの大きなサトイモの仲間。1m ほどの巨大な葉 |
 | 済 | ゲットウ | Alpinia zerumbet | understory, farm | 道ばた・林のふちのショウガの仲間 (2m)。初夏に白とピンクの花房 |
 | | リュウキュウチク | Pleioblastus linearis | grassland, ridge | 尾根・荒れ地の細いササのやぶ |
-| | アコウ | Ficus superba var. japonica | farm, coast | 集落・海岸の大木。春と秋に一斉に落葉して新芽 |
+| 済 | アコウ | Ficus superba var. japonica | farm, coast | 集落・海岸の大木。春と秋に一斉に落葉して新芽 |
 | | グンバイヒルガオ | Ipomoea pes-caprae | coast | 砂浜をはうつる草。軍配形の葉、桃色の花 (夏) |
 | | チガヤ | Imperata cylindrica | grassland, farm | 草原・あぜの草。初夏に白い穂 |
