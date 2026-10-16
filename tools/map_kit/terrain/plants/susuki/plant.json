@@ -1,0 +1,122 @@
+{
+  "name_ja": "ススキ",
+  "latin": "Miscanthus sinensis",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "tohoku",
+    "hokuriku",
+    "hokkaido"
+  ],
+  "leaves": {
+    "FD_Leaf_Susuki": "T_FD_Leaf_Susuki.png",
+    "FD_Leaf_SusukiAki": "T_FD_Leaf_SusukiAki.png",
+    "FD_Leaf_SusukiFuyu": "T_FD_Leaf_SusukiFuyu.png",
+    "FD_Flower_SusukiAki": "T_FD_Flower_SusukiAki.png",
+    "FD_Flower_SusukiFuyu": "T_FD_Flower_SusukiFuyu.png"
+  },
+  "barks": {},
+  "meshes": {
+    "SM_FD_Susuki_A": {
+      "file": "SM_FD_Susuki_A.glb",
+      "height_m": 1.204,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.08,
+      "seasons": 3
+    },
+    "SM_FD_Susuki_A_Aki": {
+      "file": "SM_FD_Susuki_A_Aki.glb",
+      "height_m": 1.85,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.08,
+      "seasons": 4,
+      "place_with": "SM_FD_Susuki_A"
+    },
+    "SM_FD_Susuki_A_Fuyu": {
+      "file": "SM_FD_Susuki_A_Fuyu.glb",
+      "height_m": 1.85,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.08,
+      "seasons": 8,
+      "place_with": "SM_FD_Susuki_A"
+    },
+    "SM_FD_Susuki_B": {
+      "file": "SM_FD_Susuki_B.glb",
+      "height_m": 1.06,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.06,
+      "seasons": 3
+    },
+    "SM_FD_Susuki_B_Aki": {
+      "file": "SM_FD_Susuki_B_Aki.glb",
+      "height_m": 1.55,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.06,
+      "seasons": 4,
+      "place_with": "SM_FD_Susuki_B"
+    },
+    "SM_FD_Susuki_B_Fuyu": {
+      "file": "SM_FD_Susuki_B_Fuyu.glb",
+      "height_m": 1.55,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.06,
+      "seasons": 8,
+      "place_with": "SM_FD_Susuki_B"
+    },
+    "SM_FD_Susuki_C": {
+      "file": "SM_FD_Susuki_C.glb",
+      "height_m": 0.845,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.04,
+      "seasons": 3
+    },
+    "SM_FD_Susuki_C_Aki": {
+      "file": "SM_FD_Susuki_C_Aki.glb",
+      "height_m": 1.28,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.04,
+      "seasons": 4,
+      "place_with": "SM_FD_Susuki_C"
+    },
+    "SM_FD_Susuki_C_Fuyu": {
+      "file": "SM_FD_Susuki_C_Fuyu.glb",
+      "height_m": 1.28,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.04,
+      "seasons": 8,
+      "place_with": "SM_FD_Susuki_C"
+    }
+  }
+}
