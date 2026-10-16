@@ -576,6 +576,12 @@ void AFDBikePawn::CreateInputAssets()
 	SoundMenuAction->ValueType = EInputActionValueType::Boolean;
 	FlyAction = NewObject<UInputAction>(this, TEXT("IA_Fly"));
 	FlyAction->ValueType = EInputActionValueType::Boolean;
+	LookAction = NewObject<UInputAction>(this, TEXT("IA_BikeLook"));
+	LookAction->ValueType = EInputActionValueType::Axis2D;
+	LookStickAction = NewObject<UInputAction>(this, TEXT("IA_BikeLookStick"));
+	LookStickAction->ValueType = EInputActionValueType::Axis2D;
+	LookResetAction = NewObject<UInputAction>(this, TEXT("IA_BikeLookReset"));
+	LookResetAction->ValueType = EInputActionValueType::Boolean;
 
 	MappingContext = NewObject<UInputMappingContext>(this, TEXT("IMC_CrossCub"));
 
@@ -619,6 +625,11 @@ void AFDBikePawn::CreateInputAssets()
 
 	MappingContext->MapKey(FlyAction, EKeys::B);
 	MappingContext->MapKey(FlyAction, EKeys::Gamepad_DPad_Up);
+
+	MappingContext->MapKey(LookAction, EKeys::Mouse2D);
+	MappingContext->MapKey(LookStickAction, EKeys::Gamepad_Right2D).Modifiers.Add(NewObject<UInputModifierDeadZone>(MappingContext));
+	MappingContext->MapKey(LookResetAction, EKeys::MiddleMouseButton);
+	MappingContext->MapKey(LookResetAction, EKeys::Gamepad_RightThumbstick);
 }
 
 void AFDBikePawn::PawnClientRestart()
@@ -752,6 +763,19 @@ void AFDBikePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	Input->BindActionValueLambda(CameraAction, ETriggerEvent::Started, [this](const FInputActionValue&) { CycleCameraMode(); });
 	Input->BindActionValueLambda(SoundMenuAction, ETriggerEvent::Started, [this](const FInputActionValue&) { ToggleSoundMenu(); });
 	Input->BindActionValueLambda(FlyAction, ETriggerEvent::Started, [this](const FInputActionValue&) { StartFlying(); });
+	Input->BindActionValueLambda(LookAction, ETriggerEvent::Triggered, [this](const FInputActionValue& V)
+	{
+		Look(V.Get<FVector2D>() * MouseLookScale);
+	});
+	Input->BindActionValueLambda(LookStickAction, ETriggerEvent::Triggered, [this](const FInputActionValue& V)
+	{
+		Look(V.Get<FVector2D>() * StickLookRateDeg * GetWorld()->GetDeltaSeconds());
+	});
+	Input->BindActionValueLambda(LookResetAction, ETriggerEvent::Started, [this](const FInputActionValue&)
+	{
+		FreeLookYawDeg = 0.f;
+		FreeLookPitchDeg = 0.f;
+	});
 }
 
 void AFDBikePawn::OnThrottle(const FInputActionValue& Value)
@@ -784,6 +808,8 @@ void AFDBikePawn::ResetToSafePoint()
 	VerticalSpeedCms = 0.f;
 	ForwardAccel = 0.f;
 	LookYawDeg = 0.f;
+	FreeLookYawDeg = 0.f;
+	FreeLookPitchDeg = 0.f;
 	Gear = 0;
 	ShiftTimer = 0.f;
 	YawDeg = SafeTransform.Rotator().Yaw;
@@ -1108,6 +1134,18 @@ void AFDBikePawn::CycleCameraMode()
 	GConfig->Flush(false, GGameUserSettingsIni);
 }
 
+void AFDBikePawn::Look(const FVector2D& DeltaDeg)
+{
+	// メニューや地図を開いている間はマウスをメニューに使う
+	if (FFDMenu::IsAnyOpen())
+	{
+		return;
+	}
+	FreeLookYawDeg = FRotator::NormalizeAxis(FreeLookYawDeg + DeltaDeg.X);
+	FreeLookPitchDeg = FMath::Clamp(FreeLookPitchDeg + DeltaDeg.Y, -MaxLookDownDeg, MaxLookUpDeg);
+	LookIdleSeconds = 0.f;
+}
+
 void AFDBikePawn::UpdateRiderVisibility()
 {
 	// ライダーの目線のときは自分の頭や腕が視界をふさがないよう隠す
@@ -1130,18 +1168,32 @@ void AFDBikePawn::UpdateCamera(float DeltaSeconds, float YawRateDeg)
 	const float LookTarget = FMath::Clamp(YawRateDeg * LookIntoTurnSeconds, -MaxLookIntoTurnDeg, MaxLookIntoTurnDeg);
 	LookYawDeg = FMath::FInterpTo(LookYawDeg, LookTarget, DeltaSeconds, 3.f);
 
+	// マウスで見回した向き。しばらく動かさずに走っていると、ゆっくり前に戻る
+	LookIdleSeconds += DeltaSeconds;
+	if (LookIdleSeconds > LookReturnDelaySeconds && GetSpeedKmh() > LookReturnMinKmh)
+	{
+		FreeLookYawDeg = FMath::FInterpTo(FreeLookYawDeg, 0.f, DeltaSeconds, 1.5f);
+		FreeLookPitchDeg = FMath::FInterpTo(FreeLookPitchDeg, 0.f, DeltaSeconds, 1.5f);
+	}
+
 	if (CameraMode == EFDBikeCameraMode::Helmet)
 	{
 		const float EngineAmp = bRidden ? EngineShakeCm * (0.5f + 0.5f * EngineLoad) : 0.f;
 		HelmetCamera->SetFieldOfView(Fov);
 		HelmetCamera->SetRelativeLocation(HelmetEyeLocation + SpeedShake + ShakeOffset(EngineAmp, 23.f));
 		// 頭は車体ほど傾けない (首で起こす)
-		HelmetCamera->SetWorldRotation(FRotator(PitchDeg + HelmetPitchDeg, YawDeg + LookYawDeg, LeanDeg * HelmetLeanFollow));
+		const float Pitch = FMath::Clamp(PitchDeg + HelmetPitchDeg + FreeLookPitchDeg, -89.f, 89.f);
+		HelmetCamera->SetWorldRotation(FRotator(Pitch, YawDeg + LookYawDeg + FreeLookYawDeg, LeanDeg * HelmetLeanFollow));
 	}
 	else
 	{
+		// 横と下はアームごと回り込み、上を見るときはアームを地面に潜らせずカメラだけ上を向ける
+		const bool bNear = CameraMode == EFDBikeCameraMode::ChaseNear;
+		const float WantPitch = (bNear ? NearPitchDeg : ChasePitchDeg) + FreeLookPitchDeg;
+		const float ArmPitch = FMath::Clamp(WantPitch, -75.f, 0.f);
+		SpringArm->SetRelativeRotation(FRotator(ArmPitch, FreeLookYawDeg, 0.f));
 		Camera->SetFieldOfView(Fov);
-		Camera->SetRelativeLocationAndRotation(SpeedShake, FRotator(0.f, 0.f, LeanDeg * ChaseLeanFollow));
+		Camera->SetRelativeLocationAndRotation(SpeedShake, FRotator(WantPitch - ArmPitch, 0.f, LeanDeg * ChaseLeanFollow));
 	}
 }
 
