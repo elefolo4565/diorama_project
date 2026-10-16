@@ -1,0 +1,82 @@
+{
+  "name_ja": "シャリンバイ",
+  "latin": "Rhaphiolepis indica var. umbellata",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto"
+  ],
+  "leaves": {
+    "FD_Leaf_Sharinbai": "T_FD_Leaf_Sharinbai.png",
+    "FD_Flower_Sharinbai": "T_FD_Flower_Sharinbai.png"
+  },
+  "barks": {
+    "FD_BarkSharinbai": [
+      "T_FD_BarkSharinbai_D.png",
+      "T_FD_BarkSharinbai_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Sharinbai_A": {
+      "file": "SM_FD_Sharinbai_A.glb",
+      "height_m": 2.65,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 14
+    },
+    "SM_FD_Sharinbai_A_Spring": {
+      "file": "SM_FD_Sharinbai_A_Spring.glb",
+      "height_m": 2.65,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 1,
+      "place_with": "SM_FD_Sharinbai_A"
+    },
+    "SM_FD_Sharinbai_B": {
+      "file": "SM_FD_Sharinbai_B.glb",
+      "height_m": 1.85,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 14
+    },
+    "SM_FD_Sharinbai_B_Spring": {
+      "file": "SM_FD_Sharinbai_B_Spring.glb",
+      "height_m": 1.85,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 1,
+      "place_with": "SM_FD_Sharinbai_B"
+    },
+    "SM_FD_Sharinbai_C": {
+      "file": "SM_FD_Sharinbai_C.glb",
+      "height_m": 1.05,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 14
+    },
+    "SM_FD_Sharinbai_C_Spring": {
+      "file": "SM_FD_Sharinbai_C_Spring.glb",
+      "height_m": 1.05,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 1,
+      "place_with": "SM_FD_Sharinbai_C"
+    }
+  }
+}
