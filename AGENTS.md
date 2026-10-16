@@ -113,6 +113,9 @@ plants/ubamegashi/
 - `regions` (必須): その種類が自然に生える地方 (`kyushu` `okinawa` `shikoku` `chugoku` `kansai` `chubu` `kanto` `tohoku` `hokuriku` `hokkaido`)。
   ジオラマのコースの中心に近い県庁所在地の地方の植物だけが置かれる。コードの植物は PLANTS の各値に `regions=(...)` と書く
 - `seasons`: 見える季節のビット (1 春, 2 夏, 4 秋, 8 冬。省略 = 15 = 一年中)
+- `place_with`: 季節で見た目が変わる種類 (花・紅葉・落葉) は、同じ枝の形で葉の絵だけ変えた形を作り、
+  `"place_with": "<相手のメッシュ名>"` を書く。相手と同じ位置・向きに置かれ、seasons で入れ替わる (seasons は相手と重ねない)。
+  見本: `plants/yabutsubakiopus.py` (夏・秋は葉だけ、冬・春は赤い花)
 - 割合は目安。合計が大きくなりすぎたら Claude が調整する
 
 ## 見た目の質 (A・B 共通。PR の前にこの順で確かめる)
