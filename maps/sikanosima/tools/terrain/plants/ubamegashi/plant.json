@@ -26,7 +26,7 @@
         "coast",
         "ridge"
       ],
-      "share": 0.04,
+      "share": 0.02,
       "seasons": 15
     },
     "SM_FD_Ubamegashi_B": {
@@ -36,7 +36,7 @@
         "coast",
         "ridge"
       ],
-      "share": 0.035,
+      "share": 0.0175,
       "seasons": 15
     },
     "SM_FD_Ubamegashi_C": {
@@ -45,7 +45,7 @@
       "habitat": [
         "coast"
       ],
-      "share": 0.025,
+      "share": 0.0125,
       "seasons": 15
     }
   }
