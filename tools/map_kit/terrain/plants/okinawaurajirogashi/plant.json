@@ -5,7 +5,8 @@
     "okinawa"
   ],
   "leaves": {
-    "FD_Leaf_Okinawaurajirogashi": "T_FD_Leaf_Okinawaurajirogashi.png"
+    "FD_Leaf_Okinawaurajirogashi": "T_FD_Leaf_Okinawaurajirogashi.png",
+    "FD_Leaf_OkinawaurajirogashiUra": "T_FD_Leaf_OkinawaurajirogashiUra.png"
   },
   "barks": {
     "FD_BarkOkinawaurajirogashi": [
