@@ -8,3 +8,4 @@ __pycache__/
 *.pyc
 maps/*/tools/terrain/out/
 maps/*/tools/vehicle/out/
+tools/map_kit/terrain/out/
