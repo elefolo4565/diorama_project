@@ -22,11 +22,11 @@
 | | ヤブツバキ | Camellia japonica | forest | 林の中の小高木、冬〜春に赤い花。Claude 版 `yabutsubakiopus.py` あり (Codex 版と見比べ中) |
 | | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑。Claude 版 `arakashiopus.py` あり (Codex 版と見比べ中) |
 | | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち。Claude 版 `matebashiiopus.py` あり (Codex 版と見比べ中) |
-| | イスノキ | Distylium racemosum | forest | 社寺林の常緑高木 |
+| | イスノキ | Distylium racemosum | forest | 社寺林の常緑高木。Claude 版 `isunokiopus.py` あり (Codex 版と見比べ中) |
 | | アカメガシワ | Mallotus japonicus | farm | 道ばた・畑のふちの落葉樹、赤い新芽。Claude 版 `akamegashiwaopus.py` あり (4 季、Codex 版と見比べ中) |
-| | ウラジロ | Gleichenia japonica | understory | 森の足もとのシダ (大きな群れ) |
-| | コシダ | Dicranopteris linearis | understory | 森の足もとのシダ (日当たりのよい所) |
-| | アオキ | Aucuba japonica | understory | 森の中の低木 (1〜2m) |
-| | ネザサ | Pleioblastus argenteostriatus f. glaber | understory, farm | 林のふち・あぜのササ |
+| | ウラジロ | Gleichenia japonica | understory | 森の足もとのシダ (大きな群れ)。Claude 版 `urajiroopus.py` あり (Codex 版と見比べ中) |
+| | コシダ | Dicranopteris linearis | understory | 森の足もとのシダ (日当たりのよい所)。Claude 版 `koshidaopus.py` あり (Codex 版と見比べ中) |
+| | アオキ | Aucuba japonica | understory | 森の中の低木 (1〜2m)。Claude 版 `aokiopus.py` あり (Codex 版と見比べ中) |
+| | ネザサ | Pleioblastus argenteostriatus f. glaber | understory, farm | 林のふち・あぜのササ。Claude 版 `nezasaopus.py` あり (2 季、Codex 版と見比べ中) |
 | | ススキ | Miscanthus sinensis | grassland, farm | 草原・あぜ。秋は穂 (seasons で穂の形を分ける)。Claude 版 `susukiopus.py` あり (3 季、Codex 版と見比べ中) |
-| | ソテツ | Cycas revoluta | coast | 南九州の海岸 (kyushu だけ) |
+| | ソテツ | Cycas revoluta | coast | 南九州の海岸 (kyushu だけ)。Claude 版 `sotetsuopus.py` あり (Codex 版と見比べ中) |
