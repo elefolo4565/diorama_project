@@ -225,7 +225,7 @@ def check_module(name):
         draw(os.path.join(OUT, color), os.path.join(OUT, normal))
         textures[color] = np.asarray(Image.open(os.path.join(OUT, color)).convert("RGBA"))
     for mesh_name, spec in specs.items():
-        e, row = check_plant(mesh_name, spec, leaves, barks, textures)
+        e, row = check_plant(mesh_name, spec, leaves, barks, textures, specs)
         errors += e
         if row:
             rows.append(row)
@@ -247,7 +247,7 @@ def check_leaf_png(path):
     return errs
 
 
-def check_plant(name, spec, leaves, barks, textures):
+def check_plant(name, spec, leaves, barks, textures, all_plants=None):
     errs = []
     if not plants.MESH_NAME.fullmatch(name):
         errs.append(f"{name}: メッシュ名は SM_FD_<種類>_<A/B/C> にする")
@@ -259,7 +259,12 @@ def check_plant(name, spec, leaves, barks, textures):
     bad = [h for h in spec["habitat"] if h not in plants.HABITATS]
     if bad or not spec["habitat"]:
         errs.append(f"{name}: habitat は {plants.HABITATS} から選ぶ ({bad})")
-    if not 0 < spec["share"] <= 1:
+    if "place_with" in spec:
+        if spec["place_with"] not in (all_plants or {}):
+            errs.append(f"{name}: place_with の {spec['place_with']} がありません")
+        elif spec.get("seasons", plants.ALL_SEASONS) & all_plants[spec["place_with"]].get("seasons", plants.ALL_SEASONS):
+            errs.append(f"{name}: place_with の相手と seasons が重なっています (同じ所に 2 本見える)")
+    elif not 0 < spec["share"] <= 1:
         errs.append(f"{name}: share は 0 より大きく 1 以下")
     regions = spec.get("regions", ())
     if not regions or any(r not in plants.REGIONS for r in regions):
