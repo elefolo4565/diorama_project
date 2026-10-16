@@ -1,0 +1,12 @@
+# ガジュマル (Ficus microcarpa)
+- 樹形: 常緑高木。樹高 8〜15m、樹冠は高さより横に広い半球形〜ドーム形 (幅は高さの 1.5〜2 倍)。太い枝が低い所から四方へ水平に伸び、枝から細い気根がひげのように垂れる。地面に届いた気根は太って柱 (支柱根) になり、大木では幹と区別がつかない何本もの柱が樹冠を支える。若い木や岩の上の木は気根の束が幹や岩に絡む
+- 幹: 灰白色〜明るい灰褐色でなめらか。主幹は太さ 0.5〜1.5m、気根が合わさって網目〜ひだ状になる。垂れ下がる気根は茶色く細い (1〜2cm) ものが房になる
+- 葉: 5〜10cm の楕円〜倒卵形、先は丸い。濃い緑で厚く、つやがある。枝先に密に付き、樹冠の表面はすき間の少ないこんもりした塊
+- 花・実: 葉の付け根に 1cm ほどの丸い実 (緑 → 赤紫)。遠目には目立たない
+- 季節の形: 1 つ (一年中ほぼ同じ)
+- 生える所: 集落の広場・道ばた・公園の大木 (farm)、林のふち・石灰岩の岩の上 (forest)。沖縄〜奄美、屋久島
+- 見た写真:
+  - https://www.inaturalist.org/observations/248841453 (CC BY 4.0, Daniel J. Layton, 鹿児島県屋久島町)
+  - https://www.inaturalist.org/observations/173388662 (CC BY 4.0, Sundar Lakshmanan, 沖縄県那覇市)
+  - https://www.inaturalist.org/observations/238712110 (CC BY 4.0, Takaaki Hattori, 沖縄県国頭村)
+  - https://www.inaturalist.org/observations/149538681 (CC BY 4.0, Tzu-Neng Yuan, 鹿児島県龍郷町)

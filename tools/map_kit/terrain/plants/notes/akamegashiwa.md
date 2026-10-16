@@ -1,0 +1,12 @@
+# アカメガシワ (Mallotus japonicus)
+- 樹形: 道ばた・畑のふち・伐採跡に先に生える落葉樹。樹高 5〜10m。幹は 1〜3 本、低い所から分かれ、枝は横〜斜め上に大きく広がる。樹冠は横に広い傘形〜不規則な形で、すき間が多く明るい (葉の層の間から空が見える)
+- 幹: 灰褐色〜灰白色、縦に浅い割れ目。若い枝は灰白色。樹高 8m で太さ 15〜25cm
+- 葉: 10〜20cm の大きな卵形〜ひし形 (浅く 3 つに裂けることもある)。長い赤い葉柄 (10〜20cm) の先に付き、水平に広がって枝先に集まる。夏は明るい緑でつやは弱い
+- 季節: 4〜5 月の新芽は鮮やかな赤〜赤紫 (名前の由来)。6〜7 月に枝先にクリーム色の花の穂。11 月に黄葉。冬は葉がなく、灰白色の枝が見える
+- 季節の形: 4 つ。春 = 赤〜赤紫の新芽 (`_Haru`)、夏 = 緑 (基本の形)、秋 = 黄葉 (`_Aki`)、冬 = 葉を落とした灰白色の枝だけ (`_Fuyu`)
+- 生える所: 道ばた・畑のふち・林のふち・空き地 (farm)
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Mallotus_japonicus4.jpg (CC BY-SA 3.0, KENPEI)
+  - https://commons.wikimedia.org/wiki/File:Mallotus_japonicus_-_Quarryhill_Botanical_Garden_-_DSC03627.JPG (CC0, Daderot)
+  - https://commons.wikimedia.org/wiki/File:Mallotus_japonicus_%E8%B5%A4%E8%8A%BD%E6%A7%B2%E3%80%81%E8%B5%A4%E8%8A%BD%E6%9F%8F%E3%80%81%E3%82%A2%E3%82%AB%E3%83%A1%E3%82%AC%E3%82%B7%E3%83%AF_DSCF2659.JPG (CC BY-SA 3.0, 松岡明芳)
+  - https://commons.wikimedia.org/wiki/File:Mallotus_japonicus_Muell.Arg._(AM_AK232387-3).jpg (CC BY 4.0, Palmer, Tony)

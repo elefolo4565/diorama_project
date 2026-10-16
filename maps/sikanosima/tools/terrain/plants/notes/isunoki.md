@@ -1,0 +1,12 @@
+# イスノキ (Distylium racemosum)
+- 樹形: 単幹の常緑高木。樹高 10〜20m。老木 (社寺林) は幹の根元が大きく広がり、縦にうねる筋と瘤があってねじれる。地上 2〜4m で太い枝 3〜5 本に分かれ、くねりながら斜め上へ。樹冠は丸く密。若木は縦長の卵形〜円錐形で下枝まで葉が付く
+- 幹: 灰白色〜淡い赤褐色。老木はうろこ状に薄くはがれ、まだらになる。太さは樹高 15m で 40〜80cm (老木はさらに太い)
+- 葉: 4〜8cm の小さめの楕円、縁は全縁。厚く革のようで濃い緑、つやは弱め。枝に互い違いに密に付く。葉に丸い虫こぶ (1cm 前後) が付くことが多い
+- 花・実: 3〜4 月に葉の付け根に小さな赤い花の房 (遠目にはほとんど見えない)
+- 季節の形: 1 つ (一年中ほぼ同じ)
+- 生える所: 社寺林・暖かい山の林 (forest)。九州の照葉樹林の高木層
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:%E3%82%A4%E3%82%B9%E3%81%AE%E6%9C%A8.jpg (CC BY-SA 3.0, 山本拓也)
+  - https://commons.wikimedia.org/wiki/File:%E3%82%A4%E3%82%B9%E3%81%AE%E6%9C%A8_.jpg (CC BY-SA 3.0, 山本拓也)
+  - https://commons.wikimedia.org/wiki/File:Around_the_base_of_Distylium_racemosum_tree_of_Kisami_Hachiman_Jinja_Shrine.jpg (CC BY 4.0, さかおり)
+  - https://commons.wikimedia.org/wiki/File:Distylium_racemosum_Meise_Nat._Plantentuin.jpg (CC0, Homoarborea)

@@ -21,6 +21,7 @@ import sys
 import numpy as np
 from PIL import Image
 
+import meisho
 import railways
 from build_roads import ROAD_Z_OFFSET_M, HeightSampler
 from build_terrain import write_outputs
@@ -194,6 +195,11 @@ def main():
         mask = np.maximum(mask, rail_mask)   # 道床の下は草を生やさない (道路レイヤー)
     roads = doc["roads"]
     surface_z(area, height, roads)
+    # 名所 (meisho/) の広場や前庭の所を平らにする (道路の路面は変えない)
+    if course_features(sys.argv[1])["meisho"]:
+        height, done = meisho.flatten(area, height, roads, road_w, ref=np.load(os.path.join(out, "height_m.npy")))
+        if done:
+            print("名所の地面を平らにしました: " + "、".join(done))
     write_outputs(area, height, sea, height_file="height_road_m.npy")
     layer = np.round(mask * 255).astype(np.uint8)
     Image.fromarray(layer).save(os.path.join(out, "road_layer.png"))

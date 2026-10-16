@@ -1,0 +1,12 @@
+# アラカシ (Quercus glauca)
+- 樹形: 単幹の常緑高木。樹高 10〜15m (里山では 6〜12m)。幹は地上 2〜3m で太い枝 3〜5 本に分かれ、斜め上へ伸びる。樹冠は丸い卵形〜半球形で密、輪郭は小さな房の凸凹。林のふちでは下枝が地面近くまで残る
+- 幹: 灰色〜緑がかった灰色でなめらか、白っぽい斑や皮目が点々とある。樹高 10m で太さ 25〜40cm
+- 葉: 7〜12cm の長い楕円、先がとがり、上半分の縁に粗い鋸歯。表は濃い緑でつや、裏は白っぽい灰緑 (風で裏返ると白く見える)。新芽は赤茶色〜銅色 (4〜5 月)
+- 花・実: 4〜5 月に黄褐色の垂れた花の房 (遠目には樹冠が少し茶色がかる)。秋にどんぐり (1.5〜2cm、横縞の殻斗)
+- 季節の形: 2 つ。夏〜冬 = 濃い緑 (基本の形)、春 = 銅色の新芽と黄褐色の花 (`_Haru`)
+- 生える所: 里山の林・社寺林・谷沿い (forest)。シイより乾いた所や石灰岩の上にも
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Quercus_glauca_-_Miyajima_Natural_Botanical_Garden_-_DSC02386.JPG (Public domain, Daderot)
+  - https://commons.wikimedia.org/wiki/File:Quercus_glauca_kz05.jpg (CC BY-SA 4.0, Krzysztof Ziarnek, Kenraiz)
+  - https://commons.wikimedia.org/wiki/File:Quercus_glauca_kz03.jpg (CC BY-SA 4.0, Krzysztof Ziarnek, Kenraiz)
+  - https://commons.wikimedia.org/wiki/File:Ch%C3%AAne_glauque_(2).jpg (CC BY-SA 4.0, Margueret)
