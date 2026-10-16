@@ -13,7 +13,8 @@
     "hokuriku"
   ],
   "leaves": {
-    "FD_Leaf_Tobera": "T_FD_Leaf_Tobera.png"
+    "FD_Leaf_Tobera": "T_FD_Leaf_Tobera.png",
+    "FD_Flower_Tobera": "T_FD_Flower_Tobera.png"
   },
   "barks": {
     "FD_BarkTobera": [
@@ -29,7 +30,17 @@
         "coast"
       ],
       "share": 0.035,
-      "seasons": 15
+      "seasons": 14
+    },
+    "SM_FD_Tobera_A_Hana": {
+      "file": "SM_FD_Tobera_A_Hana.glb",
+      "height_m": 2.4,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.035,
+      "seasons": 1,
+      "place_with": "SM_FD_Tobera_A"
     },
     "SM_FD_Tobera_B": {
       "file": "SM_FD_Tobera_B.glb",
@@ -38,7 +49,17 @@
         "coast"
       ],
       "share": 0.025,
-      "seasons": 15
+      "seasons": 14
+    },
+    "SM_FD_Tobera_B_Hana": {
+      "file": "SM_FD_Tobera_B_Hana.glb",
+      "height_m": 1.65,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.025,
+      "seasons": 1,
+      "place_with": "SM_FD_Tobera_B"
     },
     "SM_FD_Tobera_C": {
       "file": "SM_FD_Tobera_C.glb",
@@ -47,7 +68,17 @@
         "coast"
       ],
       "share": 0.02,
-      "seasons": 15
+      "seasons": 14
+    },
+    "SM_FD_Tobera_C_Hana": {
+      "file": "SM_FD_Tobera_C_Hana.glb",
+      "height_m": 1.1,
+      "habitat": [
+        "coast"
+      ],
+      "share": 0.02,
+      "seasons": 1,
+      "place_with": "SM_FD_Tobera_C"
     }
   }
 }
