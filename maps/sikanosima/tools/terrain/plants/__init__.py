@@ -6,6 +6,8 @@
 
 コードの各ファイルが定義するもの (書き方は AGENTS.md と yamamomo.py を参照):
     PLANTS     {メッシュ名: dict(make=..., height_m=..., habitat=(...), share=..., seasons=...)}
+               place_with="SM_FD_..." を書いた形は、自分では置かず、その形と同じ位置・向きに置く
+               (季節ちがいの形: 例 ヤブツバキの花の咲く形。seasons を相手と重ならないようにする)
     MATERIALS  {マテリアル名: scenery_meshes.MATERIALS と同じ書き方}            (省略可)
     LEAVES     {マテリアル名: (PNG の名前, draw(path))}  葉・花の絵                (省略可)
     BARKS      {マテリアル名: (色の PNG, 法線の PNG, draw(color_path, normal_path))} 樹皮の絵 (省略可)
@@ -176,7 +178,7 @@ def load_folder(name):
             elif mat not in sm.MATERIALS:  # 既存のマテリアル (FD_Bark など) はそのまま使う
                 materials[mat] = glb_material(dm)
         plants[mesh_name] = dict(make=(lambda p=path, n=mesh_name: glb_mesh(p, n)), file=path,
-                                 **{k: m[k] for k in ("height_m", "habitat", "share", "seasons") if k in m})
+                                 **{k: m[k] for k in ("height_m", "habitat", "share", "seasons", "place_with") if k in m})
         if "habitat" in plants[mesh_name]:
             plants[mesh_name]["habitat"] = tuple(plants[mesh_name]["habitat"])
         if "regions" in spec:

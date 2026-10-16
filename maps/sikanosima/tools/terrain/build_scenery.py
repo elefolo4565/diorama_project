@@ -431,6 +431,8 @@ def plant_kinds(kind, extra, coast, farm, grass, z):
         return kind
     rng = sm.Rng(SEED + 101)
     for name, spec in sorted(extra.items()):
+        if "place_with" in spec:   # 別のメッシュと同じ所に置くもの (季節ちがいの形)
+            continue
         where = np.zeros(len(kind), bool)
         for h in spec["habitat"]:
             if h in plants.REPLACE_HABITATS:
@@ -444,7 +446,7 @@ def add_understory(out, extra, grid, x_cm, y_cm, road_clear, keep_clear_cm):
     """plants/ の植物のうち "understory" のもの: 森の木 1 本ごとに share の確率で、その足もと (1.5〜4m 先) に 1 株足す。"""
     rng = sm.Rng(SEED + 102)
     for name, spec in sorted((extra or {}).items()):
-        if "understory" not in spec["habitat"] or not len(x_cm):
+        if "understory" not in spec["habitat"] or "place_with" in spec or not len(x_cm):
             continue
         pick = rng.random(len(x_cm)) < spec["share"]
         n = int(pick.sum())
@@ -652,6 +654,9 @@ def main():
             world[beams.name] = beams
     for name, make in TREE_KINDS.items():
         meshes[name] = make()
+    for name, spec in extra.items():
+        if "place_with" in spec:   # 季節ちがいの形: 相手と同じ位置・向きに置き、季節で出し入れする
+            instances[name] = list(instances.get(spec["place_with"]) or [])
     for name, spec in extra.items():
         if instances.get(name):
             meshes[name] = spec["make"]()

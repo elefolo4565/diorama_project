@@ -70,9 +70,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fly")
 	float MaxAltitudeCm = 500000.f;
 
-	/** マウス 1 カウントあたりに回す角度 (度) */
+	/** マウスを動かした量 1 あたりに回す角度 (度)。歩くときと同じ */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fly")
-	float MouseLookScale = 0.07f;
+	float MouseLookScale = 2.5f;
 
 	/** スティックを倒しきったときに回す速さ (度/秒) */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fly")

@@ -1,0 +1,12 @@
+# ウバメガシ (Quercus phillyraeoides)
+- 樹形: 海岸では根元から何本も細い幹が立つ株立ちの低木〜小高木。高さ 2〜5m (岬の崖では 1〜2m で、潮風で上面が平らに刈り込まれ風下へ傾く)。樹冠は地面近くまで下がり、すき間の少ない密な塊が斜面に連なる。内陸の古木は 8〜10m の単幹になり、樹冠は丸い
+- 幹: 暗い灰褐色で縦に浅く割れる。1 本の太さは 5〜15cm、細い幹がくねって絡む
+- 葉: 3〜6cm の小さな楕円〜倒卵形、上半分の縁に浅い鋸歯。厚く硬い。表は濃い緑でつや、裏は淡い緑。新芽は黄緑〜赤茶色で、春は樹冠の表面が明るくなる
+- 花・実: 4〜5 月に黄褐色の垂れた花の房。翌年秋にどんぐり (2cm、細い鱗片の殻斗)
+- 季節の形: なくてもよい。作るなら 2 つ。夏〜冬 = 基本の形、春 = 黄緑〜赤茶の新芽 (`_Haru`)
+- 生える所: 海岸の崖・岩場・尾根の乾いた斜面 (coast, ridge)。トベラ・ハマヒサカキ・シャリンバイと混じる
+- 見た写真:
+  - https://www.inaturalist.org/observations/321992316 (CC BY 4.0, Alexander Wentworth, 静岡県伊豆市)
+  - http://www.inaturalist.org/observations/1459278 (CC BY-SA 4.0, harum.koh, 和歌山県白浜町)
+  - https://www.inaturalist.org/observations/124675049 (CC BY 4.0, 岸本年郎, 静岡県浜松市)
+  - https://commons.wikimedia.org/wiki/File:Quercus_phillyreoides_-_Quarryhill_Botanical_Garden_-_DSC03594.JPG (CC0, Daderot)

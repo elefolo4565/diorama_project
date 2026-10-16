@@ -1,0 +1,12 @@
+# マテバシイ (Lithocarpus edulis)
+- 樹形: 根元から何本もの幹が立つ株立ちが多い常緑高木。樹高 8〜15m。林では細い灰色の幹が 5〜10 本、斜めに伸びて扇のように開き、上の方だけに葉が茂る。一本で立つと樹冠は丸い卵形〜半球形で密、下の方まで葉が付く
+- 幹: 灰色〜灰褐色でなめらか、縦に浅い筋。1 本の太さは 10〜30cm
+- 葉: 10〜20cm の大きな倒披針形〜長楕円形、縁は全縁。厚く硬く、濃い緑で強いつや、裏は淡い。枝先に集まって付き、葉が上向きに束になる (遠目に粗い房の樹冠)
+- 花・実: 6 月に枝先から上向きのクリーム色の穂 (10cm) が多数出て、樹冠が黄白色に見える。翌年秋に細長いどんぐり (2〜3cm)
+- 季節の形: 1 つ (一年中ほぼ同じ)
+- 生える所: 海岸近くの林・社寺林・公園 (forest, coast)。九州に多い
+- 見た写真:
+  - https://commons.wikimedia.org/wiki/File:Lithocarpus_edulis3.jpg (CC BY-SA 3.0, KENPEI)
+  - https://commons.wikimedia.org/wiki/File:Lithocarpus_edulis7.jpg (CC BY-SA 3.0, KENPEI)
+  - https://commons.wikimedia.org/wiki/File:%E8%8A%B1%E5%AB%81%E8%A1%97%E9%81%93%E3%81%AE%E3%83%9E%E3%83%86%E3%83%90%E3%82%B7%E3%82%A4%E6%9E%97.jpg (CC BY-SA 4.0, Koda6029)
+  - https://commons.wikimedia.org/wiki/File:Leaves_and_fruits_of_Lithocarpus_edulis.jpg (CC BY-SA 4.0, そらみみ)
