@@ -40,7 +40,7 @@
 | | リュウキュウマツ | Pinus luchuensis | forest, ridge | 沖縄の山と海岸の代表のマツ。笠のように横に広がる樹冠 |
 | | ガジュマル | Ficus microcarpa | forest, farm | 気根が垂れ下がり幹のように太る大木。集落・道ばたにも |
 | | アダン | Pandanus odoratissimus | coast | 砂浜の奥の低木。タコ足の支柱根、らせん状の長い葉、パイナップルのような実 |
-| | フクギ | Garcinia subelliptica | farm | 集落の防風林。まっすぐな幹に厚い葉が密な縦長の樹形 |
+| 済 | フクギ | Garcinia subelliptica | farm | 集落の防風林。まっすぐな幹に厚い葉が密な縦長の樹形 |
 | | テリハボク | Calophyllum inophyllum | coast | 海岸の常緑高木。つやのある丸い葉、防潮林 |
 | | オオハマボウ | Hibiscus tiliaceus | coast | 海岸・河口の低木〜小高木。ハート形の葉、黄色い花 (夏) |
 | | クサトベラ | Scaevola taccada | coast | 砂浜の低木。明るい緑のへら形の葉がこんもり |

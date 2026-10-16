@@ -1,0 +1,45 @@
+{
+  "name_ja": "フクギ",
+  "latin": "Garcinia subelliptica",
+  "regions": [
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Fukugi": "T_FD_Leaf_Fukugi.png"
+  },
+  "barks": {
+    "FD_BarkFukugi": [
+      "T_FD_BarkFukugi_D.png",
+      "T_FD_BarkFukugi_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Fukugi_A": {
+      "file": "SM_FD_Fukugi_A.glb",
+      "height_m": 11.0,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.035,
+      "seasons": 15
+    },
+    "SM_FD_Fukugi_B": {
+      "file": "SM_FD_Fukugi_B.glb",
+      "height_m": 8.5,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.03,
+      "seasons": 15
+    },
+    "SM_FD_Fukugi_C": {
+      "file": "SM_FD_Fukugi_C.glb",
+      "height_m": 6.2,
+      "habitat": [
+        "farm"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}
