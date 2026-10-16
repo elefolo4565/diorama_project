@@ -37,7 +37,7 @@
 
 | 状態 | 和名 | 学名 | 置く所 (habitat) | メモ |
 | --- | --- | --- | --- | --- |
-| | リュウキュウマツ | Pinus luchuensis | forest, ridge | 沖縄の山と海岸の代表のマツ。笠のように横に広がる樹冠 |
+| 済 | リュウキュウマツ | Pinus luchuensis | forest, ridge | 沖縄の山と海岸の代表のマツ。笠のように横に広がる樹冠 |
 | | ガジュマル | Ficus microcarpa | forest, farm | 気根が垂れ下がり幹のように太る大木。集落・道ばたにも |
 | | アダン | Pandanus odoratissimus | coast | 砂浜の奥の低木。タコ足の支柱根、らせん状の長い葉、パイナップルのような実 |
 | | フクギ | Garcinia subelliptica | farm | 集落の防風林。まっすぐな幹に厚い葉が密な縦長の樹形 |
