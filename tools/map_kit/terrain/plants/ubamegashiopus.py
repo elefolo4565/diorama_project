@@ -1,4 +1,4 @@
-"""ウバメガシ (Quercus phillyraeoides) の株立ちの低木の形 (Claude 版)。背の高い木の形は ubamegashi/ (Codex 版) で、両方を半分ずつ置く。
+"""ウバメガシ (Quercus phillyraeoides) の株立ちの低木の形 (Claude 版)。見比べてこちらだけを置く (Codex 版は _ubamegashi/ に残し、置かない)。
 海岸の崖や岩場の常緑樹。根元から何本もの細い幹が立ち、小さく厚い葉が地面近くまでびっしり付く。
 潮風の当たる所では、風上の枝が育たず、樹冠が風下へ流れて低く刈り込まれたような形になる。
 """
@@ -68,9 +68,9 @@ def ubamegashi(name, seed, height, width, stems, wind=0.0, skirt=0.15):
 
 PLANTS = {
     "SM_FD_UbamegashiOpus_A": dict(make=lambda: ubamegashi("SM_FD_UbamegashiOpus_A", 81, 4.8, 2.4, 5, wind=0.15, skirt=0.2),
-                                   height_m=4.8, habitat=("coast", "ridge"), share=0.02, regions=REGIONS),
+                                   height_m=4.8, habitat=("coast", "ridge"), share=0.04, regions=REGIONS),
     "SM_FD_UbamegashiOpus_B": dict(make=lambda: ubamegashi("SM_FD_UbamegashiOpus_B", 82, 3.4, 2.3, 6, wind=0.75, skirt=0.12),
-                                   height_m=3.4, habitat=("coast", "ridge"), share=0.0175, regions=REGIONS),
+                                   height_m=3.4, habitat=("coast", "ridge"), share=0.035, regions=REGIONS),
     "SM_FD_UbamegashiOpus_C": dict(make=lambda: ubamegashi("SM_FD_UbamegashiOpus_C", 83, 2.4, 1.5, 7, wind=0.4, skirt=0.04),
-                                   height_m=2.4, habitat=("coast",), share=0.0125, regions=REGIONS),
+                                   height_m=2.4, habitat=("coast",), share=0.025, regions=REGIONS),
 }
