@@ -1,0 +1,48 @@
+{
+  "name_ja": "アカギ",
+  "latin": "Bischofia javanica",
+  "regions": [
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Akagi": "T_FD_Leaf_Akagi.png"
+  },
+  "barks": {
+    "FD_BarkAkagi": [
+      "T_FD_BarkAkagi_D.png",
+      "T_FD_BarkAkagi_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Akagi_A": {
+      "file": "SM_FD_Akagi_A.glb",
+      "height_m": 20.0,
+      "habitat": [
+        "forest",
+        "farm"
+      ],
+      "share": 0.03,
+      "seasons": 15
+    },
+    "SM_FD_Akagi_B": {
+      "file": "SM_FD_Akagi_B.glb",
+      "height_m": 16.0,
+      "habitat": [
+        "forest",
+        "farm"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Akagi_C": {
+      "file": "SM_FD_Akagi_C.glb",
+      "height_m": 15.0,
+      "habitat": [
+        "forest",
+        "farm"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}
