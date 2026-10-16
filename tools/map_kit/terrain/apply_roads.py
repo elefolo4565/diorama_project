@@ -21,8 +21,10 @@ import sys
 import numpy as np
 from PIL import Image
 
-from build_roads import ROAD_Z_OFFSET_M
+import railways
+from build_roads import ROAD_Z_OFFSET_M, HeightSampler
 from build_terrain import write_outputs
+from course import course_features
 from geo import Area
 
 SHOULDER_M = 6.0        # 路肩から元の地形へつなぐ幅
@@ -61,8 +63,10 @@ def box_blur(a, r):
     return a
 
 
-def burn(area, base, roads):
-    """base (地形) に道路を焼き込む。重なりは道路の重み (中心ほど1) が大きい方、同じなら道路の中心線に近い方を採用。
+def burn(area, base, roads, shoulder_m=SHOULDER_M, z_offset_m=ROAD_Z_OFFSET_M, min_z_m=MIN_ROAD_Z_M, smooth=True,
+         mask_shrink_m=0.0, parts=False):
+    """base (地形) に道路を焼き込む。線路の道床も同じ関数で焼く (smooth=False: 高さは railways.py で決めてある)。
+    道路の r["pins"] (踏切の点の番号と高さ) は、ならした後にその高さへ合わせる。重なりは道路の重み (中心ほど1) が大きい方、同じなら道路の中心線に近い方を採用。
     路面の内側は重みがどれも 1 なので、近い方を選ばないと、先に焼いた区間の端 (高さが一定) が次の区間の始まりに
     はみ出し、頂点ごとに平らな所と段差ができる (走るとガタガタする)。"""
     n = base.shape[0]
@@ -80,14 +84,17 @@ def burn(area, base, roads):
             continue
         seg_len = np.linalg.norm(np.diff(pts[:, :2], axis=0), axis=1)
         spacing = float(np.mean(seg_len)) if len(seg_len) else 10.0
-        z = smooth_profile(pts[:, 2] - ROAD_Z_OFFSET_M, max(spacing, 1e-3))
+        z = pts[:, 2] - z_offset_m
+        if smooth:
+            z = smooth_profile(z, max(spacing, 1e-3))
+        z = railways.apply_pins(z, pts, r.get("pins"))
         # 海岸沿いで海底の高さを拾っても、路面は海面より上に保つ
-        z = np.maximum(z, MIN_ROAD_Z_M)
+        z = np.maximum(z, min_z_m)
         pts[:, 2] = z
         r["points_cm"] = [[round(p[0] * 100, 1), round(p[1] * 100, 1),
-                           round((p[2] + ROAD_Z_OFFSET_M) * 100, 1)] for p in pts]
+                           round((p[2] + z_offset_m) * 100, 1)] for p in pts]
         half = r["width_cm"] / 200.0
-        reach = half + SHOULDER_M
+        reach = half + shoulder_m
 
         # 画素座標: col = (X + half_m)/mpp, row = (Y + half_m)/mpp  (UE の +Y は南 = 画素の下)
         cols = (pts[:, 0] + area.half_m) / mpp
@@ -104,14 +111,14 @@ def burn(area, base, roads):
             L2 = dc * dc + dr * dr
             t = np.clip(((cc - c0) * dc + (rr - r0) * dr) / L2, 0, 1) if L2 > 0 else np.zeros_like(cc, float)
             d = np.hypot(cc - (c0 + t * dc), rr - (r0 + t * dr)) * mpp
-            w = 1.0 - smoothstep((d - half) / SHOULDER_M)
+            w = 1.0 - smoothstep((d - half) / shoulder_m)
             zz = z[i] + (z[i + 1] - z[i]) * t
             win = (slice(rmin, rmax + 1), slice(cmin, cmax + 1))
             better = (w > weight[win] + 1e-6) | ((w >= weight[win] - 1e-6) & (d < dist[win]))
             weight[win] = np.where(better, w, weight[win])
             road_z[win] = np.where(better, zz, road_z[win])
             dist[win] = np.where(better, d, dist[win])
-            m = 1.0 - smoothstep((d - half) / MASK_FEATHER_M)
+            m = 1.0 - smoothstep((d - half + mask_shrink_m) / MASK_FEATHER_M)
             mask[win] = np.maximum(mask[win], m)
 
     # 路面の高さを道路のある所だけで (重み付きで) ぼかし、交差点の段差や頂点の折れ目をなめらかにする
@@ -121,6 +128,8 @@ def burn(area, base, roads):
             wz, ww = box_blur(wz, SURFACE_SMOOTH_PX), box_blur(ww, SURFACE_SMOOTH_PX)
         road_z = np.where(weight > 0, wz / np.maximum(ww, 1e-6), road_z).astype(np.float32)
     out = base * (1.0 - weight) + road_z * weight
+    if parts:
+        return out.astype(np.float32), mask, weight, road_z
     return out.astype(np.float32), mask
 
 
@@ -164,8 +173,25 @@ def main():
             wide = json.load(f)["roads"]
     else:
         wide = json.loads(json.dumps(doc["roads"]))
+    # 線路の道床を先に焼き、線路と交わる道路は踏切の所でレールの高さに合わせる (コースの features の railways)
+    rail = None
+    if course_features(sys.argv[1])["railways"]:
+        doc_rail = railways.build(area, HeightSampler(area))
+        beds = railways.bed_roads(doc_rail) if doc_rail else []
+        if beds:
+            base, rail_mask, rail_w, rail_z = burn(
+                area, base, beds, shoulder_m=railways.BED_SHOULDER_M, z_offset_m=0.0, min_z_m=railways.MIN_Z_M,
+                smooth=False, mask_shrink_m=railways.BED_HALF_M - railways.LAYER_HALF_M, parts=True)
+            rail = (rail_mask, rail_w, rail_z)
+            print(f"線路の道床を焼き込みました。踏切 {railways.crossing_pins(wide, doc_rail, ROAD_Z_OFFSET_M)} か所")
     # 優先度の低い道路から焼き、主要道路の形を優先する (重なりは重みで決まる)
-    height, mask = burn(area, base, sorted(wide, key=lambda r: -r["priority"]))
+    height, mask, road_w, _ = burn(area, base, sorted(wide, key=lambda r: -r["priority"]), parts=True)
+    if rail is not None:
+        rail_mask, rail_w, rail_z = rail
+        # 線路沿いの道路ののり面が道床を削らないよう、踏切でない所の道床を戻す
+        keep = (rail_w >= 0.999) & (road_w < 0.999)
+        height = np.where(keep, rail_z, height).astype(np.float32)
+        mask = np.maximum(mask, rail_mask)   # 道床の下は草を生やさない (道路レイヤー)
     roads = doc["roads"]
     surface_z(area, height, roads)
     write_outputs(area, height, sea, height_file="height_road_m.npy")

@@ -12,7 +12,8 @@
     "utility_poles": false,
     "guardrails": false,
     "city_glow": false,
-    "shrines": true
+    "shrines": true,
+    "railways": true
   },
   "polygon": [
     [

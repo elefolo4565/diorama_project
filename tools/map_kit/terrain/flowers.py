@@ -611,7 +611,7 @@ def remove_near(instances, occupied, names):
         items = instances.get(name)
         if not items:
             continue
-        a = np.array(items)
+        a = np.array([it[:2] for it in items], float)
         keep = np.ones(len(a), bool)
         # 格子で近いものだけ比べる
         cell = 4000.0

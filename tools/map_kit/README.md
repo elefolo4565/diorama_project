@@ -1,12 +1,12 @@
 # map_kit (地域のジオラマを作る仕組み)
 
-国土地理院の標高・建物と OpenStreetMap の道路・神社などから、海・地形・道路・木・建物・神社・夜の光までを自動で作り、
+国土地理院の標高・建物と OpenStreetMap の道路・神社・線路などから、海・地形・道路・木・建物・神社・線路と駅・夜の光までを自動で作り、
 UE 5.8 のレベルに組み立てる仕組みです。もとは fukuoka_drive (糸島一周) で作ったもので、ここがその本体です。
 
 | フォルダ | 中身 |
 | --- | --- |
 | `kit/` | `install_kit.py` (地域のプロジェクトへ入れる・新しく作る)、`area_picker.py` (地図で範囲を描く)、`make_diorama.py` (通しで作る) |
-| `terrain/` | データ作り (標高・道路・タイル・景色・建物・神社・遠景・ミニマップ) |
+| `terrain/` | データ作り (標高・道路・タイル・景色・建物・神社・線路と駅・遠景・ミニマップ) |
 | `ue/` | UE の組み立て (`setup_project.py`、`editor.py`、`rebuild.bat`) |
 | `vehicle/` | バイクと歩く人の形 |
 | `Source/FukuokaDrive/` | C++ モジュール (名前は FukuokaDrive のまま。`/Script/FukuokaDrive.*` を setup_project.py が使う) |
@@ -30,6 +30,7 @@ py -3 tools\kit\make_diorama.py <コース名>
   ダブルクリックで開きたいときは、.uproject を右クリック →「プログラムから開く」→
   `C:\Program Files\Epic Games\Launcher\Engine\Binaries\Win64\UnrealVersionSelector.exe` を「常に使う」にします
 - 神社は、コースの設定の `"features"` に `"shrines": true` を書くと作ります (地図で範囲を選ぶ画面は true を書きます)
+- 線路と駅も同じく `"railways": true` で作ります (地図で範囲を選ぶ画面は true を書きます)。範囲に線路が無ければ何も置きません
 
 ## 仕組みを直すとき
 
