@@ -39,7 +39,7 @@ import road_furniture
 import shrines
 import foliage as fo
 import scenery_meshes as sm
-from course import course_features, course_overrides
+from course import course_features, course_of_area, course_overrides
 from geo import Area
 from road_furniture import Path, place_road_furniture
 from road_furniture import runs as road_runs
@@ -582,7 +582,11 @@ def main():
     if features["shrines"]:  # 神社の参道と建物の所は、木・花・家をよける
         shrine_plans, shrine_clear = shrines.plan(area, grid, roads, stamp_roads)
         keep_clear += shrine_clear
-    extra, extra_leaves, extra_barks, _ = plants.load()  # plants/ の植物 (Codex などが足す)
+    # plants/ の植物 (Codex などが足す)。コースの地方 (九州・四国…) の植物だけ
+    course = course_of_area(sys.argv[1])
+    region = plants.region_of(area.center_lat, area.center_lon, course.cfg if course else None)
+    extra, extra_leaves, extra_barks, _ = plants.load(region=region)
+    print(f"植物の地方: {plants.REGIONS.get(region, region)} (plants/ から {len(extra)} 種類の形)")
     instances = place_trees(grid, roads, keep_clear, extra)
     for name, items in shrines.forest(grid, roads, shrine_plans, keep_clear, stamp_roads).items():  # 鎮守の森
         instances.setdefault(name, []).extend(items)

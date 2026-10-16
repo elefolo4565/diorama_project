@@ -114,4 +114,4 @@ py build_minimap.py areas/itoshima_loop.json       一周全体のミニマッ�
 - 建物は国土地理院のベクトルタイル (基盤地図情報の建築物) の輪郭に、OSM の階数と種類を重ねて作ります。長方形に近い家は瓦 (2 割は金属) の切妻か寄棟、大きな建物は平らな屋根。壁 (サイディング・モルタル)・屋根 (瓦・金属)・基礎の模様と凹凸の絵は `building_textures.py`。窓は壁のマテリアルが描き、夜は時刻に合わせて灯ります (`buildings.py`)
 - `apply_roads.py` は道路の高さを約50m区間でならし、路面を平らにして路肩6mで元の地形へつなぎます。橋とトンネルは地形を削りません
 - 植物の種類は `plants/<種類>.py` (コード) か `plants/<種類>/` (`plant.json` と Blender などで作った `.glb`・PNG) を足すだけで増やせます。`build_scenery.py` が自動で読み込み、`habitat` (海岸・森・尾根・田畑・草原・森の足もと) の木の一部をその種類にします。
-  書き方と決まりはリポジトリ直下の [AGENTS.md](../../../AGENTS.md)、見本は `plants/yamamomo.py`。`python plants/check.py <種類>` で名前・三角形の数・大きさを調べ、`out/plants/<種類>_preview.png` に正面・横・真上の確認用の画像を描きます (UE は使いません)
+  書き方と決まりはリポジトリ直下の [AGENTS.md](../../../AGENTS.md)、見本は `plants/yamamomo.py`。`python plants/check.py <種類>` で名前・三角形の数・大きさを調べ、`out/plants/<種類>_preview.png` に正面・横・真上の確認用の画像を描きます (UE は使いません)。置くのはコースの地方 (中心に近い県庁所在地の地方。コースの設定の `"plant_region": "kyushu"` などで変えられる) の植物だけで、作る順番は `plants/PLAN.md`

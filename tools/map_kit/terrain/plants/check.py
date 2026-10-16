@@ -261,6 +261,9 @@ def check_plant(name, spec, leaves, barks, textures):
         errs.append(f"{name}: habitat は {plants.HABITATS} から選ぶ ({bad})")
     if not 0 < spec["share"] <= 1:
         errs.append(f"{name}: share は 0 より大きく 1 以下")
+    regions = spec.get("regions", ())
+    if not regions or any(r not in plants.REGIONS for r in regions):
+        errs.append(f"{name}: regions (使う地方) を {list(plants.REGIONS)} から選ぶ ({list(regions)})")
     if not 1 <= spec.get("seasons", plants.ALL_SEASONS) <= 15:
         errs.append(f"{name}: seasons は 1〜15 (1 春, 2 夏, 4 秋, 8 冬)")
     mesh = spec["make"]()

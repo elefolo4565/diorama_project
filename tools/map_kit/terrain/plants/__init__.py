@@ -10,6 +10,8 @@
     LEAVES     {マテリアル名: (PNG の名前, draw(path))}  葉・花の絵                (省略可)
     BARKS      {マテリアル名: (色の PNG, 法線の PNG, draw(color_path, normal_path))} 樹皮の絵 (省略可)
 
+regions (使う地方): REGIONS の英字のリスト。コースの地方 (region_of) が入っている植物だけを置く
+
 habitat (置く所):
     木を入れ替える: "coast" 海岸 (海から 100m 以内の低い所)、"forest" 森、"ridge" 標高 60m 以上の森、
                     "farm" 田畑のあぜ、"grassland" 草原
@@ -19,6 +21,7 @@ habitat (置く所):
 
 import importlib
 import json
+import math
 import os
 import re
 import struct
@@ -28,6 +31,28 @@ import numpy as np
 import scenery_meshes as sm
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 地方 (作る順)。plants/PLAN.md の順と同じ。東北・沖縄は作る順に入っていないが、名前は使える
+REGIONS = {"kyushu": "九州", "shikoku": "四国", "chugoku": "中国", "kansai": "関西", "chubu": "中部", "kanto": "関東",
+           "hokuriku": "北陸", "hokkaido": "北海道", "tohoku": "東北", "okinawa": "沖縄"}
+# 地方を決めるための県庁所在地 (緯度, 経度, 地方)。コースの中心にいちばん近い所の地方にする
+CAPITALS = (
+    (43.06, 141.35, "hokkaido"),
+    (40.82, 140.74, "tohoku"), (39.70, 141.15, "tohoku"), (38.27, 140.87, "tohoku"), (39.72, 140.10, "tohoku"),
+    (38.24, 140.36, "tohoku"), (37.75, 140.47, "tohoku"),
+    (36.34, 140.45, "kanto"), (36.57, 139.88, "kanto"), (36.39, 139.06, "kanto"), (35.86, 139.65, "kanto"),
+    (35.61, 140.12, "kanto"), (35.69, 139.69, "kanto"), (35.45, 139.64, "kanto"),
+    (37.90, 139.02, "hokuriku"), (36.70, 137.21, "hokuriku"), (36.59, 136.63, "hokuriku"), (36.07, 136.22, "hokuriku"),
+    (35.66, 138.57, "chubu"), (36.65, 138.18, "chubu"), (35.42, 136.76, "chubu"), (34.98, 138.38, "chubu"),
+    (35.18, 136.91, "chubu"), (34.73, 136.51, "chubu"),
+    (35.00, 135.87, "kansai"), (35.02, 135.76, "kansai"), (34.69, 135.52, "kansai"), (34.69, 135.18, "kansai"),
+    (34.69, 135.83, "kansai"), (34.23, 135.17, "kansai"),
+    (35.50, 134.24, "chugoku"), (35.47, 133.05, "chugoku"), (34.66, 133.93, "chugoku"), (34.40, 132.46, "chugoku"),
+    (34.19, 131.47, "chugoku"),
+    (34.07, 134.56, "shikoku"), (34.34, 134.04, "shikoku"), (33.84, 132.77, "shikoku"), (33.56, 133.53, "shikoku"),
+    (33.61, 130.42, "kyushu"), (33.25, 130.30, "kyushu"), (32.74, 129.87, "kyushu"), (32.79, 130.74, "kyushu"),
+    (33.24, 131.61, "kyushu"), (31.91, 131.42, "kyushu"), (31.56, 130.56, "kyushu"),
+    (26.21, 127.68, "okinawa"),
+)
 REPLACE_HABITATS = ("coast", "forest", "ridge", "farm", "grassland")
 ADD_HABITATS = ("understory",)
 HABITATS = REPLACE_HABITATS + ADD_HABITATS
@@ -36,6 +61,14 @@ ALL_SEASONS = 15
 MESH_NAME = re.compile(r"SM_FD_[A-Z][A-Za-z0-9]*(_[A-Z0-9][A-Za-z0-9]*)*")
 LEAF_NAME = re.compile(r"FD_(Leaf|Flower)_[A-Z][A-Za-z0-9]*")
 BARK_NAME = re.compile(r"FD_Bark[A-Z][A-Za-z0-9]*")
+
+
+def region_of(lat, lon, course_cfg=None):
+    """コースの地方。コースの設定に "plant_region" があればそれ、なければ中心にいちばん近い県庁所在地の地方。"""
+    if course_cfg and course_cfg.get("plant_region"):
+        return course_cfg["plant_region"]
+    k = math.cos(math.radians(lat))
+    return min(CAPITALS, key=lambda c: (c[0] - lat) ** 2 + ((c[1] - lon) * k) ** 2)[2]
 
 
 def module_names():
@@ -145,6 +178,8 @@ def load_folder(name):
                                  **{k: m[k] for k in ("height_m", "habitat", "share", "seasons") if k in m})
         if "habitat" in plants[mesh_name]:
             plants[mesh_name]["habitat"] = tuple(plants[mesh_name]["habitat"])
+        if "regions" in spec:
+            plants[mesh_name]["regions"] = tuple(spec["regions"])
     return materials, leaves, barks, plants, spec
 
 
@@ -162,9 +197,9 @@ def _copier2(src_c, src_n):
     return draw
 
 
-def load(names=None):
+def load(names=None, region=None):
     """植物のファイルを読み込み、マテリアルを scenery_meshes.MATERIALS に足して、
-    (PLANTS をまとめた dict, LEAVES, BARKS, {メッシュ名: ファイル名}) を返す。"""
+    (PLANTS をまとめた dict, LEAVES, BARKS, {メッシュ名: ファイル名}) を返す。region を渡すと、その地方の植物だけにする。"""
     plants, leaves, barks, owner = {}, {}, {}, {}
     for name in names or all_names():
         if name in folder_names():
@@ -177,6 +212,10 @@ def load(names=None):
             if mat in sm.MATERIALS and sm.MATERIALS[mat] != spec:
                 raise ValueError(f"plants/{name}: マテリアル {mat} は別の値ですでにあります")
             sm.MATERIALS[mat] = spec
+        if region is not None:
+            pl = {k: v for k, v in pl.items() if region in v.get("regions", ())}
+            if not pl:
+                continue
         leaves.update(lv)
         barks.update(bk)
         for mesh, spec in pl.items():

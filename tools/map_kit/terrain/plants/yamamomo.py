@@ -1,4 +1,4 @@
-"""ヤマモモ (Morella rubra)。糸島・志賀島の海に近い山や社寺林に多い常緑高木。
+"""ヤマモモ (Morella rubra)。関東より西の暖かい海に近い山や社寺林に多い常緑高木 (九州・四国・中国・関西・中部・関東)。
 濃い緑の細長い葉がびっしり付き、樹冠はこんもり丸く、幹は低い所から数本に分かれる。
 
 植物のファイルの見本 (書き方は tools/map_kit/AGENTS.md)。葉の絵は foliage.py の描き方 (style="broad") を使い、
@@ -58,9 +58,10 @@ def yamamomo(name, seed, height=8.0):
     return fol.write(m)
 
 
+REGIONS = ("kyushu", "shikoku", "chugoku", "kansai", "chubu", "kanto")
 PLANTS = {
     "SM_FD_Yamamomo_A": dict(make=lambda: yamamomo("SM_FD_Yamamomo_A", 71, 8.0), height_m=8.0,
-                             habitat=("forest", "coast"), share=0.05),
+                             habitat=("forest", "coast"), share=0.05, regions=REGIONS),
     "SM_FD_Yamamomo_B": dict(make=lambda: yamamomo("SM_FD_Yamamomo_B", 72, 6.0), height_m=6.0,
-                             habitat=("forest",), share=0.04),
+                             habitat=("forest",), share=0.04, regions=REGIONS),
 }
