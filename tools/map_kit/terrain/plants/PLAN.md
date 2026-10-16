@@ -50,7 +50,7 @@
 | | オキナワウラジロガシ | Quercus miyagii | forest | やんばるのカシの大木。板根、葉の裏が白い |
 | | アカギ | Bischofia javanica | forest, farm | 大きく広がる常緑高木。赤みのある樹皮、3 枚の小葉 |
 | | フカノキ | Schefflera heptaphylla | forest | 森の中の小高木。手のひら形の葉 |
-| | ヒカゲヘゴ | Sphaeropteris lepifera | forest | 大きな木生シダ (5〜10m)。幹の頂に長い葉が放射状、葉の付け根の跡が模様に |
+| 済 | ヒカゲヘゴ | Sphaeropteris lepifera | forest | 大きな木生シダ (5〜10m)。幹の頂に長い葉が放射状、葉の付け根の跡が模様に |
 | | クワズイモ | Alocasia odora | understory | 森の足もとの大きなサトイモの仲間。1m ほどの巨大な葉 |
 | | ゲットウ | Alpinia zerumbet | understory, farm | 道ばた・林のふちのショウガの仲間 (2m)。初夏に白とピンクの花房 |
 | | リュウキュウチク | Pleioblastus linearis | grassland, ridge | 尾根・荒れ地の細いササのやぶ |
