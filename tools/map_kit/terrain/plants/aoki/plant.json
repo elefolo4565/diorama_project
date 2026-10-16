@@ -1,0 +1,53 @@
+{
+  "name_ja": "アオキ",
+  "latin": "Aucuba japonica",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "hokuriku",
+    "tohoku"
+  ],
+  "leaves": {
+    "FD_Leaf_Aoki": "T_FD_Leaf_Aoki.png"
+  },
+  "barks": {
+    "FD_BarkAoki": [
+      "T_FD_BarkAoki_D.png",
+      "T_FD_BarkAoki_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Aoki_A": {
+      "file": "SM_FD_Aoki_A.glb",
+      "height_m": 1.9,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.12,
+      "seasons": 15
+    },
+    "SM_FD_Aoki_B": {
+      "file": "SM_FD_Aoki_B.glb",
+      "height_m": 1.45,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.09,
+      "seasons": 15
+    },
+    "SM_FD_Aoki_C": {
+      "file": "SM_FD_Aoki_C.glb",
+      "height_m": 1.05,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.07,
+      "seasons": 15
+    }
+  }
+}
