@@ -1,0 +1,48 @@
+{
+  "name_ja": "ウラジロ",
+  "latin": "Gleichenia japonica",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "hokuriku",
+    "tohoku"
+  ],
+  "leaves": {
+    "FD_Leaf_Urajiro": "T_FD_Leaf_Urajiro.png"
+  },
+  "barks": {},
+  "meshes": {
+    "SM_FD_Urajiro_A": {
+      "file": "SM_FD_Urajiro_A.glb",
+      "height_m": 1.2,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.15,
+      "seasons": 15
+    },
+    "SM_FD_Urajiro_B": {
+      "file": "SM_FD_Urajiro_B.glb",
+      "height_m": 0.8,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.1,
+      "seasons": 15
+    },
+    "SM_FD_Urajiro_C": {
+      "file": "SM_FD_Urajiro_C.glb",
+      "height_m": 1.45,
+      "habitat": [
+        "understory"
+      ],
+      "share": 0.08,
+      "seasons": 15
+    }
+  }
+}
