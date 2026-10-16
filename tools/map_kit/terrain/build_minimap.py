@@ -13,9 +13,11 @@
 - 海は青 (浅い所ほど明るい)、砂浜 (海面 +2.2m より低い陸) は砂色、陸は標高で緑から黄土色へ
 - 北西から光を当てた陰影 (山の形がわかるように)
 - 道路は roads.json の線を、地図で見えるよう実際より太く描く。県道などの主要道路は黄色、それ以外は白
+- 線路 (railways.json があれば) は黒と白のしま、駅は赤い四角。トンネルの中は描かない
 """
 
 import json
+import math
 import os
 import sys
 
@@ -110,6 +112,65 @@ def draw_roads(img, roads, area_half_cm, px):
                 draw.ellipse((x - rad, y - rad, x + rad, y + rad), fill=edge_color if outline else fill)
 
 
+RAIL_W_M, RAIL_EDGE_M, RAIL_DASH_M = 7.0, 2.0, 40.0
+STATION_M = 26.0
+
+
+def load_rails(out_dir, dx_cm=0.0, dy_cm=0.0):
+    """(地上の線路の点列 [[x, y] cm], 駅の位置 [[x, y] cm])。railways.json が無ければ空。"""
+    path = os.path.join(out_dir, "railways.json")
+    if not os.path.exists(path):
+        return [], []
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+    runs = []
+    for line in doc["lines"]:
+        cur = []
+        for p, k in zip(line["points_cm"], line["kind"]):
+            if k == 2:
+                if len(cur) >= 2:
+                    runs.append(cur)
+                cur = []
+            else:
+                cur.append([p[0] + dx_cm, p[1] + dy_cm])
+        if len(cur) >= 2:
+            runs.append(cur)
+    stations = [[s["pos_m"][0] * 100 + dx_cm, s["pos_m"][1] * 100 + dy_cm] for s in doc.get("stations", [])]
+    return runs, stations
+
+
+def draw_rails(img, runs, stations, area_half_cm, px):
+    """線路 (黒い縁に白と黒のしま) と駅 (赤い四角)。"""
+    if not runs and not stations:
+        return
+    draw = ImageDraw.Draw(img)
+    scale = px / (2.0 * area_half_cm)
+    m_to_px = 100.0 * scale
+
+    def to_px(p):
+        return ((p[0] + area_half_cm) * scale, (p[1] + area_half_cm) * scale)
+
+    w = max(1, int(round(RAIL_W_M * m_to_px)))
+    for run in runs:
+        pts = [to_px(p) for p in run]
+        draw.line(pts, fill=(60, 60, 60), width=w + max(1, int(round(2 * RAIL_EDGE_M * m_to_px))), joint="curve")
+    for run in runs:
+        pts = [to_px(p) for p in run]
+        draw.line(pts, fill=(255, 255, 255), width=w, joint="curve")
+        # 黒のしま: 道に沿って RAIL_DASH_M ごとに半分を塗る
+        acc, on = 0.0, False
+        for a, b in zip(run[:-1], run[1:]):
+            seg = math.hypot(b[0] - a[0], b[1] - a[1]) / 100.0
+            if on:
+                draw.line([to_px(a), to_px(b)], fill=(60, 60, 60), width=w)
+            acc += seg
+            if acc >= RAIL_DASH_M:
+                acc, on = 0.0, not on
+    r = max(2, STATION_M * m_to_px / 2)
+    for x, y in (to_px(p) for p in stations):
+        draw.rectangle((x - r, y - r, x + r, y + r), fill=(220, 40, 40), outline=(255, 255, 255), width=max(1, int(r / 4)))
+
+
 def loop_map(loop_path, area):
     """一周コース: タイルを並べた範囲を囲む正方形の地図。タイルの外は遠景の標高 (40m) で描く。"""
     from build_far_terrain import RASTER_M, far_area, load_raster
@@ -138,7 +199,7 @@ def loop_map(loop_path, area):
 
     # タイル: ランドスケープと同じ高さで描いて貼る
     tile_px = int(round(size / px_m))
-    roads = []
+    roads, rails, stations = [], [], []
     for t, tx, ty in zip(doc["tiles"], xs, ys):
         out = os.path.join(TOOLS_DIR, "out", t["name"])
         hp = os.path.join(out, "height_road_m.npy")
@@ -150,10 +211,14 @@ def loop_map(loop_path, area):
             for r in json.load(f)["roads"]:
                 r["points_cm"] = [[p[0] + tx * 100, p[1] + ty * 100] for p in r["points_cm"]]
                 roads.append(r)
+        ru, st = load_rails(out, tx * 100 - cx * 100, ty * 100 - cy * 100)
+        rails += ru
+        stations += st
     # draw_roads は中心が原点の正方形を描くので、地図の中心が原点になるようずらす
     for r in roads:
         r["points_cm"] = [[p[0] - cx * 100, p[1] - cy * 100] for p in r["points_cm"]]
     draw_roads(img, roads, side / 2 * 100.0, LOOP_OUT_PX)
+    draw_rails(img, rails, stations, side / 2 * 100.0, LOOP_OUT_PX)
     path = os.path.join(area.out_dir, "minimap.png")
     img.save(path)
     bounds = {"world_min_cm": [x0 * 100, y0 * 100], "world_max_cm": [(x0 + side) * 100, (y0 + side) * 100],
@@ -183,6 +248,7 @@ def main():
     big = OUT_PX * SUPERSAMPLE
     img = Image.fromarray(base_colors(height, sea, area.meters_per_px)).resize((big, big), Image.BILINEAR)
     draw_roads(img, roads, area.half_m * 100.0, big)
+    draw_rails(img, *load_rails(out), area.half_m * 100.0, big)
     img = img.resize((OUT_PX, OUT_PX), Image.LANCZOS)
     path = os.path.join(out, "minimap.png")
     img.save(path)

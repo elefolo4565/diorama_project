@@ -114,6 +114,10 @@ POI_LOOKS = {
                    walls=(((0.60, 0.60, 0.58), 1),), roofs=(((0.024, 0.026, 0.030), 2), ((0.050, 0.054, 0.060), 1))),
     "public": dict(style=STYLE_OFFICE, levels=(2, 3), floor=3.5, roof="flat", walls=BIG_WALLS),
     "inn": dict(style=STYLE_HOUSE, levels=(2, 3), floor=3.0, roof="hipped", walls=BIG_WALLS),
+    # 駅舎 (railways.py が駅の近くの建物に付ける、または線路沿いに建てる)
+    "station": dict(style=STYLE_STORE, levels=(1, 1), floor=4.2, roof="hipped", pitch=24.0, eave=1.2,
+                    walls=(((0.66, 0.64, 0.60), 3), ((0.55, 0.42, 0.30), 1)),
+                    roofs=(((0.05, 0.06, 0.08), 2), ((0.20, 0.06, 0.04), 1))),
 }
 
 
@@ -369,6 +373,8 @@ def poi_look(tags):
     amenity, shop, tourism = tags.get("amenity", ""), tags.get("shop", ""), tags.get("tourism", "")
     name = tags.get("name", "")
     building = tags.get("building", "")
+    if building == "train_station":
+        return "station"
     if amenity == "place_of_worship" or building in ("shrine", "temple"):
         if tags.get("religion") == "buddhist" or building == "temple" or name.endswith(("寺", "院", "庵")):
             return "temple"
@@ -746,7 +752,7 @@ def classify(tags, area_m2, rng):
 
 
 LOOK_NAMES = {"konbini": "コンビニ", "cafe": "カフェ", "shop": "店", "shrine": "神社", "temple": "寺",
-              "public": "公共", "inn": "宿", "beach_cafe": "海辺のカフェ"}
+              "public": "公共", "inn": "宿", "beach_cafe": "海辺のカフェ", "station": "駅舎"}
 
 
 def near_sea(grid, center):

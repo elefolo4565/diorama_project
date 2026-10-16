@@ -19,6 +19,8 @@ apply_roads.py の後に実行する。UE への配置は tools/ue/setup_project
 - 季節の花と桜並木: flowers.py
 - 建物 (地理院と OSM の輪郭、夜は窓が灯る): buildings.py。建物の上と周りの木や花は除く
 - 神社 (鳥居・参道・灯籠・狛犬・拝殿・本殿・鎮守の森): shrines.py。コースの "features" の "shrines" が true のとき
+- 線路と駅 (道床・枕木・レール・踏切・架線・鉄橋・トンネルの入口・ホーム・駅舎): railways.py。"railways" が true のとき
+  (道床は apply_roads.py が地形に焼いてある)。線路とホームの上の木・花・建物は除く
 """
 
 import json
@@ -33,6 +35,7 @@ import bark
 import building_textures
 import buildings
 import flowers
+import railways
 import road_furniture
 import shrines
 import foliage as fo
@@ -473,7 +476,8 @@ def write_preview(grid, doc, path, scale=2, building_mask=None):
                      "Suisen": (255, 255, 255), "Sakura": (255, 190, 220)}
     for k, items in doc["instances"].items():
         if (k.startswith("SM_FD_Guardrail") or k.startswith("SM_FD_Road") or k.startswith("SM_FD_Flower") or "Sakura" in k
-                or k.startswith("SM_FD_Shrine") or k.split("_")[2] in ("Momiji", "Haze", "Yamazakura", "Keyaki")):
+                or k.startswith("SM_FD_Shrine") or k.startswith("SM_FD_Rail")
+                or k.split("_")[2] in ("Momiji", "Haze", "Yamazakura", "Keyaki")):
             continue
         plot(items, (40, 200, 60) if "Pine" not in k else (20, 120, 40))
     autumn_colors = {"Momiji": (230, 30, 30), "Haze": (255, 90, 20), "Yamazakura": (255, 170, 40), "Keyaki": (190, 170, 60)}
@@ -492,6 +496,8 @@ def write_preview(grid, doc, path, scale=2, building_mask=None):
     plot((inst.get("SM_FD_RoadPole") or []) + (inst.get("SM_FD_RoadPoleT") or []), (60, 60, 255), r=1)
     plot([i for k, v in inst.items() if k.startswith("SM_FD_RoadSign") for i in v], (255, 0, 255), r=2)
     plot([i for v in doc.get("lights", {}).values() for i in v], (255, 220, 0), r=1)
+    plot([i for k, v in inst.items() if k.startswith("SM_FD_RailSleeper") for i in v], (40, 30, 30))
+    plot(inst.get("SM_FD_RailCrossingSignal"), (255, 255, 0), r=2)
     plot([i for k, v in inst.items() if k.startswith("SM_FD_Shrine") for i in v], (230, 30, 30), r=2)
     if doc.get("meoto"):
         m = doc["meoto"]
@@ -526,6 +532,18 @@ def main():
         meshes.update(m)
         torii_cm = meoto["torii"]["location_cm"]
         keep_clear.append((torii_cm[0], torii_cm[1], TREE_CLEAR_TORII_M * 100))
+    # 線路と駅 (タイルの中の線路、踏切、駅のホーム)
+    rail_doc = railways.load(area) if features["railways"] else None
+    tracks = railways.tracks_in_tile(rail_doc, grid.half_cm) if rail_doc else []
+    rail_plans, rail_clear = [], []
+    if tracks:
+        railways.mark_crossings(tracks, grid, roads, stamp_roads)
+        rail_plans = railways.plan_stations(rail_doc, tracks, grid, roads, stamp_roads)
+        rail_clear = railways.rail_roads(tracks) + [
+            {"points_cm": (p["path"] * 100).tolist(), "width_cm": p["width"] * 100 + 100, "priority": 99,
+             "bridge": False, "tunnel": False, "highway": "railway"} for pl in rail_plans for p in pl["platforms"]]
+    elif features["railways"]:
+        print("線路: タイルの中に地上の線路はありません" if rail_doc else "線路: railways.json がありません (apply_roads.py を実行し直してください)")
     shrine_plans = []
     if features["shrines"]:  # 神社の参道と建物の所は、木・花・家をよける
         shrine_plans, shrine_clear = shrines.plan(area, grid, roads, stamp_roads)
@@ -541,8 +559,14 @@ def main():
         instances, grid, ["SM_FD_Broadleaf_A", "SM_FD_Broadleaf_B", "SM_FD_Broadleaf_C", "SM_FD_Broadleaf_D"])
     instances.update(deciduous)
     instances.update(flower_items)
+    removed_by_rails = 0
+    if rail_clear:  # 線路とホームの上 (と 1.5m) の木と花
+        removed_by_rails = buildings.remove_in_mask(instances, stamp_roads(grid, rail_clear, 1.0, 1.5), 1.0,
+                                                    grid.half_cm / 100, list(instances))
     footprints = buildings.load_footprints(area)
-    building_meshes, building_mask, building_stats = buildings.place_buildings(grid, roads, stamp_roads, footprints, keep_clear)
+    station_buildings = railways.station_footprints(rail_plans, footprints, rail_doc, tracks) if rail_plans else 0
+    building_meshes, building_mask, building_stats = buildings.place_buildings(grid, roads + rail_clear, stamp_roads,
+                                                                               footprints, keep_clear)
     removed_by_buildings = buildings.remove_in_mask(instances, building_mask, grid.mpp, grid.half_cm / 100, list(instances))
     world, rail_m, stretch_extra, shrine_stats = {}, 0.0, [], {}
     if shrine_plans:  # 神社の部品は家の周りの除外より後に足す (近くの家に消されないように)
@@ -552,6 +576,13 @@ def main():
         stretch_extra = [k for k in shrines.STRETCH if k in shrine_items]
         if sando.parts:
             world[sando.name] = sando
+    rail_lights, rail_stats = {}, {}
+    if tracks:
+        rail_items, rail_world, rail_lights, rail_stats = railways.place(tracks, rail_plans, grid, roads, out)
+        instances.update(rail_items)
+        meshes.update(railways.meshes(rail_items))
+        world.update(rail_world)
+        cull.update({k: v for k, v in railways.CULL_CM.items() if k in rail_items})
     meshes.update(flowers.flower_meshes())
     deciduous_meshes, deciduous_seasons = flowers.deciduous_meshes()
     meshes.update(deciduous_meshes)
@@ -574,6 +605,8 @@ def main():
     stretch = stretch + stretch_extra
     world.update(road_world)
     world.update(building_meshes)
+    for kind, items in rail_lights.items():   # ホームの灯り
+        lights.setdefault(kind, []).extend(items)
     meshes.update(world)
     # 置く物が 1 つも無い形 (海ばかりのタイルの建物の区画など) は書かない
     empty = [n for n, m in meshes.items() if not m.parts and not m.cards]
@@ -611,7 +644,8 @@ def main():
         "instance_format": "[x, y, z, yaw (度), 拡大率 (, pitch (度))]。stretch_x のメッシュは X だけ拡大する",
         "stretch_x": stretch,
         # 原点に1つだけ置く、道路に沿ってつながった形 (ガードレールのビーム・区画線・側溝)。shadow は影を落とすか
-        "world_meshes": {name: {"shadow": name == "SM_FD_GuardrailBeams" or name.startswith("SM_FD_Buildings")}
+        "world_meshes": {name: {"shadow": name in ("SM_FD_GuardrailBeams", "SM_FD_Railway", "SM_FD_RailStations")
+                                           or name.startswith("SM_FD_Buildings")}
                          for name in world},
         # 細い電線の影は地面に濃い線になって目立つので落とさない
         "no_shadow": [n for n in stretch],
@@ -638,6 +672,9 @@ def main():
     print(f"ガードレール 計 {rail_m / 1000:.2f} km")
     if features["shrines"]:
         print("神社: " + (", ".join(f"{k} {v}" for k, v in shrine_stats.items()) or "なし"))
+    if features["railways"]:
+        print("線路と駅: " + (", ".join(f"{k} {v}" for k, v in rail_stats.items()) or "なし")
+              + f"。駅舎 {station_buildings}、線路の上の木や花 {removed_by_rails} を除きました")
     print("夜の光源: " + ", ".join(f"{k} {len(v)}" for k, v in lights.items()))
 
 
