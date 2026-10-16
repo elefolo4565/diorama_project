@@ -1,0 +1,82 @@
+{
+  "name_ja": "ネザサ",
+  "latin": "Pleioblastus argenteostriatus f. glaber",
+  "regions": [
+    "kyushu",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "hokuriku"
+  ],
+  "leaves": {
+    "FD_Leaf_Nezasa": "T_FD_Leaf_Nezasa.png",
+    "FD_Leaf_NezasaFuyu": "T_FD_Leaf_NezasaFuyu.png"
+  },
+  "barks": {},
+  "meshes": {
+    "SM_FD_Nezasa_A": {
+      "file": "SM_FD_Nezasa_A.glb",
+      "height_m": 1.65,
+      "habitat": [
+        "understory",
+        "farm"
+      ],
+      "share": 0.1,
+      "seasons": 7
+    },
+    "SM_FD_Nezasa_A_Fuyu": {
+      "file": "SM_FD_Nezasa_A_Fuyu.glb",
+      "height_m": 1.65,
+      "habitat": [
+        "understory",
+        "farm"
+      ],
+      "share": 0.1,
+      "seasons": 8,
+      "place_with": "SM_FD_Nezasa_A"
+    },
+    "SM_FD_Nezasa_B": {
+      "file": "SM_FD_Nezasa_B.glb",
+      "height_m": 1.1,
+      "habitat": [
+        "understory",
+        "farm"
+      ],
+      "share": 0.08,
+      "seasons": 7
+    },
+    "SM_FD_Nezasa_B_Fuyu": {
+      "file": "SM_FD_Nezasa_B_Fuyu.glb",
+      "height_m": 1.1,
+      "habitat": [
+        "understory",
+        "farm"
+      ],
+      "share": 0.08,
+      "seasons": 8,
+      "place_with": "SM_FD_Nezasa_B"
+    },
+    "SM_FD_Nezasa_C": {
+      "file": "SM_FD_Nezasa_C.glb",
+      "height_m": 0.6,
+      "habitat": [
+        "understory",
+        "farm"
+      ],
+      "share": 0.06,
+      "seasons": 7
+    },
+    "SM_FD_Nezasa_C_Fuyu": {
+      "file": "SM_FD_Nezasa_C_Fuyu.glb",
+      "height_m": 0.6,
+      "habitat": [
+        "understory",
+        "farm"
+      ],
+      "share": 0.06,
+      "seasons": 8,
+      "place_with": "SM_FD_Nezasa_C"
+    }
+  }
+}
