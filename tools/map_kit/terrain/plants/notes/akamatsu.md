@@ -1,0 +1,13 @@
+# アカマツ (Pinus densiflora)
+- 樹形: 常緑の針葉高木。樹高 15〜25m。幹は細長く、ゆるく曲がりながら伸び、下の 1/2〜2/3 は枝がない。樹冠は上の方だけにあり、平たく横に広がった傘形〜不規則な形で、枝ごとに針葉の塊が水平な層になって浮かぶ (クロマツより明るく、すき間が多い)。尾根では数本〜十数本がまばらに並び、まわりの広葉樹の上に頭を出す
+- 幹: 上の方の幹と枝は赤茶色〜オレンジ色で、薄い紙のようにはがれる (夕日でよく光る)。根元の方は灰褐色の厚い樹皮が亀の甲羅状に割れる。太さ 30〜50cm
+- 葉: 長さ 7〜12cm の細くやわらかい針葉が 2 本ずつ束。クロマツより明るい緑〜黄緑で、樹冠がふわっと見える
+- 花・実: 4〜5 月、枝先に黄土色の雄花の房と赤紫の雌花。茶色の松ぼっくり (4cm)
+- 季節の形: 1 つ。1 年中緑 (冬はやや黄緑がかる)
+- 生える所: 尾根・やせた斜面・岩の多い所 (ridge, forest)。里山の雑木林の中にも混じる
+- 見た写真:
+  - https://www.inaturalist.org/observations/67660989 (CC BY 4.0, Marco Mussita, 神奈川県秦野市) 細長い幹と上だけの傘形の樹冠
+  - https://www.inaturalist.org/observations/74031152 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市) 数本並んだ樹形
+  - https://www.inaturalist.org/observations/213109241 (CC BY 4.0, WATANABE Hitoshi 渡辺仁, 東京都多摩市) 赤い枝
+  - https://www.inaturalist.org/observations/220097594 (CC BY 4.0, Guy Taseski, 広島県廿日市市 宮島) 赤茶色の幹の樹皮
+  - https://www.inaturalist.org/observations/72520134 (CC BY-SA 4.0, Thor-Rune Hansen, 長野県上田市) 尾根に並ぶ樹冠
