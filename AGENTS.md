@@ -11,7 +11,7 @@ UE への取り込み・配置・見た目の確認は、マージの後にオ�
 
 ## 守ること
 - 種類は **日本に自然に生える植物だけ** (外来の園芸種や欧州の種類は入れない)
-- **作る種類と順番は [plants/PLAN.md](tools/map_kit/terrain/plants/PLAN.md) の表のとおり** (九州 → 四国 → 中国 → 関西 → 中部 → 関東 → 北陸 → 北海道)。
+- **作る種類と順番は [plants/PLAN.md](tools/map_kit/terrain/plants/PLAN.md) の表のとおり** (九州 → 沖縄 → 四国 → 中国 → 関西 → 中部 → 関東 → 東北 → 北陸 → 北海道)。
   いまの地方の、まだ作っていない種類のいちばん上から作る。表に無い種類は作らない。表が済んだら次の指示を待つ。
   作った種類は、同じ PR で PLAN.md の「状態」を「済」にする (PLAN.md で変えてよいのはそこだけ)
 - **外部のアセット・画像・3D モデルを使わない / ダウンロードしない**。形も葉の絵も自分で作る (無料・ライセンスの心配なし)
@@ -110,7 +110,7 @@ plants/ubamegashi/
 - 木を入れ替える: `"coast"` 海岸、`"forest"` 森、`"ridge"` 標高 60m 以上の森、`"farm"` 田畑のあぜ、`"grassland"` 草原
   → その所の木のうち `share` の割合がこの種類になる (例 0.05 = 5%)
 - 木に足す: `"understory"` 森の木の足もと (シダ・低木・ササなど) → 森の木 1 本ごとに `share` の確率で 1 株
-- `regions` (必須): その種類が自然に生える地方 (`kyushu` `shikoku` `chugoku` `kansai` `chubu` `kanto` `hokuriku` `hokkaido` `tohoku` `okinawa`)。
+- `regions` (必須): その種類が自然に生える地方 (`kyushu` `okinawa` `shikoku` `chugoku` `kansai` `chubu` `kanto` `tohoku` `hokuriku` `hokkaido`)。
   ジオラマのコースの中心に近い県庁所在地の地方の植物だけが置かれる。コードの植物は PLANTS の各値に `regions=(...)` と書く
 - `seasons`: 見える季節のビット (1 春, 2 夏, 4 秋, 8 冬。省略 = 15 = 一年中)
 - 割合は目安。合計が大きくなりすぎたら Claude が調整する

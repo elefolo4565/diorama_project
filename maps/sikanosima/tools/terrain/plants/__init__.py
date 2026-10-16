@@ -31,9 +31,9 @@ import numpy as np
 import scenery_meshes as sm
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-# 地方 (作る順)。plants/PLAN.md の順と同じ。東北・沖縄は作る順に入っていないが、名前は使える
-REGIONS = {"kyushu": "九州", "shikoku": "四国", "chugoku": "中国", "kansai": "関西", "chubu": "中部", "kanto": "関東",
-           "hokuriku": "北陸", "hokkaido": "北海道", "tohoku": "東北", "okinawa": "沖縄"}
+# 地方 (作る順)。plants/PLAN.md の順と同じ
+REGIONS = {"kyushu": "九州", "okinawa": "沖縄", "shikoku": "四国", "chugoku": "中国", "kansai": "関西", "chubu": "中部",
+           "kanto": "関東", "tohoku": "東北", "hokuriku": "北陸", "hokkaido": "北海道"}
 # 地方を決めるための県庁所在地 (緯度, 経度, 地方)。コースの中心にいちばん近い所の地方にする
 CAPITALS = (
     (43.06, 141.35, "hokkaido"),
