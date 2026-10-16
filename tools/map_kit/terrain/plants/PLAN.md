@@ -20,7 +20,7 @@
 | | ハマヒサカキ | Eurya emarginata | coast | 海岸の低木、潮風で刈り込まれた形。Claude 版 `hamahisakakiopus.py` あり (Codex 版と見比べ中) |
 | | シャリンバイ | Rhaphiolepis indica var. umbellata | coast | 海岸の低木、春に白い花 (seasons で花の形を分けてもよい)。Claude 版 `sharinbaiopus.py` あり (Codex 版と見比べ中) |
 | | ヤブツバキ | Camellia japonica | forest | 林の中の小高木、冬〜春に赤い花。Claude 版 `yabutsubakiopus.py` あり (Codex 版と見比べ中) |
-| 済 | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑。Claude 版 `arakashiopus.py` あり (Codex 版と見比べ中) |
+| | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑。Claude 版 `arakashiopus.py` あり (Codex 版と見比べ中) |
 | | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち。Claude 版 `matebashiiopus.py` あり (Codex 版と見比べ中) |
 | | イスノキ | Distylium racemosum | forest | 社寺林の常緑高木。Claude 版 `isunokiopus.py` あり (Codex 版と見比べ中) |
 | | アカメガシワ | Mallotus japonicus | farm | 道ばた・畑のふちの落葉樹、赤い新芽。Claude 版 `akamegashiwaopus.py` あり (4 季、Codex 版と見比べ中) |
