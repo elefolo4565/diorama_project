@@ -1,0 +1,126 @@
+{
+  "name_ja": "チガヤ",
+  "latin": "Imperata cylindrica",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "tohoku",
+    "hokuriku",
+    "hokkaido"
+  ],
+  "leaves": {
+    "FD_Leaf_Chigaya": "T_FD_Leaf_Chigaya.png",
+    "FD_Leaf_ChigayaHaru": "T_FD_Leaf_ChigayaHaru.png",
+    "FD_Leaf_ChigayaFuyu": "T_FD_Leaf_ChigayaFuyu.png",
+    "FD_Flower_Chigaya": "T_FD_Flower_Chigaya.png"
+  },
+  "barks": {
+    "FD_BarkChigaya": [
+      "T_FD_BarkChigaya_D.png",
+      "T_FD_BarkChigaya_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Chigaya_A": {
+      "file": "SM_FD_Chigaya_A.glb",
+      "height_m": 0.509,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.08,
+      "seasons": 2
+    },
+    "SM_FD_Chigaya_A_Haru": {
+      "file": "SM_FD_Chigaya_A_Haru.glb",
+      "height_m": 0.756,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.08,
+      "seasons": 1,
+      "place_with": "SM_FD_Chigaya_A"
+    },
+    "SM_FD_Chigaya_A_Fuyu": {
+      "file": "SM_FD_Chigaya_A_Fuyu.glb",
+      "height_m": 0.509,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.08,
+      "seasons": 12,
+      "place_with": "SM_FD_Chigaya_A"
+    },
+    "SM_FD_Chigaya_B": {
+      "file": "SM_FD_Chigaya_B.glb",
+      "height_m": 0.421,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.06,
+      "seasons": 2
+    },
+    "SM_FD_Chigaya_B_Haru": {
+      "file": "SM_FD_Chigaya_B_Haru.glb",
+      "height_m": 0.626,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.06,
+      "seasons": 1,
+      "place_with": "SM_FD_Chigaya_B"
+    },
+    "SM_FD_Chigaya_B_Fuyu": {
+      "file": "SM_FD_Chigaya_B_Fuyu.glb",
+      "height_m": 0.421,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.06,
+      "seasons": 12,
+      "place_with": "SM_FD_Chigaya_B"
+    },
+    "SM_FD_Chigaya_C": {
+      "file": "SM_FD_Chigaya_C.glb",
+      "height_m": 0.329,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.04,
+      "seasons": 2
+    },
+    "SM_FD_Chigaya_C_Haru": {
+      "file": "SM_FD_Chigaya_C_Haru.glb",
+      "height_m": 0.486,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.04,
+      "seasons": 1,
+      "place_with": "SM_FD_Chigaya_C"
+    },
+    "SM_FD_Chigaya_C_Fuyu": {
+      "file": "SM_FD_Chigaya_C_Fuyu.glb",
+      "height_m": 0.329,
+      "habitat": [
+        "grassland",
+        "farm"
+      ],
+      "share": 0.04,
+      "seasons": 12,
+      "place_with": "SM_FD_Chigaya_C"
+    }
+  }
+}

@@ -56,4 +56,4 @@
 | | リュウキュウチク | Pleioblastus linearis | grassland, ridge | 尾根・荒れ地の細いササのやぶ |
 | | アコウ | Ficus superba var. japonica | farm, coast | 集落・海岸の大木。春と秋に一斉に落葉して新芽 |
 | | グンバイヒルガオ | Ipomoea pes-caprae | coast | 砂浜をはうつる草。軍配形の葉、桃色の花 (夏) |
-| | チガヤ | Imperata cylindrica | grassland, farm | 草原・あぜの草。初夏に白い穂 |
+| 済 | チガヤ | Imperata cylindrica | grassland, farm | 草原・あぜの草。初夏に白い穂 |
