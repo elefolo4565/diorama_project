@@ -17,6 +17,7 @@ apply_roads.py の後に実行する。UE への配置は tools/ue/setup_project
 - 木: 斜面と標高の高い所は森 (広葉樹が主、尾根は松が混じる)、海岸の近くは松、平地 (田畑) はまばら
 - 道路の付属物 (区画線・側溝・電柱と電線・防犯灯・標識): road_furniture.py
 - 季節の花と桜並木: flowers.py
+- 足した植物 (plants/<種類>.py): habitat の所の木の一部を入れ替えるか、森の木の足もとに足す (plants/__init__.py)
 - 建物 (地理院と OSM の輪郭、夜は窓が灯る): buildings.py。建物の上と周りの木や花は除く
 - 神社 (鳥居・参道・灯籠・狛犬・拝殿・本殿・鎮守の森): shrines.py。コースの "features" の "shrines" が true のとき
 """
@@ -33,11 +34,12 @@ import bark
 import building_textures
 import buildings
 import flowers
+import plants
 import road_furniture
 import shrines
 import foliage as fo
 import scenery_meshes as sm
-from course import course_features, course_overrides
+from course import course_features, course_of_area, course_overrides
 from geo import Area
 from road_furniture import Path, place_road_furniture
 from road_furniture import runs as road_runs
@@ -337,7 +339,8 @@ def patch_field(rng, x_m, y_m):
     return 0.5 + v / 6 * 1.2
 
 
-def place_trees(grid, roads, keep_clear_cm):
+def place_trees(grid, roads, keep_clear_cm, extra=None):
+    """森・海岸・田畑の木。extra は plants/ の植物 ({メッシュ名: 置き方}、plants/__init__.py を参照)。"""
     rng = sm.Rng(SEED)
     cell = 8.0  # 遠さの判定に使う粗い格子 (m)
     major = [r for r in roads if r["priority"] <= 2]
@@ -399,15 +402,64 @@ def place_trees(grid, roads, keep_clear_cm):
     kind = np.where(u < pine_share, np.where(rng.random(len(u)) < 0.5, "SM_FD_Pine_A", "SM_FD_Pine_B"),
                     rng.choice(["SM_FD_Broadleaf_A", "SM_FD_Broadleaf_B", "SM_FD_Broadleaf_C", "SM_FD_Broadleaf_D"], len(u)))
     kind = np.where(farm & (rng.random(len(u)) < 0.6), "SM_FD_Bush", kind)
+    kind = plant_kinds(kind, extra, coast, farm, grass, z)
     kind = np.where(bamboo, "SM_FD_Bamboo", kind)
     kind = np.where(grass, "SM_FD_Bush", kind)
     kind = np.where(cedar, np.where(rng.random(len(u)) < 0.5, "SM_FD_Cedar_A", "SM_FD_Cedar_B"), kind)
     scale = rng.uniform(0.75, 1.25, len(u))
     yaw = rng.uniform(0, 360, len(u))
-    out = {k: [] for k in TREE_KINDS}
+    out = {k: [] for k in list(TREE_KINDS) + list(extra or {})}
     for k, x, y, zz, s, a in zip(kind, x_cm, y_cm, z, scale, yaw):
         out[str(k)].append([round(float(x), 1), round(float(y), 1), round(float(zz) - 10, 1), round(float(a), 1), round(float(s), 3)])
+    forest = ~coast & ~farm & ~grass
+    add_understory(out, extra, grid, x_cm[forest], y_cm[forest], road_clear, keep_clear_cm)
     return out
+
+
+def _habitat_mask(habitat, coast, farm, grass, z):
+    forest = ~coast & ~farm & ~grass
+    return {"coast": coast, "farm": farm, "grassland": grass, "forest": forest, "ridge": forest & (z > 6000)}[habitat]
+
+
+def plant_kinds(kind, extra, coast, farm, grass, z):
+    """plants/ の植物のうち木を入れ替えるもの: habitat の所の木の share の割合を、その種類にする。
+    乱数は木の並びと別にして、植物を足しても今の木の場所は変えない。"""
+    if not extra:
+        return kind
+    rng = sm.Rng(SEED + 101)
+    for name, spec in sorted(extra.items()):
+        where = np.zeros(len(kind), bool)
+        for h in spec["habitat"]:
+            if h in plants.REPLACE_HABITATS:
+                where |= _habitat_mask(h, coast, farm, grass, z)
+        if where.any():
+            kind = np.where(where & (rng.random(len(kind)) < spec["share"]), name, kind)
+    return kind
+
+
+def add_understory(out, extra, grid, x_cm, y_cm, road_clear, keep_clear_cm):
+    """plants/ の植物のうち "understory" のもの: 森の木 1 本ごとに share の確率で、その足もと (1.5〜4m 先) に 1 株足す。"""
+    rng = sm.Rng(SEED + 102)
+    for name, spec in sorted((extra or {}).items()):
+        if "understory" not in spec["habitat"] or not len(x_cm):
+            continue
+        pick = rng.random(len(x_cm)) < spec["share"]
+        n = int(pick.sum())
+        ang = rng.uniform(0, 2 * math.pi, n)
+        dist = rng.uniform(150, 400, n)
+        x, y = x_cm[pick] + np.cos(ang) * dist, y_cm[pick] + np.sin(ang) * dist
+        z = grid.height_m(x, y) * 100
+        c, r = grid.ue_to_px(x, y)
+        rr = np.clip((np.nan_to_num(r) * grid.mpp).astype(int), 0, road_clear.shape[0] - 1)
+        rc = np.clip((np.nan_to_num(c) * grid.mpp).astype(int), 0, road_clear.shape[1] - 1)
+        ok = np.isfinite(z) & (z >= TREE_MIN_Z_M * 100) & ~road_clear[rr, rc]
+        for cx, cy, rad in keep_clear_cm:
+            ok &= np.hypot(x - cx, y - cy) >= rad
+        x, y, z = x[ok], y[ok], z[ok]
+        n = len(x)
+        for xx, yy, zz, a, s in zip(x, y, z, rng.uniform(0, 360, n), rng.uniform(0.8, 1.2, n)):
+            out.setdefault(name, []).append([round(float(xx), 1), round(float(yy), 1), round(float(zz) - 5, 1),
+                                             round(float(a), 1), round(float(s), 3)])
 
 
 def place_palms(grid, roads, torii_cm):
@@ -530,13 +582,18 @@ def main():
     if features["shrines"]:  # 神社の参道と建物の所は、木・花・家をよける
         shrine_plans, shrine_clear = shrines.plan(area, grid, roads, stamp_roads)
         keep_clear += shrine_clear
-    instances = place_trees(grid, roads, keep_clear)
+    # plants/ の植物 (Codex などが足す)。コースの地方 (九州・四国…) の植物だけ
+    course = course_of_area(sys.argv[1])
+    region = plants.region_of(area.center_lat, area.center_lon, course.cfg if course else None)
+    extra, extra_leaves, extra_barks, _ = plants.load(region=region)
+    print(f"植物の地方: {plants.REGIONS.get(region, region)} (plants/ から {len(extra)} 種類の形)")
+    instances = place_trees(grid, roads, keep_clear, extra)
     for name, items in shrines.forest(grid, roads, shrine_plans, keep_clear, stamp_roads).items():  # 鎮守の森
         instances.setdefault(name, []).extend(items)
     if features["landmarks"]:
         instances.update(place_palms(grid, roads, torii_cm))
     flower_items, seasons, cull, occupied = flowers.place_flowers(grid, roads, densify, stamp_roads, dilate, keep_clear)
-    removed = flowers.remove_near(instances, occupied, list(TREE_KINDS))
+    removed = flowers.remove_near(instances, occupied, list(TREE_KINDS) + list(extra))
     deciduous, moved = flowers.place_deciduous(
         instances, grid, ["SM_FD_Broadleaf_A", "SM_FD_Broadleaf_B", "SM_FD_Broadleaf_C", "SM_FD_Broadleaf_D"])
     instances.update(deciduous)
@@ -564,6 +621,11 @@ def main():
             world[beams.name] = beams
     for name, make in TREE_KINDS.items():
         meshes[name] = make()
+    for name, spec in extra.items():
+        if instances.get(name):
+            meshes[name] = spec["make"]()
+            if spec.get("seasons", plants.ALL_SEASONS) != plants.ALL_SEASONS:
+                seasons[name] = spec["seasons"]
     if features["road_markings"] or features["utility_poles"]:
         road_items, road_meshes, stretch, road_world, lights = place_road_furniture(
             grid, roads, torii_cm, markings=features["road_markings"], poles=features["utility_poles"])
@@ -599,12 +661,18 @@ def main():
     for kind, fname in flowers.AUTUMN_TEXTURES.items():  # 落葉樹の葉の絵 (季節の色)
         flowers.autumn_leaf_texture(kind, os.path.join(out, fname))
         textures[kind] = fname
+    for kind, (fname, draw) in extra_leaves.items():  # plants/ の葉と花の絵
+        draw(os.path.join(out, fname))
+        textures[kind] = fname
     # 建物の壁と屋根の模様と凹凸 ({名前: [色の絵, 凹凸の絵, 大きさ m]})
     building_tex = building_textures.write_all(out) if building_meshes else {}
     bark_textures = {}
     for kind in bark.BARK_KINDS:  # 樹皮の絵と凹凸 (幹と枝のマテリアルが使う)
         color, normal = bark.texture_names(kind)
         bark.bark_textures(kind, os.path.join(out, color), os.path.join(out, normal))
+        bark_textures[kind] = [color, normal]
+    for kind, (color, normal, draw) in extra_barks.items():  # plants/ の樹皮の絵
+        draw(os.path.join(out, color), os.path.join(out, normal))
         bark_textures[kind] = [color, normal]
     doc = {
         "area": area.name, "units": "cm", "axes": "UE: +X 東, +Y 南, +Z 上",
