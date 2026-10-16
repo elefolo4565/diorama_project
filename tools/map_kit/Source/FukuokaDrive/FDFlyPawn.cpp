@@ -5,6 +5,7 @@
 #include "Engine/World.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "FDMenu.h"
 #include "GameFramework/PlayerController.h"
 #include "InputAction.h"
 #include "InputMappingContext.h"
@@ -207,7 +208,8 @@ void AFDFlyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 void AFDFlyPawn::Look(const FVector2D& DeltaDeg)
 {
 	APlayerController* PC = Cast<APlayerController>(GetController());
-	if (!PC)
+	// メニューや地図を開いている間はマウスをメニューに使う
+	if (!PC || FFDMenu::IsAnyOpen())
 	{
 		return;
 	}
@@ -284,13 +286,22 @@ void AFDFlyPawn::Tick(float DeltaSeconds)
 	Next.Z = FMath::Min(Next.Z, MaxAltitudeCm);
 	SetActorLocation(Next);
 
-	if (bShowDebugText && GEngine)
+	if (bShowDebugText && FFDSettings::ShowHelpText() && GEngine)
 	{
 		// デバッグ表示のフォントは日本語を出せない
 		GEngine->AddOnScreenDebugMessage(DebugMessageKey, 0.f, FColor::Cyan, FString::Printf(
-			TEXT("FLY  %.0f km/h  alt %.0f m  (x%.2f)   WASD move  E/Q up/down  Shift fast  wheel speed  B back"),
+			TEXT("FLY  %.0f km/h  alt %.0f m  (x%.2f)   WASD move  E/Q up/down  Shift fast  wheel speed  B back  M map  Tab menu"),
 			Velocity.Size() * 0.036f, GetActorLocation().Z / 100.f, SpeedScale));
 	}
+}
+
+void AFDFlyPawn::FlyTo(const FVector2D& XY)
+{
+	const FVector Here = GetActorLocation();
+	const float Height = FMath::Max(static_cast<float>(Here.Z) - GroundZBelow(Here), MinTravelHeightCm);
+	const FVector There(XY.X, XY.Y, Here.Z);
+	SetActorLocation(FVector(XY.X, XY.Y, FMath::Min(GroundZBelow(There) + Height, MaxAltitudeCm)));
+	Velocity = FVector::ZeroVector;
 }
 
 void AFDFlyPawn::ReturnToGround()

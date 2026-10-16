@@ -409,6 +409,16 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CrossCub")
 	void TravelTo(const AFDTravelPoint* Point);
 
+	/** Where の地面へ移る (Where の向きで、止まった状態から)。拡大マップのファストトラベル用 */
+	void TravelToTransform(const FTransform& Where);
+
+	/** 次のカメラに切り替える (V キー) */
+	void CycleCameraMode();
+
+	/** 右下のミニマップを出す / 消す (Tab のメニューの「ミニマップ」) */
+	void ShowMinimap();
+	void HideMinimap();
+
 	/** レベルにある行き先を並び順で */
 	UFUNCTION(BlueprintCallable, Category = "CrossCub")
 	TArray<AFDTravelPoint*> GetTravelPoints() const;
@@ -473,7 +483,6 @@ private:
 	void OnSteer(const FInputActionValue& Value);
 	void OnReset(const FInputActionValue& Value);
 	void ApplyPaint();
-	void CycleCameraMode();
 	void UpdateRiderVisibility();
 	/** 速度とアクセルから回転数とギアを決める。変速中は駆動力を抜く割合 (0-1) を返す */
 	float UpdateEngine(float DeltaSeconds);
@@ -483,9 +492,6 @@ private:
 
 	enum class EMenu : uint8 { None, Color, Travel, Sound };
 	bool IsMenuOpen(EMenu Kind) const { return Menu.IsOpen() && OpenMenuKind == Kind; }
-
-	void ShowMinimap();
-	void HideMinimap();
 
 	bool TraceGround(const FVector& At, FVector& OutPoint, FVector& OutNormal) const;
 	bool TraceGroundBetween(const FVector& At, float TopZ, float BottomZ, FVector& OutPoint, FVector& OutNormal) const;
@@ -523,9 +529,6 @@ private:
 
 	UPROPERTY(Transient)
 	TObjectPtr<UInputAction> ResetAction;
-
-	UPROPERTY(Transient)
-	TObjectPtr<UInputAction> ColorMenuAction;
 
 	UPROPERTY(Transient)
 	TObjectPtr<UInputAction> TravelMenuAction;

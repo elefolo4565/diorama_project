@@ -5,19 +5,83 @@
 #include "EngineUtils.h"
 #include "FDTravelPoint.h"
 #include "GameFramework/PlayerController.h"
+#include "Misc/ConfigCacheIni.h"
 #include "Styling/CoreStyle.h"
 #include "Widgets/Images/SImage.h"
 #include "Widgets/Input/SButton.h"
 #include "Widgets/Layout/SBorder.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/SBoxPanel.h"
+#include "Widgets/SCompoundWidget.h"
 #include "Widgets/Text/STextBlock.h"
 
-void FFDMenu::Open(APlayerController* PC, const FString& Title, TArray<FItem> Items, const FString& Footer)
+FFDMenu* FFDMenu::Active = nullptr;
+
+namespace
+{
+	/** メニューのいちばん外側。中のボタンより先に Tab を受け取り、メニューを閉じる */
+	class SFDMenuRoot : public SCompoundWidget
+	{
+	public:
+		SLATE_BEGIN_ARGS(SFDMenuRoot) {}
+			SLATE_DEFAULT_SLOT(FArguments, Content)
+			SLATE_EVENT(FSimpleDelegate, OnClose)
+		SLATE_END_ARGS()
+
+		void Construct(const FArguments& InArgs)
+		{
+			OnClose = InArgs._OnClose;
+			ChildSlot[InArgs._Content.Widget];
+		}
+
+		virtual FReply OnPreviewKeyDown(const FGeometry& MyGeometry, const FKeyEvent& InKeyEvent) override
+		{
+			if (InKeyEvent.GetKey() == EKeys::Tab)
+			{
+				OnClose.ExecuteIfBound();
+				return FReply::Handled();
+			}
+			return FReply::Unhandled();
+		}
+
+	private:
+		FSimpleDelegate OnClose;
+	};
+
+	const TCHAR* const SettingsSection = TEXT("FukuokaDrive.Settings");
+
+	/** 毎フレーム読むので、一度読んだ値を覚えておく */
+	bool GetSetting(TOptional<bool>& Cache, const TCHAR* Key)
+	{
+		if (!Cache.IsSet())
+		{
+			bool bValue = true;
+			GConfig->GetBool(SettingsSection, Key, bValue, GGameUserSettingsIni);
+			Cache = bValue;
+		}
+		return Cache.GetValue();
+	}
+
+	void SetSetting(TOptional<bool>& Cache, const TCHAR* Key, bool bValue)
+	{
+		Cache = bValue;
+		GConfig->SetBool(SettingsSection, Key, bValue, GGameUserSettingsIni);
+		GConfig->Flush(false, GGameUserSettingsIni);
+	}
+
+	TOptional<bool> ShowMinimapCache;
+	TOptional<bool> ShowHelpTextCache;
+}
+
+bool FFDSettings::ShowMinimap() { return GetSetting(ShowMinimapCache, TEXT("ShowMinimap")); }
+void FFDSettings::SetShowMinimap(bool bShow) { SetSetting(ShowMinimapCache, TEXT("ShowMinimap"), bShow); }
+bool FFDSettings::ShowHelpText() { return GetSetting(ShowHelpTextCache, TEXT("ShowHelpText")); }
+void FFDSettings::SetShowHelpText(bool bShow) { SetSetting(ShowHelpTextCache, TEXT("ShowHelpText"), bShow); }
+
+void FFDMenu::Open(APlayerController* PC, const FString& Title, TArray<FItem> Items, const FString& Footer, int32 FocusIndex)
 {
 	Close();
-	UGameViewportClient* GameViewport = PC && PC->GetWorld() ? PC->GetWorld()->GetGameViewport() : nullptr;
-	if (!GameViewport)
+	if (!PC || !PC->GetWorld() || !PC->GetWorld()->GetGameViewport())
 	{
 		return;
 	}
@@ -33,8 +97,9 @@ void FFDMenu::Open(APlayerController* PC, const FString& Title, TArray<FItem> It
 	];
 
 	TSharedPtr<SWidget> Focus;
-	for (FItem& Item : Items)
+	for (int32 Index = 0; Index < Items.Num(); ++Index)
 	{
+		FItem& Item = Items[Index];
 		TSharedRef<SHorizontalBox> Row = SNew(SHorizontalBox);
 		if (Item.Swatch.IsSet())
 		{
@@ -68,7 +133,7 @@ void FFDMenu::Open(APlayerController* PC, const FString& Title, TArray<FItem> It
 				Row
 			];
 		List->AddSlot().AutoHeight().Padding(0.f, 3.f)[Button];
-		if (Item.bCurrent || !Focus.IsValid())
+		if (FocusIndex == INDEX_NONE ? (Item.bCurrent || !Focus.IsValid()) : (Index == FocusIndex || !Focus.IsValid()))
 		{
 			Focus = Button;
 		}
@@ -81,16 +146,42 @@ void FFDMenu::Open(APlayerController* PC, const FString& Title, TArray<FItem> It
 		.ColorAndOpacity(FLinearColor(0.8f, 0.8f, 0.8f))
 	];
 
-	Widget = SNew(SBox).HAlign(HAlign_Left).VAlign(VAlign_Center).Padding(FMargin(48.f, 0.f))
+	TSharedRef<SWidget> Content = SNew(SBox).HAlign(HAlign_Left).VAlign(VAlign_Center).Padding(FMargin(48.f, 0.f))
 	[
 		SNew(SBorder).BorderImage(White).BorderBackgroundColor(FLinearColor(0.f, 0.f, 0.f, 0.65f)).Padding(18.f)
 		[
 			List
 		]
 	];
+	Show(PC, Content, Focus, 10);
+}
+
+void FFDMenu::OpenWidget(APlayerController* PC, TSharedRef<SWidget> Content, TSharedPtr<SWidget> Focus)
+{
+	Close();
+	Show(PC, Content, Focus, 9);
+}
+
+void FFDMenu::Show(APlayerController* PC, TSharedRef<SWidget> Content, TSharedPtr<SWidget> Focus, int32 ZOrder)
+{
+	UGameViewportClient* GameViewport = PC && PC->GetWorld() ? PC->GetWorld()->GetGameViewport() : nullptr;
+	if (!GameViewport)
+	{
+		return;
+	}
+	// 一度に開くのは 1 つだけ (バイクのメニューと Tab のメニューが重ならないように)
+	if (Active && Active != this)
+	{
+		Active->Close();
+	}
+	Widget = SNew(SFDMenuRoot).OnClose(FSimpleDelegate::CreateLambda([this]() { Close(); }))
+	[
+		Content
+	];
+	Active = this;
 	Owner = PC;
 	Viewport = GameViewport;
-	GameViewport->AddViewportWidgetContent(Widget.ToSharedRef(), 10);
+	GameViewport->AddViewportWidgetContent(Widget.ToSharedRef(), ZOrder);
 
 	FInputModeGameAndUI Mode;
 	Mode.SetWidgetToFocus(Focus);
@@ -110,6 +201,10 @@ void FFDMenu::Close()
 		GameViewport->RemoveViewportWidgetContent(Widget.ToSharedRef());
 	}
 	Widget.Reset();
+	if (Active == this)
+	{
+		Active = nullptr;
+	}
 	if (APlayerController* PC = Owner.Get())
 	{
 		PC->SetInputMode(FInputModeGameOnly());
@@ -133,7 +228,7 @@ void FFDMenu::OpenTravel(APlayerController* PC, TFunction<void(const AFDTravelPo
 			}
 		}});
 	}
-	const FString Footer = Items.Num() > 0 ? TEXT("F キーで閉じる")  // F キーで閉じる
+	const FString Footer = Items.Num() > 0 ? TEXT("F \u304b Tab \u30ad\u30fc\u3067\u9589\u3058\u308b")  // F か Tab キーで閉じる
 	                                       // 行き先がありません (setup_project.py を実行してください)
 	                                       : TEXT("行き先がありません (setup_project.py を実行してください)");
 	Open(PC, TEXT("ファストトラベル"),  // ファストトラベル
