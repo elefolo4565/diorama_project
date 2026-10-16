@@ -1,0 +1,11 @@
+# アオキ (Aucuba japonica)
+- 形: 森の中の常緑低木。高さ 1〜2m (まれに 3m)。根元から緑色の太い茎が何本も立ち、上の方で 2 つずつ (対生で) 分かれる。株全体は縦長の丸い形で、すき間が多くまばら
+- 茎: 若い茎は名前のとおり緑色 (幹も緑〜灰緑)、太さ 1〜3cm。木の茶色い幹には見えない
+- 葉: 10〜20cm の大きな楕円、縁に粗い鋸歯。厚く濃い緑で強いつや。茎の先に向かい合って付き、先の方に集まる。野生のものは斑のない緑 (庭木の黄色い斑入りではない)
+- 花・実: 3〜4 月に枝先に小さな紫褐色の花の房。12〜4 月に赤い楕円の実 (1.5〜2cm) が枝先に数個ずつ
+- 生える所: 暗い森の足もと (understory)。スギ林・照葉樹林の下にまとまって生える
+- 見た写真:
+  - https://www.inaturalist.org/observations/10179238 (CC BY 4.0, Marco Mussita, 山梨県上野原市)
+  - https://www.inaturalist.org/observations/336181165 (CC0, 東京都町田市)
+  - https://commons.wikimedia.org/wiki/File:Aucuba_japonica_kz1.jpg (CC BY-SA 4.0, Krzysztof Ziarnek, Kenraiz)
+  - https://commons.wikimedia.org/wiki/File:Tenen_Hiking_Trail_@_Kamakura_(13897671542).jpg (CC BY 2.0, Guilhem Vellut)
