@@ -1,0 +1,10 @@
+# コシダ (Dicranopteris linearis)
+- 形: ウラジロより小さく、針金のような細い黒褐色の柄が 2 つに分かれることを何度もくり返し、からまり合ったやぶになるシダ。高さ 0.3〜1m (斜面では 1.5m)。群れの上面はややでこぼこの平らな面
+- 葉: 分かれた枝先に細長い羽片 (長さ 10〜25cm、幅 3〜5cm) が 2 枚ずつ付く。羽片は細かい裂片が櫛の歯のように並ぶ。色は黄緑〜明るい緑、裏は白っぽい。日なたほど黄色っぽい
+- 群れ: 日当たりのよい斜面・切り通し・尾根の荒れ地を一面に覆う。枯れた茶色の柄と古い葉が中に多く残る
+- 生える所: 日当たりのよい林のふち・明るいアカマツ林の下 (understory)。ウラジロと混じるが、より乾いて明るい所
+- 見た写真:
+  - https://www.inaturalist.org/observations/263865008 (CC0, 鹿児島県薩摩川内市 上甑島)
+  - https://www.inaturalist.org/observations/185930916 (CC BY 4.0, 岸本年郎, 静岡県牧之原市)
+  - https://www.inaturalist.org/observations/76489572 (CC BY-SA 4.0, harum.koh, 静岡県沼津市)
+  - https://www.inaturalist.org/observations/142988803 (CC BY 4.0, 岸本年郎, 滋賀県大津市)
