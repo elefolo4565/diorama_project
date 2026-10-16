@@ -1,0 +1,83 @@
+{
+  "name_ja": "ゲットウ",
+  "latin": "Alpinia zerumbet",
+  "regions": [
+    "kyushu",
+    "okinawa"
+  ],
+  "leaves": {
+    "FD_Leaf_Getto": "T_FD_Leaf_Getto.png",
+    "FD_Flower_Getto": "T_FD_Flower_Getto.png"
+  },
+  "barks": {
+    "FD_BarkGetto": [
+      "T_FD_BarkGetto_D.png",
+      "T_FD_BarkGetto_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Getto_A": {
+      "file": "SM_FD_Getto_A.glb",
+      "height_m": 2.8,
+      "habitat": [
+        "farm",
+        "understory"
+      ],
+      "share": 0.045,
+      "seasons": 13
+    },
+    "SM_FD_Getto_A_Hana": {
+      "file": "SM_FD_Getto_A_Hana.glb",
+      "height_m": 2.8,
+      "habitat": [
+        "farm",
+        "understory"
+      ],
+      "share": 0.045,
+      "seasons": 2,
+      "place_with": "SM_FD_Getto_A"
+    },
+    "SM_FD_Getto_B": {
+      "file": "SM_FD_Getto_B.glb",
+      "height_m": 2.3,
+      "habitat": [
+        "farm",
+        "understory"
+      ],
+      "share": 0.035,
+      "seasons": 13
+    },
+    "SM_FD_Getto_B_Hana": {
+      "file": "SM_FD_Getto_B_Hana.glb",
+      "height_m": 2.3,
+      "habitat": [
+        "farm",
+        "understory"
+      ],
+      "share": 0.035,
+      "seasons": 2,
+      "place_with": "SM_FD_Getto_B"
+    },
+    "SM_FD_Getto_C": {
+      "file": "SM_FD_Getto_C.glb",
+      "height_m": 1.7,
+      "habitat": [
+        "farm",
+        "understory"
+      ],
+      "share": 0.025,
+      "seasons": 13
+    },
+    "SM_FD_Getto_C_Hana": {
+      "file": "SM_FD_Getto_C_Hana.glb",
+      "height_m": 1.7,
+      "habitat": [
+        "farm",
+        "understory"
+      ],
+      "share": 0.025,
+      "seasons": 2,
+      "place_with": "SM_FD_Getto_C"
+    }
+  }
+}
