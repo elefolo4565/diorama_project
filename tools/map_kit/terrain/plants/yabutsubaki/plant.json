@@ -1,0 +1,54 @@
+{
+  "name_ja": "ヤブツバキ",
+  "latin": "Camellia japonica",
+  "regions": [
+    "kyushu",
+    "okinawa",
+    "shikoku",
+    "chugoku",
+    "kansai",
+    "chubu",
+    "kanto",
+    "tohoku",
+    "hokuriku"
+  ],
+  "leaves": {
+    "FD_Leaf_Yabutsubaki": "T_FD_Leaf_Yabutsubaki.png",
+    "FD_Flower_Yabutsubaki": "T_FD_Flower_Yabutsubaki.png"
+  },
+  "barks": {
+    "FD_BarkYabutsubaki": [
+      "T_FD_BarkYabutsubaki_D.png",
+      "T_FD_BarkYabutsubaki_N.png"
+    ]
+  },
+  "meshes": {
+    "SM_FD_Yabutsubaki_A": {
+      "file": "SM_FD_Yabutsubaki_A.glb",
+      "height_m": 5.2,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.025,
+      "seasons": 15
+    },
+    "SM_FD_Yabutsubaki_B": {
+      "file": "SM_FD_Yabutsubaki_B.glb",
+      "height_m": 3.7,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 9
+    },
+    "SM_FD_Yabutsubaki_C": {
+      "file": "SM_FD_Yabutsubaki_C.glb",
+      "height_m": 2.2,
+      "habitat": [
+        "forest"
+      ],
+      "share": 0.02,
+      "seasons": 15
+    }
+  }
+}

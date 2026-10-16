@@ -19,7 +19,7 @@
 | | トベラ | Pittosporum tobira | coast | 海岸の低木 (1〜3m)、丸くこんもり |
 | | ハマヒサカキ | Eurya emarginata | coast | 海岸の低木、潮風で刈り込まれた形 |
 | | シャリンバイ | Rhaphiolepis indica var. umbellata | coast | 海岸の低木、春に白い花 (seasons で花の形を分けてもよい) |
-| | ヤブツバキ | Camellia japonica | forest | 林の中の小高木、冬〜春に赤い花 |
+| 済 | ヤブツバキ | Camellia japonica | forest | 林の中の小高木、冬〜春に赤い花 |
 | | アラカシ | Quercus glauca | forest | 里山のカシ、濃い緑 |
 | | マテバシイ | Lithocarpus edulis | forest, coast | 大きな葉、株立ち |
 | | イスノキ | Distylium racemosum | forest | 社寺林の常緑高木 |
